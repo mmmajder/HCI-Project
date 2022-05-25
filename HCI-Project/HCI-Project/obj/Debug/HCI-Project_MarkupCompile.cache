@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\App.xaml
-11151548125
+8-1859240749
 
-91590253985
+33-975515919
 15-1224152435
-MainWindow.xaml;
+ClientWindow.xaml;FinancesViewPage.xaml;HomeViewPage.xaml;LinesViewPage.xaml;MainWindow.xaml;ManagerWindow.xaml;TimetableViewPage.xaml;TrainsViewPage.xaml;
 
-True
+False
 

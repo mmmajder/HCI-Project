@@ -18,12 +18,12 @@ namespace HCI_Project.Repo
             Users.Add(new User(UserType.Manager, "Jovan", "Jovanovic", "j", "j"));
         }
 
-        public void AddUser(User user)
+        public static void AddUser(User user)
         {
             Users.Add(user);
         }
 
-        public List<User> GetUsers()
+        public static List<User> GetUsers()
         {
             return Users;
         }

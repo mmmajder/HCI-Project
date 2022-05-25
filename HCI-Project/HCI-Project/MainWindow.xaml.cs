@@ -24,11 +24,28 @@ namespace HCI_Project
     {
         private string username;
         private string password;
+        public static bool isLoaded;
         public MainWindow()
         {
             new UserRepo();
             InitializeComponent();
+            InitializeData();
             DataContext = this;
+        }
+
+        private void InitializeData()
+        {
+            if (!isLoaded)
+            {
+                isLoaded = true;
+                new StationRepo();
+                new ScheduledStationRepo();
+                new ScheduledRouteRepo();
+                new TrainRepo();
+                new UserRepo();
+                new RouteRepo();
+
+            }
         }
 
         private void doLogin(object sender, RoutedEventArgs e)
@@ -38,8 +55,15 @@ namespace HCI_Project
             if (user != null)
             {
                 WrongInput.Visibility = Visibility.Hidden;
-                Window window = new Window();
-                window.Show();
+                if (user.UserType == Model.UserType.Manager)
+                {
+                    ManagerWindow window = new ManagerWindow();
+                    window.Show();
+                } else
+                {
+                    ClientWindow window = new ClientWindow();
+                    window.Show();
+                }
                 this.Close();
             }
             else

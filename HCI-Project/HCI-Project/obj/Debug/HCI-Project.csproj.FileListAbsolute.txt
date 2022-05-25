@@ -42,3 +42,17 @@ C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\HCI-Project
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\HCI-Project.csproj.CopyComplete
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\HCI-Project.exe
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\HCI-Project.pdb
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\ClientWindow.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\ManagerWindow.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\ClientWindow.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\ManagerWindow.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\LinesViewPage.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\TrainsViewPage.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\LinesViewPage.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\TrainsViewPage.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\FinancesViewPage.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\HomeViewPage.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\TimetableViewPage.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\FinancesViewPage.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\HomeViewPage.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\TimetableViewPage.baml

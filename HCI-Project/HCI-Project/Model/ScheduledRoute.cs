@@ -10,7 +10,7 @@ namespace HCI_Project.Model
     {
         public List<ScheduledStation> Stations { get; set; }
         public long RouteId { get; set; }
-        public List<int> RepeatigDays { get; set; } //days of week [0-6]
+        public List<int> RepeatigDays { get; set; } //days of week [1-7]
         public List<DateTime> NotWorkingDays { get; set;  }
 
         public ScheduledRoute(List<ScheduledStation> stations, long routeId, List<int> repeatigDays, List<DateTime> notWorkingDays)

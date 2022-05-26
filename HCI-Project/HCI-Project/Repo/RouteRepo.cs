@@ -1,5 +1,6 @@
 ﻿using HCI_Project.DTO;
 using HCI_Project.Model;
+using HCI_Project.util;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace HCI_Project.Repo
         public RouteRepo()
         {
             List<Station> allStations = StationRepo.GetStations();
-            List<Station> stations1 = new List<Station> { allStations[0], allStations[1] };
+            List<Station> stations1 = new List<Station> { allStations[0], allStations[1], allStations[2] };
             List<Station> stations2 = new List<Station> { allStations[0], allStations[3], allStations[2] };
             List<ScheduledRoute> allScheduledRoutes = ScheduledRouteRepo.GetScheduledRoutes();
             List<ScheduledRoute> scheduledRoutes1 = new List<ScheduledRoute> { allScheduledRoutes[0] };
@@ -51,42 +52,68 @@ namespace HCI_Project.Repo
 
         }
 
-        public static ObservableCollection<RouteTableDTO> GetRoutes(string from, string to, DateTime date)
+        public static List<RouteTableDTO> GetRoutes(string from, string to, DateTime date)
         {
-            ObservableCollection<RouteTableDTO> routes = new ObservableCollection<RouteTableDTO>();
+            List<RouteTableDTO> routes = new List<RouteTableDTO>();
             foreach (Route route in Routes)
             {
-                bool isFrom = false;
-                foreach (Station station in route.Stations)
+                if (isGoodRoute(route, from, to))
                 {
-                    if (station.Name == from)
+                    foreach (ScheduledRoute scheduledRoute in getAvailAbleRoutes(route, date))
                     {
-                        isFrom = true;
-                    }
-                    else if ((station.Name == to) && isFrom)
-                    {
-                        foreach (ScheduledRoute scheduledRoute in getAvailAbleRoutes(route, date))
+                        DateTime startTime = DateTime.Now;
+                        DateTime endTime = DateTime.Now;
+                        foreach (ScheduledStation scheduledStation in scheduledRoute.Stations)
                         {
-                            DateTime startTime = DateTime.Now;
-                            DateTime endTime = DateTime.Now;
-                            foreach (ScheduledStation scheduledStation in scheduledRoute.Stations)
+                            if (scheduledStation.Station.Name == from)
                             {
-                                if (scheduledStation.Station.Name==from)
-                                {
-                                    startTime = scheduledStation.TimeRange.Depature;
-                                }
-                                if (scheduledStation.Station.Name == to)
-                                {
-                                    endTime = scheduledStation.TimeRange.Arrival;
-                                }
+                                startTime = scheduledStation.TimeRange.Depature;
                             }
-                         //   routes.Add(new RouteTableDTO { FromDate = startTime.ToString(), ToDate = endTime.ToString(), Time = (endTime - startTime).ToString() });
-                            routes.Add(new RouteTableDTO { FromDate = startTime.ToString("dd/MM/yyyy"), FromTime=startTime.ToString("HH:mm"), ToDate = endTime.ToString("dd/MM/yyyy"), ToTime = endTime.ToString("HH:mm"), Time = (endTime - startTime).ToString() });
+                            if (scheduledStation.Station.Name == to)
+                            {
+                                endTime = scheduledStation.TimeRange.Arrival;
+                            }
                         }
+                        DateTime endDate = DateTimeUtils.calculateEndDate(endTime, date);
+                        routes.Add(new RouteTableDTO{ From = date.ToString("dd.MM.yyyy"), Depature = startTime.ToString("HH:mm"), To = endDate.ToString("dd.MM.yyyy"), Arrival = endTime.ToString("HH:mm"), Time = (endTime - startTime).ToString() });
                     }
                 }
             }
             return routes;
+        }
+
+        public static List<ScheduledRoute> GetScheduledRoutes(string from, string to, DateTime date)
+        {
+            List<ScheduledRoute> routes = new List<ScheduledRoute>();
+            foreach (Route route in Routes)
+            {
+                if (isGoodRoute(route, from, to))
+                {
+                    foreach (ScheduledRoute scheduledRoute in getAvailAbleRoutes(route, date))
+                    {
+                       routes.Add(scheduledRoute);
+                    }
+                }
+            }
+            return routes;
+        }
+
+
+        private static bool isGoodRoute(Route route, string from, string to)
+        {
+            bool isFrom = false;
+            foreach (Station station in route.Stations)
+            {
+                if (station.Name == from)
+                {
+                    isFrom = true;
+                }
+                else if ((station.Name == to) && isFrom)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         

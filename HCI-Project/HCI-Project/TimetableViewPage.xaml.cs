@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace HCI_Project
     /// </summary>
     public partial class TimetableViewPage : Page
     {
+        public static List<ScheduledRoute> Routes = new List<ScheduledRoute>();
         public TimetableViewPage()
         {
             InitializeComponent();
@@ -41,8 +43,6 @@ namespace HCI_Project
             toLocationCombobox.ItemsSource = StationRepo.GetStationNames();
             toLocationCombobox.SelectedIndex = -1;
 
-            Routes = new ObservableCollection<RouteTableDTO>();
-
         }
 
 
@@ -57,28 +57,40 @@ namespace HCI_Project
             return selectedItem.ToString();
         }
 
-        public ObservableCollection<RouteTableDTO> Routes
-        {
-            get;
-            set;
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             FromLoc.Text = "From: " + GetLocationValue(fromLocationCombobox);
             ToLoc.Text = "To: " + GetLocationValue(toLocationCombobox);
             TablePanel.Visibility = Visibility.Visible;
             DateTime? selectedDate = datePicker.SelectedDate;
+            Routes.Clear();
+
             if (selectedDate.HasValue && GetLocationValue(fromLocationCombobox) != null && GetLocationValue(fromLocationCombobox)!=null)
             {
-                Routes.Clear();
                 DateTime date = selectedDate.Value;
-                foreach (RouteTableDTO elem in RouteRepo.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date))
-                {
-                    Routes.Add(elem);
-                }
+                Routes = RouteRepo.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                dgrMain.ItemsSource = RouteRepo.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
             }
 
+        }
+
+        private void btnView_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
+                // DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
+                ScheduledRoute slectedScheduledRoute = Routes[i];
+                // ScheduledRoute scheduled = 
+                ScheduledRouteWindow.setSelectedScheduledRoute(slectedScheduledRoute);
+                ScheduledRouteWindow scheduledRouteWindow = new ScheduledRouteWindow();
+                scheduledRouteWindow.Show();
+                //This is the code which will show the button click row data. Thank you.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }

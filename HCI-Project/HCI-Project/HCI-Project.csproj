@@ -67,6 +67,7 @@
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\RouteTableDTO.cs" />
+    <Compile Include="DTO\ScheduledListItemDTO.cs" />
     <Compile Include="FinancesViewPage.xaml.cs">
       <DependentUpon>FinancesViewPage.xaml</DependentUpon>
     </Compile>
@@ -100,12 +101,16 @@
     <Compile Include="Repo\TrainRepo.cs" />
     <Compile Include="Repo\UserRepo.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="ScheduledRouteWindow.xaml.cs">
+      <DependentUpon>ScheduledRouteWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimetableViewPage.xaml.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TrainsViewPage.xaml.cs">
       <DependentUpon>TrainsViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="util\DateTimeUtils.cs" />
     <Page Include="ClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +140,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScheduledRouteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

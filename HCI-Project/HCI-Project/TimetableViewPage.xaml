@@ -7,8 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TimetableViewPage">
-
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
@@ -37,30 +37,22 @@
         <StackPanel x:Name="TablePanel" Grid.Column="1" Margin="20,0,20,20" Visibility="Hidden">
             <TextBlock x:Name="FromLoc" FontSize="25" Foreground="#336699" />
             <TextBlock x:Name="ToLoc" FontSize="25" Foreground="#336699" />
-            <DataGrid x:Name="dgrMain" ItemsSource="{Binding Path=Routes}" Margin="0,10,0,0" RowBackground="Beige" Background="#336699" IsReadOnly="True">
+            <DataGrid x:Name="dgrMain" Grid.ColumnSpan="6"  CanUserAddRows="False" Margin="0,10,0,0" RowBackground="Beige" Background="#336699" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Depature" Width="*" Binding="{Binding Path='From'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Depature date" Width="*" Binding="{Binding Path='Depature'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Time" Width="*" Binding="{Binding Path='To'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Arrival date" Width="*" Binding="{Binding Path='Arrival'}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Time" Width="*" Binding="{Binding Path='Time'}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="View" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnView" Content="View" Click="btnView_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
-
-            <!--<Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <DataGrid x:Name="dgrMain" ItemsSource="{Binding Path=Studenti}" IsReadOnly="True"/>
-
-                <DataGrid x:Name="dgrMain2" ItemsSource="{Binding Path=Routes}" IsReadOnly="True" x:FieldModifier="public" AutoGenerateColumns="False"/>
-                
-            </Grid>-->
-            <!--  <TextBlock FontSize="25" Foreground="#336699">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="<LineBreak/> From station: {0} <LineBreak/> To station: {1}!">
-                        <Binding Path="FromStation" />
-                        <Binding Path="ToStation" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>-->
         </StackPanel>
 
     </Grid>

@@ -56,3 +56,5 @@ C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\TimetableVi
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\FinancesViewPage.baml
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\HomeViewPage.baml
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\TimetableViewPage.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\ScheduledRouteWindow.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\ScheduledRouteWindow.baml

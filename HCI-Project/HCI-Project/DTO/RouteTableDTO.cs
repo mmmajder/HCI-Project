@@ -9,6 +9,87 @@ namespace HCI_Project.DTO
 {
     public class RouteTableDTO : INotifyPropertyChanged
     {
+        private string _From;
+        public string From
+        {
+            get { return _From; }
+            set
+            {
+                if (_From != value)
+                {
+                    _From = value;
+                    OnPropertyChanged("From");
+                }
+            }
+        }
+
+        private string _Depature;
+        public string Depature
+        {
+            get { return _Depature; }
+            set
+            {
+                if (_Depature != value)
+                {
+                    _Depature = value;
+                    OnPropertyChanged("Depature");
+                }
+            }
+        }
+        private string _To; 
+        public string To
+        {
+            get { return _To; }
+            set
+            {
+                if (_To != value)
+                {
+                    _To = value;
+                    OnPropertyChanged("To");
+                }
+            }
+        }
+        private string _Arrival;
+        public string Arrival
+        {
+            get { return _Arrival; }
+            set
+            {
+                if (_Arrival != value)
+                {
+                    _Arrival = value;
+                    OnPropertyChanged("Arrival");
+                }
+            }
+        }
+        private string _Time;
+        public string Time
+        {
+            get { return _Time; }
+            set
+            {
+                if (_Time != value)
+                {
+                    _Time = value;
+                    OnPropertyChanged("Time");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+    }
+
+}
+    /*public class RouteTableDTO : INotifyPropertyChanged
+    {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
@@ -17,69 +98,69 @@ namespace HCI_Project.DTO
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-        private string _fromDate;
-        private string _fromTime;
-        private string _toDate;
-        private string _toTime;
+        private string _from;
+        private string _depature;
+        private string _to;
+        private string _arrival;
         private string _time;
-        public string FromDate
+        public string From
         {
             get
             {
-                return _fromDate;
+                return _from;
             }
             set
             {
-                if (value != _fromDate)
+                if (value != _from)
                 {
-                    _fromDate = value;
-                    OnPropertyChanged("FromDate");
+                    _from = value;
+                    OnPropertyChanged("From");
                 }
             }
         }
-        public string FromTime
+        public string Depature
         {
             get
             {
-                return _fromTime;
+                return _depature;
             }
             set
             {
-                if (value != _fromTime)
+                if (value != _depature)
                 {
-                    _fromTime = value;
-                    OnPropertyChanged("FromTime");
+                    _depature = value;
+                    OnPropertyChanged("Depature");
                 }
             }
         }
-        public string ToDate
+        public string To
         {
             get
             {
-                return _toDate;
+                return _to;
             }
             set
             {
-                if (value != _toDate)
+                if (value != _to)
                 {
-                    _toDate = value;
-                    OnPropertyChanged("ToDate");
+                    _to = value;
+                    OnPropertyChanged("To");
                 }
             }
         }
 
-        public string ToTime
+        public string Arrival
         {
             get
             {
-                return _toTime;
+                return _arrival;
             }
             set
             {
-                if (value != _toTime)
+                if (value != _arrival)
                 {
-                    _toTime = value;
-                    OnPropertyChanged("ToTime");
+                    _arrival = value;
+                    OnPropertyChanged("Arrival");
                 }
             }
         }
@@ -95,10 +176,10 @@ namespace HCI_Project.DTO
                 if (value != _time)
                 {
                     _time = value;
-                    OnPropertyChanged("Indeks");
+                    OnPropertyChanged("Time");
                 }
             }
         }
-    }
-}
+    }*/
+//}
 

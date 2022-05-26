@@ -1,4 +1,5 @@
-﻿using HCI_Project.Model;
+﻿using HCI_Project.DTO;
+using HCI_Project.Model;
 using HCI_Project.Repo;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,11 @@ namespace HCI_Project
         public TimetableViewPage()
         {
             InitializeComponent();
-            FillComboboxes();
+            FillData();
             DataContext = this;
-
         }
 
-        private void FillComboboxes()
+        private void FillData()
         {
             List<string> s = StationRepo.GetStationNames();
             fromLocationCombobox.ItemsSource = s;
@@ -40,6 +40,8 @@ namespace HCI_Project
 
             toLocationCombobox.ItemsSource = StationRepo.GetStationNames();
             toLocationCombobox.SelectedIndex = -1;
+
+            Routes = new ObservableCollection<RouteTableDTO>();
 
         }
 
@@ -55,7 +57,7 @@ namespace HCI_Project
             return selectedItem.ToString();
         }
 
-        public ObservableCollection<Route> Routes
+        public ObservableCollection<RouteTableDTO> Routes
         {
             get;
             set;
@@ -69,8 +71,12 @@ namespace HCI_Project
             DateTime? selectedDate = datePicker.SelectedDate;
             if (selectedDate.HasValue && GetLocationValue(fromLocationCombobox) != null && GetLocationValue(fromLocationCombobox)!=null)
             {
+                Routes.Clear();
                 DateTime date = selectedDate.Value;
-                Routes = RouteRepo.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                foreach (RouteTableDTO elem in RouteRepo.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date))
+                {
+                    Routes.Add(elem);
+                }
             }
 
         }

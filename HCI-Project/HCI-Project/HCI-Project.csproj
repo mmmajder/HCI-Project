@@ -66,6 +66,7 @@
     <Compile Include="ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DTO\RouteTableDTO.cs" />
     <Compile Include="FinancesViewPage.xaml.cs">
       <DependentUpon>FinancesViewPage.xaml</DependentUpon>
     </Compile>

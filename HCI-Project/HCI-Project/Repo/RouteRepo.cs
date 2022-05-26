@@ -1,4 +1,5 @@
-﻿using HCI_Project.Model;
+﻿using HCI_Project.DTO;
+using HCI_Project.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,10 +34,26 @@ namespace HCI_Project.Repo
         {
             return Routes;
         }
-
-        public static ObservableCollection<Route> GetRoutes(string from, string to, DateTime date)
+        public static List<ScheduledRoute> getAvailAbleRoutes(Route route, DateTime date)
         {
-            ObservableCollection<Route> routes = new ObservableCollection<Route>();
+            List<ScheduledRoute> scheduledRoutes = new List<ScheduledRoute>();
+            foreach (ScheduledRoute scheduledRoute in route.ScheduledRoutes)
+            {
+                if (scheduledRoute.RepeatigDays.Contains((int)date.DayOfWeek))
+                {
+                    if (!scheduledRoute.NotWorkingDays.Contains(date))
+                    {
+                        scheduledRoutes.Add(scheduledRoute);
+                    }
+                }
+            }
+            return scheduledRoutes;
+
+        }
+
+        public static ObservableCollection<RouteTableDTO> GetRoutes(string from, string to, DateTime date)
+        {
+            ObservableCollection<RouteTableDTO> routes = new ObservableCollection<RouteTableDTO>();
             foreach (Route route in Routes)
             {
                 bool isFrom = false;
@@ -48,9 +65,23 @@ namespace HCI_Project.Repo
                     }
                     else if ((station.Name == to) && isFrom)
                     {
-                        if (isAvailAbleRoute(route, date)) {
-                            routes.Add(route);
-                            continue;
+                        foreach (ScheduledRoute scheduledRoute in getAvailAbleRoutes(route, date))
+                        {
+                            DateTime startTime = DateTime.Now;
+                            DateTime endTime = DateTime.Now;
+                            foreach (ScheduledStation scheduledStation in scheduledRoute.Stations)
+                            {
+                                if (scheduledStation.Station.Name==from)
+                                {
+                                    startTime = scheduledStation.TimeRange.Depature;
+                                }
+                                if (scheduledStation.Station.Name == to)
+                                {
+                                    endTime = scheduledStation.TimeRange.Arrival;
+                                }
+                            }
+                         //   routes.Add(new RouteTableDTO { FromDate = startTime.ToString(), ToDate = endTime.ToString(), Time = (endTime - startTime).ToString() });
+                            routes.Add(new RouteTableDTO { FromDate = startTime.ToString("dd/MM/yyyy"), FromTime=startTime.ToString("HH:mm"), ToDate = endTime.ToString("dd/MM/yyyy"), ToTime = endTime.ToString("HH:mm"), Time = (endTime - startTime).ToString() });
                         }
                     }
                 }
@@ -58,21 +89,8 @@ namespace HCI_Project.Repo
             return routes;
         }
 
-        public static bool isAvailAbleRoute(Route route, DateTime date)
-        {
-            foreach (ScheduledRoute scheduledRoute in route.ScheduledRoutes)
-            {
-                if (scheduledRoute.RepeatigDays.Contains((int) date.DayOfWeek))
-                {
-                    if (!scheduledRoute.NotWorkingDays.Contains(date))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-
-        }
+        
 
     }
+    
 }

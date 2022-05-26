@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Project"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="450" Width="800">
+        Title="ManagerWindow" Height="450" Width="800"
+        MinHeight="700" 
+        MinWidth="750">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -17,12 +19,12 @@
                 <ColumnDefinition Width="8*" /> images/startScreenImage.jpg
             </Grid.ColumnDefinitions>-->
             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0 0 10 0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Name="Home" FontSize="15" FontWeight="Bold" Foreground="White" Background="#007aff" BorderThickness="0" Margin="2" Content="HOME" Click="HomeViewSelected"/>
-                <Button Name="TrainsBtn" FontSize="15" FontWeight="Bold" Background="#007aff" Foreground="White" BorderThickness="0" Margin="2" Content="TRAINS" Click="TrainsViewSelected"/>
-                <Button Name="LinesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#007aff" Foreground="White" BorderThickness="0" Content="LINES" Click="LinesViewSelected"/>
-                <Button Name="TimetableBtn" FontSize="15" FontWeight="Bold" Margin="2" Foreground="White" BorderThickness="0" Content="TIMETABLE"  Background="#007aff" Click="TimetableBtn_Click"/>
-                <Button Name="FinancesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#007aff" Foreground="White" BorderThickness="0" Content="FINANCES" Click="FinancesBtn_Click" />
-                <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#007aff" Foreground="White" BorderThickness="0" Content="LOG OUT" Click="Logout_Click"/>
+                <Button Name="Home" FontSize="15" FontWeight="Bold" Foreground="White" Background="#336699" BorderThickness="0" Margin="2" Content="HOME" Click="HomeViewSelected"/>
+                <Button Name="TrainsBtn" FontSize="15" FontWeight="Bold" Background="#336699" Foreground="White" BorderThickness="0" Margin="2" Content="TRAINS" Click="TrainsViewSelected"/>
+                <Button Name="LinesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LINES" Click="LinesViewSelected"/>
+                <Button Name="TimetableBtn" FontSize="15" FontWeight="Bold" Margin="2" Foreground="White" BorderThickness="0" Content="TIMETABLE"  Background="#336699" Click="TimetableBtn_Click"/>
+                <Button Name="FinancesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="FINANCES" Click="FinancesBtn_Click" />
+                <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LOG OUT" Click="Logout_Click"/>
             </StackPanel>
         </Grid>
         <Frame x:Name="Main" Grid.Row="1" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>

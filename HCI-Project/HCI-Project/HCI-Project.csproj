@@ -104,6 +104,7 @@
     <Compile Include="ScheduledRouteWindow.xaml.cs">
       <DependentUpon>ScheduledRouteWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service\RouteService.cs" />
     <Compile Include="TimetableViewPage.xaml.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
     </Compile>

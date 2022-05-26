@@ -7,11 +7,18 @@
         mc:Ignorable="d"
         Title="ScheduledRouteWindow" Height="450" Width="800">
     <Grid Margin="10">
-        <DataGrid IsEnabled="True"  Name="dgUsers" AutoGenerateColumns="False">
+        <DataGrid IsEnabled="True"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged">
             <DataGrid.Columns>
+                <!--  <DataGridTemplateColumn Header="Station" Width="*" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="comboBox" ItemsSource="{Binding ComboboxData}" SelectedValue="{Binding Station}" Foreground="Black" IsEditable="False"  Background="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
                 <DataGridTextColumn Header="Station" Binding="{Binding Station}" />
-                <DataGridTextColumn Header="Arrival" Binding="{Binding Arrival}" />
-                <DataGridTextColumn Header="Depature" Binding="{Binding Depature}" />
+                <DataGridTextColumn Header="Arrival" Binding="{Binding Arrival}"  />
+                <DataGridTextColumn Header="Depature" Binding="{Binding Depature}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

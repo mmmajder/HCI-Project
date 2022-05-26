@@ -1,6 +1,7 @@
 ﻿using HCI_Project.DTO;
 using HCI_Project.Model;
 using HCI_Project.Repo;
+using HCI_Project.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,14 +65,12 @@ namespace HCI_Project
             TablePanel.Visibility = Visibility.Visible;
             DateTime? selectedDate = datePicker.SelectedDate;
             Routes.Clear();
-
-            if (selectedDate.HasValue && GetLocationValue(fromLocationCombobox) != null && GetLocationValue(fromLocationCombobox)!=null)
+            if (selectedDate.HasValue && GetLocationValue(fromLocationCombobox) != null && GetLocationValue(fromLocationCombobox) != null)
             {
                 DateTime date = selectedDate.Value;
-                Routes = RouteRepo.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
-                dgrMain.ItemsSource = RouteRepo.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                Routes = RouteService.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
             }
-
         }
 
         private void btnView_Click(object sender, RoutedEventArgs e)
@@ -79,9 +78,7 @@ namespace HCI_Project
             try
             {
                 int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
-                // DataRowView dataRowView = (DataRowView)((Button)e.Source).DataContext;
                 ScheduledRoute slectedScheduledRoute = Routes[i];
-                // ScheduledRoute scheduled = 
                 ScheduledRouteWindow.setSelectedScheduledRoute(slectedScheduledRoute);
                 ScheduledRouteWindow scheduledRouteWindow = new ScheduledRouteWindow();
                 scheduledRouteWindow.Show();

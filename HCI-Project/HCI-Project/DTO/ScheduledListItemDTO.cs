@@ -42,6 +42,7 @@ namespace HCI_Project.DTO
                 if (_Arrival != value)
                 {
                     _Arrival = value;
+                   // ScheduledRouteWindow.SelectedScheduledStation.TimeRange.Arrival = DateTime.Parse(value); 
                     OnPropertyChanged("Arrival");
                 }
             }
@@ -56,6 +57,7 @@ namespace HCI_Project.DTO
                 if (_Depature != value)
                 {
                     _Depature = value;
+                    //ScheduledRouteWindow.SelectedScheduledStation.TimeRange.Depature = DateTime.Parse(value);
                     OnPropertyChanged("Depature");
                 }
             }

@@ -32,5 +32,17 @@ namespace HCI_Project.Repo
         {
             return Stations.Select(o => o.Name).ToList();
         }
+
+        public static Station GetStationByName(string name)
+        {
+            try
+            {
+                return Stations.Single(s => s.Name == name);
+            } 
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

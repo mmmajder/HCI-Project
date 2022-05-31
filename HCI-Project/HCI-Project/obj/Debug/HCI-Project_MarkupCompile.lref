@@ -1,12 +1,13 @@
 ﻿
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\App.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\ClientWindow.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Client\ClientWindow.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Client\TimetableViewClientPage.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\FinancesViewPage.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\HomeViewPage.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\LinesViewPage.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\MainWindow.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\ManagerWindow.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\LinesViewPage.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\TrainsViewPage.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\FinancesViewPage.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\HomeViewPage.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\TimetableViewPage.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\ScheduledRouteWindow.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\ManagerWindow.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\ScheduledRouteWindow.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\TimetableViewPage.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\TrainsViewPage.xaml;;
 

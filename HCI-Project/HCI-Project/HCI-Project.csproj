@@ -63,21 +63,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ClientWindow.xaml.cs">
+    <Compile Include="Client\ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client\TimetableViewClientPage.xaml.cs">
+      <DependentUpon>TimetableViewClientPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO\RouteTableDTO.cs" />
     <Compile Include="DTO\ScheduledListItemDTO.cs" />
-    <Compile Include="FinancesViewPage.xaml.cs">
+    <Compile Include="Manager\FinancesViewPage.xaml.cs">
       <DependentUpon>FinancesViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HomeViewPage.xaml.cs">
+    <Compile Include="Manager\HomeViewPage.xaml.cs">
       <DependentUpon>HomeViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LinesViewPage.xaml.cs">
+    <Compile Include="Manager\LinesViewPage.xaml.cs">
       <DependentUpon>LinesViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManagerWindow.xaml.cs">
+    <Compile Include="Manager\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Client.cs" />
@@ -101,30 +104,34 @@
     <Compile Include="Repo\TrainRepo.cs" />
     <Compile Include="Repo\UserRepo.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="ScheduledRouteWindow.xaml.cs">
+    <Compile Include="Manager\ScheduledRouteWindow.xaml.cs">
       <DependentUpon>ScheduledRouteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service\RouteService.cs" />
-    <Compile Include="TimetableViewPage.xaml.cs">
+    <Compile Include="Manager\TimetableViewPage.xaml.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TrainsViewPage.xaml.cs">
+    <Compile Include="Manager\TrainsViewPage.xaml.cs">
       <DependentUpon>TrainsViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="util\DateTimeUtils.cs" />
-    <Page Include="ClientWindow.xaml">
+    <Page Include="Client\ClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FinancesViewPage.xaml">
+    <Page Include="Client\TimetableViewClientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomeViewPage.xaml">
+    <Page Include="Manager\FinancesViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LinesViewPage.xaml">
+    <Page Include="Manager\HomeViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\LinesViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,19 +147,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ManagerWindow.xaml">
+    <Page Include="Manager\ManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ScheduledRouteWindow.xaml">
+    <Page Include="Manager\ScheduledRouteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TimetableViewPage.xaml">
+    <Page Include="Manager\TimetableViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TrainsViewPage.xaml">
+    <Page Include="Manager\TrainsViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,6 +207,7 @@
   <ItemGroup>
     <Resource Include="images\startScreenImage.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

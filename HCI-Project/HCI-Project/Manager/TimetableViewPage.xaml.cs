@@ -28,7 +28,8 @@ namespace HCI_Project
     /// </summary>
     public partial class TimetableViewPage : Page
     {
-        public static List<Route> Routes = new List<Route>();
+        public static List<ScheduledRoute> Routes = new List<ScheduledRoute>();
+        public static List<RouteTableManagerDTO> TableData = new List<RouteTableManagerDTO>();
         public TimetableViewPage()
         {
             InitializeComponent();
@@ -69,9 +70,10 @@ namespace HCI_Project
             Routes.Clear();
             if (from != null && to != null)
             {
-                Routes = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox));
+                Routes = RouteService.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox));
                 //dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
-                dgrMain.ItemsSource = RouteService.GetRoutesTableData(Routes, from, to);
+                TableData = RouteService.GetRoutesTableData(Routes, from, to);
+                dgrMain.ItemsSource = TableData;
             }
         }
 
@@ -80,8 +82,12 @@ namespace HCI_Project
             try
             {
                 int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
-                Route slectedSRoute = Routes[i];
+                ScheduledRoute slectedScheduledRoute = Routes[i];
+                RouteTableManagerDTO selectedRow = TableData[i];
+
+                EditRouteWindow.setSelectedRoute(slectedScheduledRoute);
                 EditRouteWindow editRouteWindow = new EditRouteWindow();
+                //editRouteWindow.setTimeRange(selectedRow.Depature, selectedRow.Arrival);
                 editRouteWindow.Show();
               /*  ScheduledRouteWindow.setSelectedScheduledRoute(slectedScheduledRoute);
                 ScheduledRouteWindow scheduledRouteWindow = new ScheduledRouteWindow();

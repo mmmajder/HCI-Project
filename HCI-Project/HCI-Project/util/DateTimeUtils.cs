@@ -13,5 +13,14 @@ namespace HCI_Project.util
             return startDate + (length - new DateTime(1, 1, 1));
         }
 
+        public static DateTime getDateTime(string dateTime)
+        {
+            return DateTime.ParseExact(dateTime, "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        public static DateTime GetHours(DateTime dateTime)
+        {
+            return DateTime.ParseExact(dateTime.ToString("HH:mm"), "HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+        }
     }
 }

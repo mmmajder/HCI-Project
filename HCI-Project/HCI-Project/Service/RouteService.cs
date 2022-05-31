@@ -75,33 +75,29 @@ namespace HCI_Project.Service
             return routes;
         }
 
-        public static List<Route> GetRoutes(string from, string to)
+        public static List<ScheduledRoute> GetScheduledRoutes(string from, string to)
         {
-            List<Route> routes = new List<Route>();
+            List<ScheduledRoute> routes = new List<ScheduledRoute>();
             foreach (Route route in RouteRepo.GetRoutes())
             {
                 if (isGoodRoute(route, from, to))
                 {
-                    routes.Add(route);
+                    routes.AddRange(route.ScheduledRoutes);
                 }
             }
             return routes;
         }
 
-        public static List<RouteTableManagerDTO> GetRoutesTableData(List<Route> Routes, string from, string to) 
+        public static List<RouteTableManagerDTO> GetRoutesTableData(List<ScheduledRoute> ScheduledRoutes, string from, string to) 
         {
             List<RouteTableManagerDTO> tableData = new List<RouteTableManagerDTO>();
-            foreach (Route route in Routes)
+            foreach (ScheduledRoute scheduledRoute in ScheduledRoutes)
             {
-                foreach (ScheduledRoute scheduledRoute in route.ScheduledRoutes)
-                {
-                    DateTime depature = GetDepature(scheduledRoute, from);
-                    DateTime arrival = GetArrival(scheduledRoute, to);
-                    string days = GetDayNames(scheduledRoute.RepeatigDays);
+                DateTime depature = GetDepature(scheduledRoute, from);
+                DateTime arrival = GetArrival(scheduledRoute, to);
+                string days = GetDayNames(scheduledRoute.RepeatigDays);
 
-                    tableData.Add(new RouteTableManagerDTO { Depature = depature.ToString("HH:mm"), Arrival = arrival.ToString("HH:mm"), Days=days });
-                }
-
+                tableData.Add(new RouteTableManagerDTO { Depature = depature.ToString("HH:mm"), Arrival = arrival.ToString("HH:mm"), Days=days });
             }
             return tableData;
         }

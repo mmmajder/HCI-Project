@@ -1,4 +1,5 @@
 ﻿using HCI_Project.DTO;
+using HCI_Project.Manager;
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
@@ -27,7 +28,7 @@ namespace HCI_Project
     /// </summary>
     public partial class TimetableViewPage : Page
     {
-        public static List<ScheduledRoute> Routes = new List<ScheduledRoute>();
+        public static List<Route> Routes = new List<Route>();
         public TimetableViewPage()
         {
             InitializeComponent();
@@ -60,16 +61,17 @@ namespace HCI_Project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FromLoc.Text = "From: " + GetLocationValue(fromLocationCombobox);
-            ToLoc.Text = "To: " + GetLocationValue(toLocationCombobox);
+            string from = GetLocationValue(fromLocationCombobox);
+            string to = GetLocationValue(toLocationCombobox);
+            FromLoc.Text = "From: " + from;
+            ToLoc.Text = "To: " + to;
             TablePanel.Visibility = Visibility.Visible;
-            DateTime? selectedDate = datePicker.SelectedDate;
             Routes.Clear();
-            if (selectedDate.HasValue && GetLocationValue(fromLocationCombobox) != null && GetLocationValue(fromLocationCombobox) != null)
+            if (from != null && to != null)
             {
-                DateTime date = selectedDate.Value;
-                Routes = RouteService.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
-                dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                Routes = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox));
+                //dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                dgrMain.ItemsSource = RouteService.GetRoutesTableData(Routes, from, to);
             }
         }
 
@@ -78,10 +80,12 @@ namespace HCI_Project
             try
             {
                 int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
-                ScheduledRoute slectedScheduledRoute = Routes[i];
-                ScheduledRouteWindow.setSelectedScheduledRoute(slectedScheduledRoute);
+                Route slectedSRoute = Routes[i];
+                EditRouteWindow editRouteWindow = new EditRouteWindow();
+                editRouteWindow.Show();
+              /*  ScheduledRouteWindow.setSelectedScheduledRoute(slectedScheduledRoute);
                 ScheduledRouteWindow scheduledRouteWindow = new ScheduledRouteWindow();
-                scheduledRouteWindow.Show();
+                scheduledRouteWindow.Show();*/
                 //This is the code which will show the button click row data. Thank you.
             }
             catch (Exception ex)

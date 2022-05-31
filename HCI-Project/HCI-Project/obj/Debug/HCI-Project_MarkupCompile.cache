@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\App.xaml
-10-1877569393
+11-402713450
 
-39-52117116
+41-1158792711
 15-1224152435
-Client\ClientWindow.xaml;Client\TimetableViewClientPage.xaml;Manager\FinancesViewPage.xaml;Manager\HomeViewPage.xaml;Manager\LinesViewPage.xaml;MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\ScheduledRouteWindow.xaml;Manager\TimetableViewPage.xaml;Manager\TrainsViewPage.xaml;
+Client\ClientWindow.xaml;Client\TimetableViewClientPage.xaml;Manager\EditRouteWindow.xaml;Manager\FinancesViewPage.xaml;Manager\HomeViewPage.xaml;Manager\LinesViewPage.xaml;MainWindow.xaml;Manager\ManagerWindow.xaml;Manager\ScheduledRouteWindow.xaml;Manager\TimetableViewPage.xaml;Manager\TrainsViewPage.xaml;
 
 False
 

@@ -60,3 +60,5 @@ C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\Man
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\ScheduledRouteWindow.baml
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\TimetableViewPage.baml
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\TrainsViewPage.baml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\EditRouteWindow.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\EditRouteWindow.baml

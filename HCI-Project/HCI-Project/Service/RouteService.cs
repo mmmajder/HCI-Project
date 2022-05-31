@@ -75,6 +75,98 @@ namespace HCI_Project.Service
             return routes;
         }
 
+        public static List<Route> GetRoutes(string from, string to)
+        {
+            List<Route> routes = new List<Route>();
+            foreach (Route route in RouteRepo.GetRoutes())
+            {
+                if (isGoodRoute(route, from, to))
+                {
+                    routes.Add(route);
+                }
+            }
+            return routes;
+        }
+
+        public static List<RouteTableManagerDTO> GetRoutesTableData(List<Route> Routes, string from, string to) 
+        {
+            List<RouteTableManagerDTO> tableData = new List<RouteTableManagerDTO>();
+            foreach (Route route in Routes)
+            {
+                foreach (ScheduledRoute scheduledRoute in route.ScheduledRoutes)
+                {
+                    DateTime depature = GetDepature(scheduledRoute, from);
+                    DateTime arrival = GetArrival(scheduledRoute, to);
+                    string days = GetDayNames(scheduledRoute.RepeatigDays);
+
+                    tableData.Add(new RouteTableManagerDTO { Depature = depature.ToString("HH:mm"), Arrival = arrival.ToString("HH:mm"), Days=days });
+                }
+
+            }
+            return tableData;
+        }
+
+        public static string GetDayNames(List<int> days)
+        {
+            string dayString = "";
+            foreach(int day in days)
+            {
+                switch (day)
+                {
+                    case 1:
+                        dayString += "Mon, ";
+                        break;
+                    case 2:
+                        dayString += "Tue, ";
+                        break;
+                    case 3:
+                        dayString += "Wed, ";
+                        break;
+                    case 4:
+                        dayString += "Thu, ";
+                        break;
+                    case 5:
+                        dayString += "Fri, ";
+                        break;
+                    case 6:
+                        dayString += "Sat, ";
+                        break;
+                    case 7:
+                        dayString += "Sun, ";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            dayString = dayString.Substring(0, dayString.Length - 2);
+            return dayString;
+        }
+
+        public static DateTime GetDepature(ScheduledRoute scheduledRoute, string location)
+        {
+            foreach (ScheduledStation scheduled in scheduledRoute.Stations)
+            {
+                if (scheduled.Station.Name==location)
+                {
+                    return scheduled.TimeRange.Depature;
+                }
+            }
+            return new DateTime();
+        }
+
+        public static DateTime GetArrival(ScheduledRoute scheduledRoute, string location)
+        {
+            foreach (ScheduledStation scheduled in scheduledRoute.Stations)
+            {
+                if (scheduled.Station.Name == location)
+                {
+                    return scheduled.TimeRange.Arrival;
+                }
+            }
+            return new DateTime();
+        }
+
+
 
         private static bool isGoodRoute(Route route, string from, string to)
         {

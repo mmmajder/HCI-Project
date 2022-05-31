@@ -18,7 +18,7 @@ namespace HCI_Project.Repo
             List<ScheduledStation> stations2 = new List<ScheduledStation> { stations[3], stations[4], stations[5] };
 
 
-            ScheduledRoutes.Add(new ScheduledRoute(stations1, 1, new List<int> { 3 }, new List<DateTime> ()));
+            ScheduledRoutes.Add(new ScheduledRoute(stations1, 1, new List<int> { 1,2,3,4,5,6,7 }, new List<DateTime> ()));
             ScheduledRoutes.Add(new ScheduledRoute(stations2, 2, new List<int> { 3 }, new List<DateTime>()));
         }
         public static void AddScheduledRoute(ScheduledRoute scheduledRoute)

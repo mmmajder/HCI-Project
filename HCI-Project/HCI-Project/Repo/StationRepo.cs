@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Model;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace HCI_Project.Repo
 
         public StationRepo()
         {
-            Stations.Add(new Station("Novi Sad", true, new Position(54, 45)));
-            Stations.Add(new Station("Zrenjanin", true, new Position(45, 55)));
-            Stations.Add(new Station("Glamoc", true, new Position(52, 35)));
-            Stations.Add(new Station("Backa Topola", true, new Position(24, 75)));
+            Stations.Add(new Station("Novi Sad", true, new Location(45.265366, 19.829557)));
+            Stations.Add(new Station("Zrenjanin", true, new Location(45.380917, 20.376678)));
+            Stations.Add(new Station("Glamoc", true, new Location(44.045818, 16.856857)));
+            Stations.Add(new Station("Backa Topola", true, new Location(45.819782, 19.629997)));
         }
         public static void AddStation(Station station)
         {

@@ -75,6 +75,19 @@ namespace HCI_Project.Service
             return routes;
         }
 
+        public static List<Route> GetRoutes(string from, string to)
+        {
+            List<Route> routes = new List<Route>();
+            foreach (Route route in RouteRepo.GetRoutes())
+            {
+                if (isGoodRoute(route, from, to))
+                {
+                    routes.Add(route);
+                }
+            }
+            return routes;
+        }
+
 
         private static bool isGoodRoute(Route route, string from, string to)
         {
@@ -92,5 +105,6 @@ namespace HCI_Project.Service
             }
             return false;
         }
+
     }
 }

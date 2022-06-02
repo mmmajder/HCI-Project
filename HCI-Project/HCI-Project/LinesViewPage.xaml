@@ -43,12 +43,9 @@
                 <Label Content="To:" Margin ="10"  Grid.Row="2"  HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
                 <ComboBox x:Name="toLocationCombobox"  Margin ="10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" />
 
-                <Button Grid.Row="4"  Height="40" MaxWidth="300" Margin ="10 20 10 20" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="#cc1111" Content="Show line"  Foreground="White" Click="Show_Click"></Button>
+                <Button Grid.Row="3"  Height="40" MaxWidth="300" Margin ="10 20 10 20" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="#cc1111" Content="Show line"  Foreground="White" Click="Show_Click"></Button>
 
-                <Label Content="Lines:" x:Name="routesLbl" Visibility="Hidden"  Margin ="10, 100, 10, 10"  Grid.Row="5"  HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
-                <ComboBox x:Name="routesCombobox" Visibility="Hidden"  Margin ="10, 100, 10, 10" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" />
-
-                <Button x:Name="addRoute" Visibility="Hidden" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 30 10 0" Grid.Row="6" Grid.Column="0" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Add_Click">
+                <Button x:Name="addRoute" Visibility="Visible" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 100 10 0" Grid.Row="5" Grid.Column="0" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Add_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome Icon="plus" FontSize="20"/>
@@ -57,7 +54,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button x:Name="editRoute" Visibility="Hidden" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 30 10 0" Grid.Row="6" Grid.Column="1" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Edit_Click">
+                <Button x:Name="editRoute" Visibility="Visible" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 100 10 0" Grid.Row="5" Grid.Column="1" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Edit_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome  Icon="PencilSquareOutline" FontSize="20"/>
@@ -66,7 +63,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button x:Name="removeRoute" Visibility="Hidden" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 30 10 0" Grid.Row="6" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Remove_Click">
+                <Button x:Name="removeRoute" Visibility="Visible" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 100 10 0" Grid.Row="5" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Remove_Click">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome  Icon="Trash" FontSize="20"/>
@@ -75,7 +72,8 @@
                     </Button.Content>
                 </Button>
 
-                
+                <Label Content="Lines:" x:Name="routesLbl" Visibility="Visible"  Margin ="10, 30, 10, 10"  Grid.Row="6"  HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
+                <ComboBox x:Name="routesCombobox" Visibility="Visible"  Margin ="10, 30, 10, 10" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" />
 
             </Grid>
         </StackPanel>

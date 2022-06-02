@@ -78,8 +78,14 @@
     <Compile Include="ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\TodoItemInsertedCommand.cs" />
+    <Compile Include="Commands\TodoItemReceivedCommand.cs" />
+    <Compile Include="Commands\TodoItemRemovedCommand.cs" />
     <Compile Include="DTO\RouteTableDTO.cs" />
     <Compile Include="DTO\ScheduledListItemDTO.cs" />
+    <Compile Include="EditRouteWindow.xaml.cs">
+      <DependentUpon>EditRouteWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FinancesViewPage.xaml.cs">
       <DependentUpon>FinancesViewPage.xaml</DependentUpon>
     </Compile>
@@ -125,7 +131,20 @@
       <DependentUpon>TrainsViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="util\DateTimeUtils.cs" />
+    <Compile Include="ViewModels\TodoItemListingViewModel.cs" />
+    <Compile Include="ViewModels\TodoItemViewModel.cs" />
+    <Compile Include="ViewModels\TodoViewModel.cs" />
+    <Compile Include="Views\TodoItemListingView.xaml.cs">
+      <DependentUpon>TodoItemListingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TodoView.xaml.cs">
+      <DependentUpon>TodoView.xaml</DependentUpon>
+    </Compile>
     <Page Include="ClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditRouteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,6 +188,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TodoItemListingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TodoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -187,6 +214,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

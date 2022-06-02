@@ -1,4 +1,5 @@
-﻿using HCI_Project.Model;
+﻿using DragDropDemo.ViewModels;
+using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using Microsoft.Maps.MapControl.WPF;
@@ -75,7 +76,22 @@ namespace HCI_Project
         {
             Route route = (Route)GetComboboxValue(routesCombobox);
 
-            Console.WriteLine(route);
+            TodoItemListingViewModel inProgressTodoItemListingViewModel = new TodoItemListingViewModel();
+            inProgressTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Go jogging"));
+            inProgressTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Walk the dog"));
+            inProgressTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Make videos"));
+
+            TodoItemListingViewModel completedTodoItemListingViewModel = new TodoItemListingViewModel();
+            completedTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Take a shower"));
+            completedTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Eat breakfast"));
+
+            TodoViewModel todoViewModel = new TodoViewModel(inProgressTodoItemListingViewModel, completedTodoItemListingViewModel);
+
+            EditRouteWindow editRoute = new EditRouteWindow(route)
+            {
+                DataContext = todoViewModel
+            };
+            editRoute.Show();
         }
         private void Remove_Click(object sender, RoutedEventArgs e)
         {

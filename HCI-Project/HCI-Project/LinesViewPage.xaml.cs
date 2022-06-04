@@ -19,14 +19,17 @@ namespace HCI_Project
     {        
         private readonly List<Station> AllStations = StationRepo.GetStations();
         private readonly List<string> AllStationNames = StationRepo.GetStationNames();
+        private MapPage myMap = new MapPage();
         public LinesViewPage()
         {
+            
             InitializeComponent();
-            MapInit();
             ComboBoxInit();
 
-            MapService.AddPushPins(AllStations, MouseRightButtonDownEvent, myMap);
+            myMap.AddPushPins(AllStations, MouseRightButtonDownEvent);
             SetControlsVisible();
+
+            Main.Content = myMap;
 
         }
 
@@ -44,11 +47,7 @@ namespace HCI_Project
         }
 
 
-        private void MapInit()
-        {
-            myMap.Center = new Location(45.267136, 19.833549); // Novi Sad
-            myMap.ZoomLevel = 11;
-        }
+        
 
         
 
@@ -75,23 +74,22 @@ namespace HCI_Project
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             Route route = (Route)GetComboboxValue(routesCombobox);
-
-            TodoItemListingViewModel inProgressTodoItemListingViewModel = new TodoItemListingViewModel();
-            inProgressTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Go jogging"));
-            inProgressTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Walk the dog"));
-            inProgressTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Make videos"));
-
-            TodoItemListingViewModel completedTodoItemListingViewModel = new TodoItemListingViewModel();
-            completedTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Take a shower"));
-            completedTodoItemListingViewModel.AddTodoItem(new TodoItemViewModel("Eat breakfast"));
-
-            TodoViewModel todoViewModel = new TodoViewModel(inProgressTodoItemListingViewModel, completedTodoItemListingViewModel);
-
-            EditRouteWindow editRoute = new EditRouteWindow(route)
+            if (route == null)
             {
-                DataContext = todoViewModel
+                return; // TODO: display error
+            }
+
+
+            TodoItemListingViewModel routeStations =  MapStations(route.Stations);
+            TodoItemListingViewModel allStations = MapStations(AllStations);
+
+            EditRouteWindow editRoute = new EditRouteWindow(ref route, Main, myMap)
+            {
+                DataContext = new TodoViewModel(routeStations, allStations)
             };
-            editRoute.Show();
+            editRoute.Visibility = Visibility.Visible;
+            // myMap.Visibility = Visibility.Hidden;
+            Main.Content = editRoute;
         }
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
@@ -119,7 +117,7 @@ namespace HCI_Project
             if (fromLocation != null && toLocation != null)
             {
                 List<Route> routes = RouteService.GetRoutes(fromLocation, toLocation);
-                MapService.DrawMapPolygon(routes, myMap);
+                myMap.DrawMapPolygon(routes);
                 routesCombobox.ItemsSource = routes;
             }
         }
@@ -136,6 +134,16 @@ namespace HCI_Project
                 editRoute.Visibility = Visibility.Visible;
                 removeRoute.Visibility = Visibility.Visible;
             }
+        }
+
+        private TodoItemListingViewModel MapStations(List<Station> stations)
+        {
+            TodoItemListingViewModel mappedStations = new TodoItemListingViewModel();
+            foreach (Station s in stations)
+            {
+                mappedStations.AddTodoItem(new TodoItemViewModel(s));
+            }
+            return mappedStations;
         }
 
     }

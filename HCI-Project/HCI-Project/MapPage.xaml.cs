@@ -7,17 +7,38 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-namespace HCI_Project.Service
+namespace HCI_Project
 {
-    public class MapService
+    /// <summary>
+    /// Interaction logic for MapPage.xaml
+    /// </summary>
+    public partial class MapPage : Page
     {
-        private static readonly Random rnd = new Random();
-        private static List<MapPolyline> drawnPolylines = new List<MapPolyline>();
+        public MapPage()
+        {
+            InitializeComponent();
+            MapInit();
+        }
 
-        public static void AddPushPins(List<Station> stations, MouseButtonEventHandler MouseRightButtonDownEvent, Map myMap)
+        private void MapInit()
+        {
+            myMap.Center = new Location(45.267136, 19.833549); // Novi Sad
+            myMap.ZoomLevel = 11;
+        }
+
+        private readonly Random rnd = new Random();
+        private List<MapPolyline> drawnPolylines = new List<MapPolyline>();
+
+        public void AddPushPins(List<Station> stations, MouseButtonEventHandler MouseRightButtonDownEvent)
         {
             foreach (Station station in stations)
             {
@@ -32,7 +53,7 @@ namespace HCI_Project.Service
         }
 
 
-        public static void DrawMapPolygon(List<Route> routes, Map myMap)
+        public void DrawMapPolygon(List<Route> routes)
         {
             PickBrush();
             RemoveDrawnPolylines(myMap);
@@ -54,7 +75,7 @@ namespace HCI_Project.Service
             }
         }
 
-        private static void RemoveDrawnPolylines(Map myMap)
+        private void RemoveDrawnPolylines(Map myMap)
         {
             foreach (MapPolyline polyline in drawnPolylines)
             {
@@ -62,7 +83,7 @@ namespace HCI_Project.Service
             }
         }
 
-        private static Brush PickBrush()
+        private Brush PickBrush()
         {
             Type brushesType = typeof(Brushes);
 

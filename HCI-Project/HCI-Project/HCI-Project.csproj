@@ -98,6 +98,9 @@
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MapPage.xaml.cs">
+      <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Coordinate.cs" />
     <Compile Include="Model\Position.cs" />
@@ -122,7 +125,6 @@
     <Compile Include="ScheduledRouteWindow.xaml.cs">
       <DependentUpon>ScheduledRouteWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service\MapService.cs" />
     <Compile Include="Service\RouteService.cs" />
     <Compile Include="TimetableViewPage.xaml.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
@@ -173,6 +175,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

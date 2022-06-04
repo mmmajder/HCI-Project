@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:HCI_Project"
-      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" 
       xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
@@ -67,7 +66,7 @@
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome  Icon="Trash" FontSize="20"/>
-                            <TextBlock Margin ="10 0 0 0" Text="REMOVE"></TextBlock>
+                            <TextBlock Margin ="10 0 0 0" Text="DELETE"></TextBlock>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -78,9 +77,7 @@
             </Grid>
         </StackPanel>
 
-        <m:Map Grid.Row="1"  Grid.Column="1" Margin="20,0,20,20"  x:Name="myMap" CredentialsProvider="AttsGkqIHCOIEA11KtQZDphl5bi8lppin64jeg-ZOOhiS4cdHA_EXJwHSbyZi4Xo" Mode="Road"  >
-            <Canvas m:MapLayer.PositionOrigin="BottomCenter" Width="30" Height="30" />
-        </m:Map>
+        <Frame x:Name="Main" Grid.Row="1" Grid.Column="1" Margin="20,0,20,0" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Page>

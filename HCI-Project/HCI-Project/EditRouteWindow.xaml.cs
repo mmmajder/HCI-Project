@@ -22,152 +22,61 @@ namespace HCI_Project
     /// <summary>
     /// Interaction logic for EditRouteWindow.xaml
     /// </summary>
-    public partial class EditRouteWindow : Window
+    public partial class EditRouteWindow : Page
     {
+        private Frame main;
+        private MapPage myMap;
 
+        private string RouteName { get; set; }
+        public Route route { get; set; }
 
-        Point startPoint = new Point();
-
-        public ObservableCollection<Station> routeStations { get; set; }
-        public ObservableCollection<Station> allStations { get; set; }
-
-        public string RouteName { get; set; }
-
-        public EditRouteWindow(Route route)
+        public EditRouteWindow(ref Route route, Frame main, MapPage myMap)
         {
             InitializeComponent();
-            this.DataContext = this;
+            Title = "Edit Route";
 
-            
+            this.main = main;
+            this.myMap = myMap;
 
-
-            /*  Title = "Edit Route";
-
-              List<Station> allRepoStations = StationRepo.GetStations();
-              if(route != null)
-              {
-                  RouteName = "Route name: " + route.ToString();
-                  routeStations = new ObservableCollection<Station>(route.Stations);
-              }
-              allStations = new ObservableCollection<Station>(allRepoStations);*/
-        }
-        /*
-                private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-                {
-                    startPoint = e.GetPosition(null);
-                }
-
-                private void ListView_MouseMove(object sender, MouseEventArgs e)
-                {
-                    Point mousePos = e.GetPosition(null);
-                    Vector diff = startPoint - mousePos;
-
-                    if (e.LeftButton == MouseButtonState.Pressed &&
-                        (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-                        Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
-                    {
-                        // Get the dragged ListViewItem
-                        ListView listView = sender as ListView;
-                        ListViewItem listViewItem = FindAncestor<ListViewItem>((DependencyObject)e.OriginalSource);
-
-                        // Find the data behind the ListViewItem
-                        Station station = (Station)listView.ItemContainerGenerator.ItemFromContainer(listViewItem);
-
-                        // Initialize the drag & drop operation
-                        DataObject dragData = new DataObject("myFormat", station);
-                        DragDrop.DoDragDrop(listViewItem, dragData, DragDropEffects.Move);
-                    }
-                }
-
-                private static T FindAncestor<T>(DependencyObject current) where T : DependencyObject
-                {
-                    do
-                    {
-                        if (current is T)
-                        {
-                            return (T)current;
-                        }
-                        current = VisualTreeHelper.GetParent(current);
-                    }
-                    while (current != null);
-                    return null;
-                }
-
-                private void ListView_DragEnter(object sender, DragEventArgs e)
-                {
-                    if (!e.Data.GetDataPresent("myFormat") || sender == e.Source)
-                    {
-                        e.Effects = DragDropEffects.None;
-                    }
-                }
-
-                private void ListView_Drop(object sender, DragEventArgs e)
-                {
-                    if (e.Data.GetDataPresent("myFormat"))
-                    {
-                        Station station = e.Data.GetData("myFormat") as Station;
-                        routeStations.Add(station);
-                    }
-                }*/
-
-/*
-        private void TodoItem_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed &&
-                sender is FrameworkElement frameworkElement)
+            if (route != null)
             {
-                object todoItem = frameworkElement.DataContext;
-
-                DragDropEffects dragDropResult = DragDrop.DoDragDrop(frameworkElement, new DataObject(DataFormats.Serializable, todoItem), DragDropEffects.Move);
-
-                if (dragDropResult == DragDropEffects.None)
-                {
-                    AddTodoItem(todoItem);
-                }
-            }
+                routeName.Text = "Route name: " + route.ToString();
+                this.route = route;
+            }    
+             
         }
-
-        private void TodoItem_DragOver(object sender, DragEventArgs e)
+        private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            if (TodoItemInsertedCommand?.CanExecute(null) ?? false)
+
+            List<Station> newRouteStations = new List<Station>();
+            TodoViewModel model = (TodoViewModel)this.DataContext;
+            TodoItemListingViewModel InProgressTodoItemListingViewModel = model.InProgressTodoItemListingViewModel;
+            foreach (TodoItemViewModel a in InProgressTodoItemListingViewModel.TodoItemViewModels)
             {
-                if (sender is FrameworkElement element)
-                {
-                    TargetTodoItem = element.DataContext;
-                    InsertedTodoItem = e.Data.GetData(DataFormats.Serializable);
-
-                    TodoItemInsertedCommand?.Execute(null);
-                }
+                newRouteStations.Add(a.Station);
             }
+            route.Stations = newRouteStations;
+            //this.Visibility = Visibility.Hidden;
+            this.main.Content = myMap;
         }
 
-        private void TodoItemList_DragOver(object sender, DragEventArgs e)
+        private void CancelChanges_Click(object sender, RoutedEventArgs e)
         {
-            object todoItem = e.Data.GetData(DataFormats.Serializable);
-            AddTodoItem(todoItem);
+            //this.Visibility = Visibility.Hidden;
+            this.main.Content = myMap;
         }
 
-        private void AddTodoItem(object todoItem)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-            if (TodoItemDropCommand?.CanExecute(null) ?? false)
-            {
-                IncomingTodoItem = todoItem;
-                TodoItemDropCommand?.Execute(null);
-            }
+            Console.WriteLine("Add_Click");
         }
-
-        private void TodoItemList_DragLeave(object sender, DragEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            HitTestResult result = VisualTreeHelper.HitTest(lvItems, e.GetPosition(lvItems));
-
-            if (result == null)
-            {
-                if (TodoItemRemovedCommand?.CanExecute(null) ?? false)
-                {
-                    RemovedTodoItem = e.Data.GetData(DataFormats.Serializable);
-                    TodoItemRemovedCommand?.Execute(null);
-                }
-            }
-        }*/
+            Console.WriteLine("Edit_Click");
+        }
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Remove_Click");
+        }
     }
 }

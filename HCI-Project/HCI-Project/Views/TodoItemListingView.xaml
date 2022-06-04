@@ -4,13 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:DragDropDemo.Views"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:fa="http://schemas.fontawesome.io/icons/"
     x:Name="root"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
         <ListView
+            
             x:Name="lvItems"
             AllowDrop="True"
             DragLeave="TodoItemList_DragLeave"
@@ -22,9 +23,12 @@
                     <EventSetter Event="DragOver" Handler="TodoItem_DragOver" />
                 </Style>
             </ListView.ItemContainerStyle>
-            <ListView.ItemTemplate>
+            <ListView.ItemTemplate >
                 <DataTemplate>
-                    <TextBlock Text="{Binding Description}" />
+                    <DockPanel>
+                        <fa:FontAwesome Margin ="10 10 0 0" Icon="Train" FontSize="24" />
+                        <TextBlock Margin ="15 10 0 10" Text="{Binding Description}" FontSize="14" FontWeight="Black"/>
+                    </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HCI_Project"
+        xmlns:local="clr-namespace:HCI_Project" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:popups="clr-namespace:HCI_Project.Popups"
         mc:Ignorable="d"
         Title="ManagerWindow" Height="450" Width="800"
         MinHeight="700" 
@@ -27,6 +27,11 @@
                 <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LOG OUT" Click="Logout_Click"/>
             </StackPanel>
         </Grid>
-        <Frame x:Name="Main" Grid.Row="1" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>
+        <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="1">
+            <materialDesign:DialogHost.DialogContent>
+                <popups:ConfirmPopup x:Name="popup" />
+            </materialDesign:DialogHost.DialogContent>
+            <Frame x:Name="Main" Grid.Row="1" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>
+        </materialDesign:DialogHost>
     </Grid>
 </Window>

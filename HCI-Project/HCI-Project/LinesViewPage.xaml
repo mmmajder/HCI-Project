@@ -11,6 +11,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LinesViewPage">
 
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -62,7 +63,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button x:Name="removeRoute" Visibility="Visible" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 100 10 0" Grid.Row="5" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Remove_Click">
+                <Button x:Name="removeRoute" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 100 10 0" Grid.Row="5" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="OpenConfirmPopup">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome  Icon="Trash" FontSize="20"/>
@@ -77,7 +78,7 @@
             </Grid>
         </StackPanel>
 
-        <Frame x:Name="Main" Grid.Row="1" Grid.Column="1" Margin="20,0,20,0" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Main" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Page>

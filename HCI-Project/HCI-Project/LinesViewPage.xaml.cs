@@ -20,7 +20,8 @@ namespace HCI_Project
         private readonly List<Station> AllStations = StationRepo.GetStations();
         private readonly List<string> AllStationNames = StationRepo.GetStationNames();
         private MapPage myMap = new MapPage();
-        public LinesViewPage()
+        private ManagerWindow managerWindow;
+        public LinesViewPage(ManagerWindow managerWindow)
         {
             
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace HCI_Project
             SetControlsVisible();
 
             Main.Content = myMap;
+            this.managerWindow = managerWindow;
 
         }
 
@@ -83,7 +85,7 @@ namespace HCI_Project
             TodoItemListingViewModel routeStations =  MapStations(route.Stations);
             TodoItemListingViewModel allStations = MapStations(AllStations);
 
-            EditRouteWindow editRoute = new EditRouteWindow(ref route, Main, myMap)
+            EditRouteWindow editRoute = new EditRouteWindow(ref route, Main, myMap, managerWindow)
             {
                 DataContext = new TodoViewModel(routeStations, allStations)
             };
@@ -93,8 +95,8 @@ namespace HCI_Project
         }
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-
-            Console.WriteLine(fromLocationCombobox.SelectedItem);
+            Console.WriteLine(fromLocationCombobox.SelectedItem.ToString());
+            CloseConfirmPopup(sender, e);
         }
 
         private Object GetComboboxValue(ComboBox myCombobox)
@@ -146,5 +148,17 @@ namespace HCI_Project
             return mappedStations;
         }
 
+        private void OpenConfirmPopup(object sender, RoutedEventArgs e)
+        {
+            managerWindow.popup.YesButton.Click += Remove_Click;
+            managerWindow.popup.YesButton.Click += CloseConfirmPopup;
+            managerWindow.popup.NoButton.Click += CloseConfirmPopup;
+            managerWindow.popup.confirmMessage.Text = "Are you sure you want to delete this route?";
+        }
+        private void CloseConfirmPopup(object sender, RoutedEventArgs e)
+        {
+            managerWindow.popup.YesButton.Click -= Remove_Click;
+            managerWindow.popup.NoButton.Click -= CloseConfirmPopup;
+        }
     }
 }

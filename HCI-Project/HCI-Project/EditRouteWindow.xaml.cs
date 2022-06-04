@@ -1,6 +1,7 @@
 ﻿using DragDropDemo.Commands;
 using DragDropDemo.ViewModels;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using System;
 using System.Collections.Generic;
@@ -24,26 +25,27 @@ namespace HCI_Project
     /// </summary>
     public partial class EditRouteWindow : Page
     {
-        private Frame main;
-        private MapPage myMap;
+        private readonly Frame main;
+        private readonly MapPage myMap;
+        private ManagerWindow managerWindow;
 
-        private string RouteName { get; set; }
         public Route route { get; set; }
 
-        public EditRouteWindow(ref Route route, Frame main, MapPage myMap)
+        public EditRouteWindow(ref Route route, Frame main, MapPage myMap, ManagerWindow managerWindow)
         {
             InitializeComponent();
             Title = "Edit Route";
 
             this.main = main;
             this.myMap = myMap;
+            this.managerWindow = managerWindow;
 
             if (route != null)
             {
-                routeName.Text = "Route name: " + route.ToString();
+                routeName.Text = route.ToString();
                 this.route = route;
-            }    
-             
+            }
+
         }
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
@@ -56,14 +58,12 @@ namespace HCI_Project
                 newRouteStations.Add(a.Station);
             }
             route.Stations = newRouteStations;
-            //this.Visibility = Visibility.Hidden;
-            this.main.Content = myMap;
+            main.Content = myMap;
         }
 
         private void CancelChanges_Click(object sender, RoutedEventArgs e)
         {
-            //this.Visibility = Visibility.Hidden;
-            this.main.Content = myMap;
+            main.Content = myMap;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -77,6 +77,21 @@ namespace HCI_Project
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Remove_Click");
+            CloseConfirmPopup(sender, e);
         }
+
+        private void OpenConfirmPopup(object sender, RoutedEventArgs e)
+        {
+            managerWindow.popup.YesButton.Click += Remove_Click;
+            managerWindow.popup.YesButton.Click += CloseConfirmPopup;
+            managerWindow.popup.NoButton.Click += CloseConfirmPopup;
+            managerWindow.popup.confirmMessage.Text = "Are you sure you want to delete this station?";
+        }
+        private void CloseConfirmPopup(object sender, RoutedEventArgs e)
+        {
+            managerWindow.popup.YesButton.Click -= Remove_Click;
+            managerWindow.popup.NoButton.Click -= CloseConfirmPopup;
+        }
+
     }
 }

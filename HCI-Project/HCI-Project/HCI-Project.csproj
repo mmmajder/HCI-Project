@@ -115,6 +115,9 @@
     <Compile Include="Model\TimeRange.cs" />
     <Compile Include="Model\UserType.cs" />
     <Compile Include="Model\WagonType.cs" />
+    <Compile Include="Popups\ConfirmPopup.xaml.cs">
+      <DependentUpon>ConfirmPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Repo\RouteRepo.cs" />
     <Compile Include="Repo\ScheduledRouteRepo.cs" />
     <Compile Include="Repo\ScheduledStationRepo.cs" />
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MapPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ConfirmPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,6 +254,7 @@
   <ItemGroup>
     <Resource Include="images\startScreenImage.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

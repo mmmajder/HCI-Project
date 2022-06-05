@@ -3,7 +3,9 @@ using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.util;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +61,47 @@ namespace HCI_Project.Service
             return routes;
         }
 
+        public static List<Route> findRoutesOnPath(string fromLoc, string toLoc)
+        {
+            List<Route> routes = new List<Route>();
+            foreach (Route route in RouteRepo.GetRoutes())
+            {
+                if (isGoodRoute(route, fromLoc, toLoc))
+                {
+                    routes.Add(route);
+                }
+            }
+            return routes;
+        }
+
+        public static List<string> findRoutePaths(string fromLoc, string toLoc)
+        {
+            List<string> retData = new List<string>();
+            foreach (Route route in findRoutesOnPath(fromLoc, toLoc))
+            {
+                retData.Add(getStationsList(route));
+            }
+            return retData;
+        }
+
+        private static string getStationsList(Route route)
+        {
+            string stationsList = "";
+            foreach(Station station in route.Stations)
+            {
+                if (stationsList!="")
+                {
+                    stationsList = stationsList + " - " + station.Name;
+                }
+                else
+                {
+                    stationsList = station.Name;
+                }
+            }
+
+            return stationsList;
+        }
+
         public static List<ScheduledRoute> GetScheduledRoutes(string from, string to, DateTime date)
         {
             List<ScheduledRoute> routes = new List<ScheduledRoute>();
@@ -75,6 +118,18 @@ namespace HCI_Project.Service
             return routes;
         }
 
+        internal static Route FindRouteById(long routeId)
+        {
+            foreach (Route route in RouteRepo.GetRoutes())
+            {
+                if (route.Id == routeId)
+                {
+                    return route;
+                }
+            }
+            return null;
+        }
+
         public static List<ScheduledRoute> GetScheduledRoutes(string from, string to)
         {
             List<ScheduledRoute> routes = new List<ScheduledRoute>();
@@ -88,9 +143,9 @@ namespace HCI_Project.Service
             return routes;
         }
 
-        public static List<RouteTableManagerDTO> GetRoutesTableData(List<ScheduledRoute> ScheduledRoutes, string from, string to) 
+        public static ObservableCollection<RouteTableManagerDTO> GetRoutesTableData(List<ScheduledRoute> ScheduledRoutes, string from, string to) 
         {
-            List<RouteTableManagerDTO> tableData = new List<RouteTableManagerDTO>();
+            ObservableCollection<RouteTableManagerDTO> tableData = new ObservableCollection<RouteTableManagerDTO>();
             foreach (ScheduledRoute scheduledRoute in ScheduledRoutes)
             {
                 DateTime depature = GetDepature(scheduledRoute, from);

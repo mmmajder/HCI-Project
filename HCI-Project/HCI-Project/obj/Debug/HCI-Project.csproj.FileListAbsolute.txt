@@ -90,3 +90,5 @@ C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\bin\Debug\Xamarin.For
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\bin\Debug\Xamarin.Forms.Core.xml
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\AddNewScheduledRoute.g.cs
+C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\Manager\AddNewScheduledRoute.baml

@@ -116,6 +116,9 @@
     <Compile Include="DTO\RouteTableDTO.cs" />
     <Compile Include="DTO\RouteTableManagerDTO.cs" />
     <Compile Include="DTO\ScheduledListItemDTO.cs" />
+    <Compile Include="Manager\AddNewScheduledRoute.xaml.cs">
+      <DependentUpon>AddNewScheduledRoute.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manager\EditRouteWindow.xaml.cs">
       <DependentUpon>EditRouteWindow.xaml</DependentUpon>
     </Compile>
@@ -168,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Client\TimetableViewClientPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\AddNewScheduledRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

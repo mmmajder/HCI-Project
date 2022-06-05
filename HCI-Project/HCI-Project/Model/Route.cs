@@ -8,14 +8,16 @@ namespace HCI_Project.Model
 {
     public class Route
     {
+        public long Id { get; set; }
         public List<Station> Stations { get; set; }
         public List<ScheduledRoute> ScheduledRoutes { get; set; }
         // TODO PRICE
         public string TrainType { get; set; }
 
-        public Route(List<Station> stations, List<ScheduledRoute> scheduledRoutes, string trainType)
+        public Route(long id, List<Station> stations, List<ScheduledRoute> scheduledRoutes, string trainType)
         {
-            this.Stations = stations;
+            Id = id;
+            Stations = stations;
             ScheduledRoutes = scheduledRoutes;
             TrainType = trainType;
         }

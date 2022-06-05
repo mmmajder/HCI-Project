@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HCI_Project.Manager.EditRouteWindow"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         mc:Ignorable="d"
-        Title="Edit route" MinHeight="390" MaxHeight="390" MinWidth="500" MaxWidth="500">
+        Title="Edit scheduled route" MinHeight="450" MinWidth="500">
     <Window.Resources>
         <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -18,136 +18,98 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Edit route" x:Name="TitleLbl" HorizontalAlignment="Center"  Foreground="#000" FontSize="18"/>
+        <Label Grid.Row="0" Content="Edit scheduled route" x:Name="TitleLbl" HorizontalAlignment="Center"  Foreground="#000" FontSize="18"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="194" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ListBox Margin="10,30,0,13" x:Name="listBox1" HorizontalAlignment="Left"
          VerticalAlignment="Top" Width="194" Height="240" Grid.Column="0" >
                 <ListBoxItem>
-                    <CheckBox x:Name="Mon">
+                    <CheckBox x:Name="Mon" Checked="MonChecked" Unchecked="MonUnchecked">
                         <TextBlock Text="Monday"/>
                     </CheckBox>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox x:Name="Tue">
+                    <CheckBox x:Name="Tue" Checked="TueChecked" Unchecked="TueUnchecked">
                         <TextBlock Text="Tuesday"/>
                     </CheckBox>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox x:Name="Wed">
+                    <CheckBox x:Name="Wed" Checked="WedChecked" Unchecked="WedUnchecked">
                         <TextBlock Text="Wednesday"/>
                     </CheckBox>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox x:Name="Thu">
+                    <CheckBox x:Name="Thu" Checked="ThuChecked" Unchecked="ThuUnchecked">
                         <TextBlock Text="Thursday"/>
                     </CheckBox>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox x:Name="Fri">
+                    <CheckBox x:Name="Fri" Checked="FriChecked" Unchecked="FriUnchecked">
                         <TextBlock Text="Friday"/>
                     </CheckBox>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox x:Name="Sat">
+                    <CheckBox x:Name="Sat" Checked="SatChecked" Unchecked="SatUnchecked">
                         <TextBlock Text="Saturday"/>
                     </CheckBox>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox x:Name="Sun">
+                    <CheckBox x:Name="Sun" Checked="SunChecked" Unchecked="SunUnchecked">
                         <TextBlock Text="Sunday"/>
                     </CheckBox>
                 </ListBoxItem>
             </ListBox>
 
             <Grid Grid.Column="1" Margin="0,0,20,20">
-                <DataGrid IsEnabled="True"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged" >
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Station" Binding="{Binding Station}" />
+                <DataGrid IsEnabled="True" Margin="0,30,0,0" CanUserAddRows="False"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged" >
+                    <!--   <DataGrid IsEnabled="True" Margin="0,30,0,0"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" >
+                     --><DataGrid.Columns>
+                        <DataGridTextColumn Header="Station" Width="2*" Binding="{Binding Path='Station'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="Background" Value="#336699"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Arrival" Width="2*" Binding="{Binding Path='ArrivalTime'}" ElementStyle="{StaticResource Centering}">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="Background" Value="#336699"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Depature" Width="2*" Binding="{Binding Path='DepatureTime'}" ElementStyle="{StaticResource Centering}">
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    <Setter Property="Background" Value="#336699"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn>
+                      <!--  <DataGridTextColumn Header="Station" Binding="{Binding Station}" />
                         <DataGridTextColumn Header="Arrival" Binding="{Binding ArrivalTime}"  />
-                        <DataGridTextColumn Header="Depature" Binding="{Binding DepatureTime}"/>
-                        <!--   <DataGridTextColumn Header="Station" Width="*" Binding="{Binding Path='Station'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
-                            <DataGridTextColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="#336699"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Style>
-                            </DataGridTextColumn.HeaderStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Header="Depature" Width="*" Binding="{Binding Path='DepatureTime'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
-                            <DataGridTextColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="#336699"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Style>
-                            </DataGridTextColumn.HeaderStyle>
-                        </DataGridTextColumn>
-
-
-                        <DataGridTextColumn Header="Arrival" Width="*" Binding="{Binding Path='ArrivalTime'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
-                            <DataGridTextColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="#336699"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Style>
-                            </DataGridTextColumn.HeaderStyle>
-                        </DataGridTextColumn>-->
-                        <!--      <DataGridTemplateColumn Header="Depature" Width="*">
-                            <DataGridTemplateColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="#336699"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Style>
-                            </DataGridTemplateColumn.HeaderStyle>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <syncfusion:SfTimePicker x:Name="DepatureTime" SetValueOnLostFocus="True" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Header="Arrival" Width="*">
-                            <DataGridTemplateColumn.HeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="#336699"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                </Style>
-                            </DataGridTemplateColumn.HeaderStyle>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <syncfusion:SfTimePicker  x:Name="ArrivalTime" SetValueOnLostFocus="True" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>-->
-                      <!--  <DataGridTextColumn Header="Arrival" Binding="{Binding Arrival}"  />
-                        <DataGridTextColumn Header="Depature" Binding="{Binding Depature}"/>-->
+                        <DataGridTextColumn Header="Depature" Binding="{Binding DepatureTime}"/>-->
                     </DataGrid.Columns>
                 </DataGrid>
-                <!--    <Label Content="Start time:" x:Name="StartTime" Foreground="#000" Margin="30,30,0,13" />
-                <syncfusion:SfTimePicker Grid.Column="1"  x:Name="DepatureTime" SetValueOnLostFocus="True" HorizontalAlignment="Left" Margin="0,31,0,13" VerticalAlignment="Top"/>
-                <Label Content="End time:" x:Name="EndTime" HorizontalAlignment="Center" Margin="26,60,0,13" Foreground="#000" />
-                <syncfusion:SfTimePicker Grid.Column="1"  x:Name="ArrivalTime" SetValueOnLostFocus="True" HorizontalAlignment="Left" Margin="0,62,0,13" VerticalAlignment="Top"/>
--->
-                <!-- <materialDesign:TimePicker x:Name="ArrivalTime" Grid.Column="1" HorizontalAlignment="Left" Margin="0,62,0,13" VerticalAlignment="Top" SelectedTime="{Binding StartTime}"/>-->
             </Grid>
             
         </Grid>
-        <Button Grid.Row="2" Margin="10,0,10,20" BorderBrush="#cc1111" Background="#cc1111" Click="Button_Click">
+        <Button Grid.Row="2" Margin="10,0,10,20" BorderBrush="#cc1111" HorizontalAlignment="Center" MinWidth="200" Background="#cc1111" Click="Button_Click">
             Save changes
         </Button>
     </Grid>

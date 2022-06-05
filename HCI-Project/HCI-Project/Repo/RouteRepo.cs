@@ -22,8 +22,8 @@ namespace HCI_Project.Repo
             List<ScheduledRoute> allScheduledRoutes = ScheduledRouteRepo.GetScheduledRoutes();
             List<ScheduledRoute> scheduledRoutes1 = new List<ScheduledRoute> { allScheduledRoutes[0] };
             List<ScheduledRoute> scheduledRoutes2 = new List<ScheduledRoute> { allScheduledRoutes[1] };
-            Routes.Add(new Route(stations1, scheduledRoutes1, "type 1"));
-            Routes.Add(new Route(stations2, scheduledRoutes2, "type 2"));
+            Routes.Add(new Route(1, stations1, scheduledRoutes1, "type 1"));
+            Routes.Add(new Route(2, stations2, scheduledRoutes2, "type 2"));
 
         }
         public static void AddRoute(Route route)

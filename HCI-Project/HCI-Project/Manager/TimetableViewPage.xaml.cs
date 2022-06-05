@@ -29,7 +29,9 @@ namespace HCI_Project
     public partial class TimetableViewPage : Page
     {
         public static List<ScheduledRoute> Routes = new List<ScheduledRoute>();
-        public static List<RouteTableManagerDTO> TableData = new List<RouteTableManagerDTO>();
+        public static ObservableCollection<RouteTableManagerDTO> TableData = new ObservableCollection<RouteTableManagerDTO>();
+        public static string from;
+        public static string to;
         public TimetableViewPage()
         {
             InitializeComponent();
@@ -62,8 +64,8 @@ namespace HCI_Project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string from = GetLocationValue(fromLocationCombobox);
-            string to = GetLocationValue(toLocationCombobox);
+            from = GetLocationValue(fromLocationCombobox);
+            to = GetLocationValue(toLocationCombobox);
             FromLoc.Text = "From: " + from;
             ToLoc.Text = "To: " + to;
             TablePanel.Visibility = Visibility.Visible;
@@ -77,7 +79,7 @@ namespace HCI_Project
             }
         }
 
-        private void btnView_Click(object sender, RoutedEventArgs e)
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -87,17 +89,66 @@ namespace HCI_Project
 
                 EditRouteWindow.setSelectedRoute(slectedScheduledRoute);
                 EditRouteWindow editRouteWindow = new EditRouteWindow();
-                //editRouteWindow.setTimeRange(selectedRow.Depature, selectedRow.Arrival);
+                editRouteWindow.EditItem += new EditItemHandler(winEdit_EditItem);
                 editRouteWindow.Show();
-              /*  ScheduledRouteWindow.setSelectedScheduledRoute(slectedScheduledRoute);
-                ScheduledRouteWindow scheduledRouteWindow = new ScheduledRouteWindow();
-                scheduledRouteWindow.Show();*/
-                //This is the code which will show the button click row data. Thank you.
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
+                ScheduledRoute slectedScheduledRoute = Routes[i];
+                RouteTableManagerDTO selectedRow = TableData[i];
+                TableData.Remove(selectedRow);
+                Routes.Remove(slectedScheduledRoute);
+                Route route = RouteService.FindRouteById(slectedScheduledRoute.RouteId);
+                route.ScheduledRoutes.Remove(slectedScheduledRoute);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewScheduledRoute addNewScheduledRoute = new AddNewScheduledRoute(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox));
+            addNewScheduledRoute.AddItem += new AddItemHandler(winAdd_AddItem);
+            addNewScheduledRoute.Show();
+        }
+
+        void winEdit_EditItem(object sender, ScheduledRoute itemToEdit)
+        {
+           // ScheduledRoute scheduledRoute = ScheduledRouteRepo.FindById(itemToEdit.id);
+            for (int i=0; i<Routes.Count(); i++)
+            {
+                if (Routes[i].id == itemToEdit.id)
+                {
+                    Routes[i] = itemToEdit;
+                    TableData[i] = new RouteTableManagerDTO { Depature=RouteService.GetDepature(itemToEdit, from).ToString("HH:mm"),
+                        Arrival = RouteService.GetArrival(itemToEdit, to).ToString("HH:mm"),
+                        Days =RouteService.GetDayNames(itemToEdit.RepeatigDays) };
+                    break;
+                }
+            }
+        }
+
+        void winAdd_AddItem(object sender, ScheduledRoute itemToAdd)
+        {
+            string depature = RouteService.GetDepature(itemToAdd, from).ToString("HH:ss");
+            string arrival = RouteService.GetArrival(itemToAdd, to).ToString("HH:ss");
+            itemToAdd.RepeatigDays.Sort();
+            string days = RouteService.GetDayNames(itemToAdd.RepeatigDays);
+            RouteTableManagerDTO data = new RouteTableManagerDTO { Depature = depature, Arrival = arrival, Days = days };
+            TableData.Add(data);
+            Routes.Add(itemToAdd);
+            dgrMain.ItemsSource = TableData;
         }
     }
 }

@@ -18,8 +18,8 @@ namespace HCI_Project.Repo
             List<ScheduledStation> stations2 = new List<ScheduledStation> { stations[3], stations[4], stations[5] };
 
 
-            ScheduledRoutes.Add(new ScheduledRoute(stations1, 1, new List<int> { 1,2,3,4,5,6,7 }, new List<DateTime> ()));
-            ScheduledRoutes.Add(new ScheduledRoute(stations2, 2, new List<int> { 3 }, new List<DateTime>()));
+            ScheduledRoutes.Add(new ScheduledRoute(1, stations1, 1, new List<int> { 1,2,3,4,5,6,7 }, new List<DateTime> ()));
+            ScheduledRoutes.Add(new ScheduledRoute(2, stations2, 2, new List<int> { 3 }, new List<DateTime>()));
         }
         public static void AddScheduledRoute(ScheduledRoute scheduledRoute)
         {
@@ -29,6 +29,23 @@ namespace HCI_Project.Repo
         public static List<ScheduledRoute> GetScheduledRoutes()
         {
             return ScheduledRoutes;
+        }
+
+        public static long GetNewScheduledRouteId()
+        {
+            return ScheduledRoutes.Count();
+        }
+
+        public static ScheduledRoute FindById(long id)
+        {
+            foreach (ScheduledRoute scheduledRoute in ScheduledRoutes)
+            {
+                if (scheduledRoute.id == id)
+                {
+                    return scheduledRoute;
+                }
+            }
+            return null;
         }
 
         

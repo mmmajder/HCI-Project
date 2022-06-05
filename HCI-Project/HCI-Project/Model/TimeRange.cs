@@ -16,5 +16,9 @@ namespace HCI_Project.Model
             Arrival = arrival;
             Depature = depature;
         }
+
+        public TimeRange()
+        {
+        }
     }
 }

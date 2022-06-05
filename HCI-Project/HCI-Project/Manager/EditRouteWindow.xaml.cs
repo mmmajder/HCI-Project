@@ -23,28 +23,21 @@ namespace HCI_Project.Manager
     /// <summary>
     /// Interaction logic for EditRouteWindow.xaml
     /// </summary>
+    /// 
+
+    public delegate void EditItemHandler(object sender, ScheduledRoute itemToEdit);
     public partial class EditRouteWindow : Window
     {
         public static ScheduledRoute SelectedScheduledRoute { get; set; }
         public static ScheduledStation SelectedScheduledStation { get; set; }
         public static DateTime start;
         public static DateTime to;
-        //public SfTimePicker DepatureTime;
-        // public TimeSpan DepatureTime;
-        /*private TimeSpan _DepatureTime;
-        public TimeSpan DepatureTime
-        {
-            get { return _DepatureTime; }
-            set
-            {
-                if (_DepatureTime != value)
-                {
-                    _DepatureTime = value;
-                    OnPropertyChanged("DepatureTime");
-                }
-            }
-        }
-        */
+
+        public static ScheduledRoute EditedValue { get; set; }
+
+        public event EditItemHandler EditItem;
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string name)
         {
@@ -64,6 +57,18 @@ namespace HCI_Project.Manager
         {
             FillCheckboxes();
             FillTable();
+            setEditedValue();
+        }
+
+        private void setEditedValue()
+        {
+            List<ScheduledStation> scheduledStations = new List<ScheduledStation>();
+            foreach (ScheduledStation scheduledStation in SelectedScheduledRoute.Stations)
+            {
+                scheduledStations.Add(scheduledStation);
+            }
+            EditedValue = new ScheduledRoute(SelectedScheduledRoute.id, scheduledStations, SelectedScheduledRoute.RouteId, SelectedScheduledRoute.RepeatigDays, SelectedScheduledRoute.NotWorkingDays);
+
         }
 
         private void FillTable()
@@ -113,15 +118,11 @@ namespace HCI_Project.Manager
 
         }*/
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void DgUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int i = dgRoute.Items.IndexOf(dgRoute.SelectedItem);
-            SelectedScheduledStation = SelectedScheduledRoute.Stations[i];
+            SelectedScheduledStation = EditedValue.Stations[i];
         }
 
         public void CellChanged(object sender, DataGridCellEditEndingEventArgs e)
@@ -134,10 +135,17 @@ namespace HCI_Project.Manager
 
             if (ColumnIndex == 0)
             {
-                Station station = StationRepo.GetStationByName(editedCellValue);
-                if (station != null)
+                Station newStation = StationRepo.GetStationByName(editedCellValue);
+                if (newStation != null)
                 {
-                    SelectedScheduledStation.Station = station;
+                    SelectedScheduledStation.Station = newStation;
+                /*    foreach (ScheduledStation scheduledStation in EditedValue.Stations)
+                    {
+                        if (scheduledStation.Station.Name == SelectedScheduledStation.Station.Name)
+                        {
+                            scheduledStation.Station = newStation;
+                        }
+                    }*/
                 }
                 else
                 {
@@ -161,6 +169,92 @@ namespace HCI_Project.Manager
 
             }
 
+        }
+        
+        private void addDayOfWeek(int i)
+        {
+            if (!SelectedScheduledRoute.RepeatigDays.Contains(i))
+            {
+                SelectedScheduledRoute.RepeatigDays.Add(i);
+            }
+        }
+
+        private void removeDayOfWeek(int i)
+        {
+            if (SelectedScheduledRoute.RepeatigDays.Contains(i))
+            {
+                SelectedScheduledRoute.RepeatigDays.Remove(i);
+            }
+        }
+
+        private void MonChecked(object sender, RoutedEventArgs e)
+        {
+            addDayOfWeek(1);
+        }
+
+        private void MonUnchecked(object sender, RoutedEventArgs e)
+        {
+            removeDayOfWeek(1);
+        }
+        private void TueChecked(object sender, RoutedEventArgs e)
+        {
+            addDayOfWeek(2);
+        }
+
+        private void TueUnchecked(object sender, RoutedEventArgs e)
+        {
+            removeDayOfWeek(2);
+        }
+        private void WedChecked(object sender, RoutedEventArgs e)
+        {
+            addDayOfWeek(3);
+        }
+
+        private void WedUnchecked(object sender, RoutedEventArgs e)
+        {
+            removeDayOfWeek(3);
+        }
+        private void ThuChecked(object sender, RoutedEventArgs e)
+        {
+            addDayOfWeek(4);
+        }
+
+        private void ThuUnchecked(object sender, RoutedEventArgs e)
+        {
+            removeDayOfWeek(4);
+        }
+        private void FriChecked(object sender, RoutedEventArgs e)
+        {
+            addDayOfWeek(5);
+        }
+
+        private void FriUnchecked(object sender, RoutedEventArgs e)
+        {
+            removeDayOfWeek(5);
+        }
+        private void SatChecked(object sender, RoutedEventArgs e)
+        {
+            addDayOfWeek(6);
+        }
+
+        private void SatUnchecked(object sender, RoutedEventArgs e)
+        {
+            removeDayOfWeek(6);
+        }
+        private void SunChecked(object sender, RoutedEventArgs e)
+        {
+            addDayOfWeek(7);
+        }
+
+        private void SunUnchecked(object sender, RoutedEventArgs e)
+        {
+            removeDayOfWeek(7);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedScheduledRoute = EditedValue;
+            EditItem(this, SelectedScheduledRoute);
         }
     }
 }

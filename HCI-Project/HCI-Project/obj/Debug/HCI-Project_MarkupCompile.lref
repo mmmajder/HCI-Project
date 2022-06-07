@@ -2,6 +2,7 @@
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\App.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Client\ClientWindow.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Client\TimetableViewClientPage.xaml;;
+FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\AddNewScheduledRoute.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\EditRouteWindow.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\FinancesViewPage.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\HomeViewPage.xaml;;
@@ -11,5 +12,4 @@ FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\ManagerWindo
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Client\ScheduledRouteWindow.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\TimetableViewPage.xaml;;
 FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\TrainsViewPage.xaml;;
-FC:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\Manager\AddNewScheduledRoute.xaml;;
 

@@ -19,7 +19,7 @@ namespace HCI_Project
     {        
         private readonly List<Station> AllStations = StationRepo.GetStations();
         private readonly List<string> AllStationNames = StationRepo.GetStationNames();
-        private MapPage myMap = new MapPage();
+        private MapLinePage mapLinePage;
         private ManagerWindow managerWindow;
         public LinesViewPage(ManagerWindow managerWindow)
         {
@@ -27,11 +27,13 @@ namespace HCI_Project
             InitializeComponent();
             ComboBoxInit();
 
-            myMap.AddPushPins(AllStations, MouseRightButtonDownEvent);
+            mapLinePage = new MapLinePage(managerWindow);
+            mapLinePage.mapPage.AddPushPins(AllStations, MouseRightButtonDownEvent);
             SetControlsVisible();
 
-            Main.Content = myMap;
+            Main.Content = mapLinePage;
             this.managerWindow = managerWindow;
+           
 
         }
 
@@ -47,12 +49,6 @@ namespace HCI_Project
             toLocationCombobox.IsTextSearchCaseSensitive = false;
 
         }
-
-
-        
-
-        
-
         private void MouseRightButtonDownEvent(object sender, RoutedEventArgs e)
         {
             if (sender is Pushpin pushpin)
@@ -70,8 +66,15 @@ namespace HCI_Project
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
+            TodoItemListingViewModel routeStations = new TodoItemListingViewModel();
+            TodoItemListingViewModel allStations = MapStations(AllStations);
 
-            Console.WriteLine(fromLocationCombobox.SelectedItem);
+            EditRouteWindow editRoute = new EditRouteWindow(null, Main, mapLinePage, managerWindow)
+            {
+                DataContext = new TodoViewModel(routeStations, allStations)
+            };
+            editRoute.Visibility = Visibility.Visible;
+            Main.Content = editRoute;
         }
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
@@ -85,17 +88,18 @@ namespace HCI_Project
             TodoItemListingViewModel routeStations =  MapStations(route.Stations);
             TodoItemListingViewModel allStations = MapStations(AllStations);
 
-            EditRouteWindow editRoute = new EditRouteWindow(ref route, Main, myMap, managerWindow)
+            EditRouteWindow editRoute = new EditRouteWindow(route, Main, mapLinePage, managerWindow)
             {
                 DataContext = new TodoViewModel(routeStations, allStations)
             };
             editRoute.Visibility = Visibility.Visible;
-            // myMap.Visibility = Visibility.Hidden;
             Main.Content = editRoute;
         }
         private void Remove_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(fromLocationCombobox.SelectedItem.ToString());
+            Route route = (Route)GetComboboxValue(routesCombobox);
+            RouteRepo.RemoveRoute(route);
+
             CloseConfirmPopup(sender, e);
         }
 
@@ -119,7 +123,7 @@ namespace HCI_Project
             if (fromLocation != null && toLocation != null)
             {
                 List<Route> routes = RouteService.GetRoutes(fromLocation, toLocation);
-                myMap.DrawMapPolygon(routes);
+                mapLinePage.mapPage.DrawMapPolygon(routes);
                 routesCombobox.ItemsSource = routes;
             }
         }
@@ -159,6 +163,12 @@ namespace HCI_Project
         {
             managerWindow.popup.YesButton.Click -= Remove_Click;
             managerWindow.popup.NoButton.Click -= CloseConfirmPopup;
+        }
+
+        private void EditStations_Click(object onj, RoutedEventArgs eventHandler)
+        {
+            StationsWindow sw = new StationsWindow(managerWindow);
+            sw.Show();
         }
     }
 }

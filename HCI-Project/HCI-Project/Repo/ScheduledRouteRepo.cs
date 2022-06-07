@@ -31,6 +31,10 @@ namespace HCI_Project.Repo
             return ScheduledRoutes;
         }
 
-        
+        public static void RemoveScheduledRoute(ScheduledRoute scheduledRoute)
+        {
+            ScheduledRoutes.Remove(scheduledRoute);
+        }
+
     }
 }

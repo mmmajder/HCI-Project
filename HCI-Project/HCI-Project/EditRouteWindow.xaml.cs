@@ -26,18 +26,18 @@ namespace HCI_Project
     public partial class EditRouteWindow : Page
     {
         private readonly Frame main;
-        private readonly MapPage myMap;
+        private readonly MapLinePage mapLinePage;
         private ManagerWindow managerWindow;
 
         public Route route { get; set; }
 
-        public EditRouteWindow(ref Route route, Frame main, MapPage myMap, ManagerWindow managerWindow)
+        public EditRouteWindow(Route route, Frame main, MapLinePage mapLinePage, ManagerWindow managerWindow)
         {
             InitializeComponent();
             Title = "Edit Route";
 
             this.main = main;
-            this.myMap = myMap;
+            this.mapLinePage = mapLinePage;
             this.managerWindow = managerWindow;
 
             if (route != null)
@@ -57,41 +57,29 @@ namespace HCI_Project
             {
                 newRouteStations.Add(a.Station);
             }
-            route.Stations = newRouteStations;
-            main.Content = myMap;
+
+            if (route != null)
+            {
+                route.Stations = newRouteStations;
+            }
+            else
+            {
+                string trainType = "";
+                Route route = new Route(newRouteStations, new List<ScheduledRoute>(), trainType);
+                RouteRepo.AddRoute(route);
+            }
+            main.Content = mapLinePage;
         }
 
         private void CancelChanges_Click(object sender, RoutedEventArgs e)
         {
-            main.Content = myMap;
+            main.Content = mapLinePage;
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void EditStations_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Add_Click");
+            StationsWindow sw = new StationsWindow(managerWindow);
+            sw.Show();
         }
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Edit_Click");
-        }
-        private void Remove_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Remove_Click");
-            CloseConfirmPopup(sender, e);
-        }
-
-        private void OpenConfirmPopup(object sender, RoutedEventArgs e)
-        {
-            managerWindow.popup.YesButton.Click += Remove_Click;
-            managerWindow.popup.YesButton.Click += CloseConfirmPopup;
-            managerWindow.popup.NoButton.Click += CloseConfirmPopup;
-            managerWindow.popup.confirmMessage.Text = "Are you sure you want to delete this station?";
-        }
-        private void CloseConfirmPopup(object sender, RoutedEventArgs e)
-        {
-            managerWindow.popup.YesButton.Click -= Remove_Click;
-            managerWindow.popup.NoButton.Click -= CloseConfirmPopup;
-        }
-
     }
 }

@@ -98,8 +98,17 @@
     <Compile Include="ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MapLinePage.xaml.cs">
+      <DependentUpon>MapLinePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\InputStationNamePopup.xaml.cs">
+      <DependentUpon>InputStationNamePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Coordinate.cs" />
@@ -114,7 +123,8 @@
     <Compile Include="Model\TicketStatus.cs" />
     <Compile Include="Model\TimeRange.cs" />
     <Compile Include="Model\UserType.cs" />
-    <Compile Include="Model\WagonType.cs" />
+    <Compile Include="Model\Wagon.cs" />
+    <Compile Include="Model\WagonItem.cs" />
     <Compile Include="Popups\ConfirmPopup.xaml.cs">
       <DependentUpon>ConfirmPopup.xaml</DependentUpon>
     </Compile>
@@ -125,10 +135,20 @@
     <Compile Include="Repo\TrainRepo.cs" />
     <Compile Include="Repo\UserRepo.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Repo\WagonRepo.cs" />
     <Compile Include="ScheduledRouteWindow.xaml.cs">
       <DependentUpon>ScheduledRouteWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SeatsPickControl.xaml.cs">
+      <DependentUpon>SeatsPickControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeatsViewPage.xaml.cs">
+      <DependentUpon>SeatsViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service\RouteService.cs" />
+    <Compile Include="StationsWindow.xaml.cs">
+      <DependentUpon>StationsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimetableViewPage.xaml.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
     </Compile>
@@ -136,6 +156,7 @@
       <DependentUpon>TrainsViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="util\DateTimeUtils.cs" />
+    <Compile Include="ViewModels\DraggablePushpin.cs" />
     <Compile Include="ViewModels\TodoItemListingViewModel.cs" />
     <Compile Include="ViewModels\TodoItemViewModel.cs" />
     <Compile Include="ViewModels\TodoViewModel.cs" />
@@ -181,15 +202,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MapLinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\InputStationNamePopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Popups\ConfirmPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ScheduledRouteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeatsPickControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeatsViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,7 +299,9 @@
   <ItemGroup>
     <Resource Include="images\startScreenImage.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\seat_icon_left.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

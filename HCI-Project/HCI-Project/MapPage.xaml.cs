@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Model;
+using HCI_Project.ViewModels;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace HCI_Project
     /// <summary>
     /// Interaction logic for MapPage.xaml
     /// </summary>
-    public partial class MapPage : Page
+    public partial class MapPage : UserControl
     {
         public MapPage()
         {
@@ -51,6 +52,24 @@ namespace HCI_Project
                 myMap.Children.Add(pushpin);
             }
         }
+
+        public DraggablePin AddDragablePushPin(string name)
+        {
+            DraggablePin pin = new DraggablePin(myMap)
+            {
+                Location = myMap.Center,
+                Name = name
+            };
+
+            myMap.Children.Add(pin);
+            return pin;
+        }
+
+        /*public DraggablePin AddDragablePushPinRemoveEverynthingElse()
+        {
+            myMap.Children.Clear();
+            return AddDragablePushPin();
+        }*/
 
 
         public void DrawMapPolygon(List<Route> routes)
@@ -94,5 +113,7 @@ namespace HCI_Project
 
             return result;
         }
+
+        
     }
 }

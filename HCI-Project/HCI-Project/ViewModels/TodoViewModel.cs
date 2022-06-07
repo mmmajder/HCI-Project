@@ -11,6 +11,7 @@ namespace DragDropDemo.ViewModels
         public TodoItemListingViewModel CompletedTodoItemListingViewModel { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public TodoViewModel(TodoItemListingViewModel inProgressTodoItemListingViewModel, TodoItemListingViewModel completedTodoItemListingViewModel)
         {
             InProgressTodoItemListingViewModel = inProgressTodoItemListingViewModel;

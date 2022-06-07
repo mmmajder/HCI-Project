@@ -24,9 +24,14 @@ namespace HCI_Project.Repo
             Stations.Add(station);
         }
 
-        public static List<Station> GetStations()
+        public static void RemoveStation(Station station)
         {
-            return Stations;
+            Stations.Remove(station);
+        }
+
+        public static ref List<Station> GetStations()
+        {
+            return ref Stations;
         }
 
         public static List<String> GetStationNames()

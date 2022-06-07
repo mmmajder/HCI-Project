@@ -29,8 +29,10 @@ namespace HCI_Project
 
         private void EditStations_Click(object obj, RoutedEventArgs eventHandler)
         {
-            StationsWindow sw = new StationsWindow(managerWindow);
-            sw.Show();
+            StationsWindow sw = new StationsWindow(managerWindow, managerWindow.Main.Content);
+            sw.Visibility = Visibility.Visible;
+            managerWindow.Main.Content = sw;
         }
     }
 }
+

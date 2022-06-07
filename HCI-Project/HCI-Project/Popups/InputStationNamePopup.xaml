@@ -10,36 +10,44 @@
         Title="Message" Height="250" Width="450"
         AllowsTransparency="True" Background="Transparent">
     <Border BorderThickness="2" BorderBrush="Black" CornerRadius="10" Background="#E8F0F2">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="0, 15, 0, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal"  Width="350">
+                    <fa:FontAwesome  Icon="Pencil" FontSize="20"/>
+                    <TextBlock x:Name="inputMessage" Foreground="Gray" Width="350"  TextWrapping="Wrap" FontSize="18" />
+                </StackPanel>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="15">
-            <fa:FontAwesome  Icon="Pencil" FontSize="20"/>
-            <TextBlock x:Name="inputMessage" Foreground="Gray" Width="583" Margin="15,5,15,5.2" TextWrapping="Wrap" FontSize="18" />
-        </StackPanel>
-
-        <TextBox  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  x:Name="Input" Width="320" Height="80" FontSize="18" materialDesign:HintAssist.Hint="Station Name" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"  Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                <TextBlock x:Name="footNoteMessage" Grid.Row="1" Foreground="Gray" Width="350" TextWrapping="Wrap" FontSize="10" />
+            </Grid>
 
 
+
+
+            <TextBox  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"  x:Name="Input" Width="280" Height="70" FontSize="18" materialDesign:HintAssist.Hint="Station Name" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"  Style="{StaticResource MaterialDesignOutlinedTextBox}" />
 
             <Button Grid.Column="1" Grid.Row="2" x:Name="NoButton"  Background="Blue" Foreground="White" Margin="4" VerticalAlignment="Center" Click="Cancel_Click">
-            Cancel
-        </Button>
-        <Button x:Name="YesButton" Grid.Column="2" Grid.Row="2"   Background="Red"  Foreground="White" Margin="4" VerticalAlignment="Center" Click="Save_Click">
-            Save
-        </Button>
-    </Grid>
+                Cancel
+            </Button>
+            <Button x:Name="YesButton" Grid.Column="2" Grid.Row="3"   Background="Red"  Foreground="White" Margin="4" VerticalAlignment="Center" Click="Save_Click">
+                Save
+            </Button>
+        </Grid>
     </Border>
 </Window>

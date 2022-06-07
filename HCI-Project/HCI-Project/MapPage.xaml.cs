@@ -39,7 +39,7 @@ namespace HCI_Project
         private readonly Random rnd = new Random();
         private List<MapPolyline> drawnPolylines = new List<MapPolyline>();
 
-        public void AddPushPins(List<Station> stations, MouseButtonEventHandler MouseRightButtonDownEvent)
+        public void AddPushPins(List<Station> stations)
         {
             foreach (Station station in stations)
             {
@@ -48,28 +48,32 @@ namespace HCI_Project
                     Location = station.Position,
                     Content = station.Name
                 };
-                pushpin.MouseLeftButtonDown += MouseRightButtonDownEvent;
+                // pushpin.MouseLeftButtonDown += MouseRightButtonDownEvent;
                 myMap.Children.Add(pushpin);
             }
         }
 
         public DraggablePin AddDragablePushPin(string name)
         {
-            DraggablePin pin = new DraggablePin(myMap)
+            DraggablePin pin = new DraggablePin(myMap, name)
             {
-                Location = myMap.Center,
-                Name = name
+                Location = myMap.Center
             };
 
             myMap.Children.Add(pin);
             return pin;
         }
 
-        /*public DraggablePin AddDragablePushPinRemoveEverynthingElse()
+        public void RemoveDraggablePins(List<DraggablePin> pins)
         {
-            myMap.Children.Clear();
-            return AddDragablePushPin();
-        }*/
+            foreach(DraggablePin pin in pins)
+            {
+                if (myMap.Children.Contains(pin))
+                {
+                    myMap.Children.Remove(pin);
+                }
+            }
+        }
 
 
         public void DrawMapPolygon(List<Route> routes)

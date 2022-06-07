@@ -149,6 +149,7 @@
     <Compile Include="StationsWindow.xaml.cs">
       <DependentUpon>StationsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Styles\ToggleButton.cs" />
     <Compile Include="TimetableViewPage.xaml.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
     </Compile>
@@ -237,6 +238,10 @@
     <Page Include="StationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ToggleButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TimetableViewPage.xaml">
       <SubType>Designer</SubType>

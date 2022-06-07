@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace HCI_Project
 {
@@ -28,13 +27,11 @@ namespace HCI_Project
             ComboBoxInit();
 
             mapLinePage = new MapLinePage(managerWindow);
-            mapLinePage.mapPage.AddPushPins(AllStations, MouseRightButtonDownEvent);
+            mapLinePage.mapPage.AddPushPins(AllStations);
             SetControlsVisible();
 
             Main.Content = mapLinePage;
             this.managerWindow = managerWindow;
-           
-
         }
 
         private void ComboBoxInit()
@@ -167,8 +164,9 @@ namespace HCI_Project
 
         private void EditStations_Click(object onj, RoutedEventArgs eventHandler)
         {
-            StationsWindow sw = new StationsWindow(managerWindow);
-            sw.Show();
+            StationsWindow sw = new StationsWindow(managerWindow, managerWindow.Main.Content);
+            sw.Visibility = Visibility.Visible;
+            managerWindow.Main.Content = sw;
         }
     }
 }

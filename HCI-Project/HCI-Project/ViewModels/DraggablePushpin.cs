@@ -15,9 +15,12 @@ namespace HCI_Project.ViewModels
         private bool isDragging = false;
         Location _center;
 
-        public DraggablePin(Map map)
+        public string StationName { get; set; }
+
+        public DraggablePin(Map map, string name)
         {
             _map = map;
+            StationName = name;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

@@ -78,8 +78,9 @@ namespace HCI_Project
 
         private void EditStations_Click(object sender, RoutedEventArgs e)
         {
-            StationsWindow sw = new StationsWindow(managerWindow);
-            sw.Show();
+            StationsWindow sw = new StationsWindow(managerWindow, managerWindow.Main.Content);
+            sw.Visibility = Visibility.Visible;
+            managerWindow.Main.Content = sw;
         }
     }
 }

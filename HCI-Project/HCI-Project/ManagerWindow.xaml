@@ -27,7 +27,7 @@
                 <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LOG OUT" Click="Logout_Click"/>
             </StackPanel>
         </Grid>
-        <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="1">
+        <materialDesign:DialogHost x:Name="host" BorderBrush="{DynamicResource MaterialDesignDivider}" Grid.Row="1">
             <materialDesign:DialogHost.DialogContent>
                 <popups:ConfirmPopup x:Name="popup" />
             </materialDesign:DialogHost.DialogContent>

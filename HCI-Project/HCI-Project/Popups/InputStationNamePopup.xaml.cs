@@ -22,23 +22,14 @@ namespace HCI_Project.Popups
         StationsWindow parentWindow;
         public string InputText = "";
 
-        public InputStationNamePopup(string message, StationsWindow parentWindow)
+        public InputStationNamePopup(string message, string footNote, StationsWindow parentWindow)
         {
             InitializeComponent();
 
             inputMessage.Text = message;
-            if (parentWindow != null)
-            {
-                this.parentWindow = parentWindow;
-                parentWindow.IsEnabled = false;
-
-                Canvas.SetLeft(this, parentWindow.Left + parentWindow.Width / 2.8);
-                Canvas.SetTop(this, parentWindow.Top + parentWindow.Height / 2.3);
-            }
-            else
-            {
-                this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            }
+            footNoteMessage.Text = footNote;
+            this.parentWindow = parentWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)

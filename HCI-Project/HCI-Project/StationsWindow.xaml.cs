@@ -2,19 +2,10 @@
 using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.ViewModels;
-using System;
+using MaterialDesignThemes.Wpf;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HCI_Project
 {
@@ -22,25 +13,29 @@ namespace HCI_Project
     /// Interaction logic for StationsWindow.xaml
     /// </summary>
     /// 
-    public partial class StationsWindow : Window
+    public partial class StationsWindow : Page
     {
-        private readonly List<Station> AllStations = StationRepo.GetStations();
-        // private readonly ManagerWindow managerWindow;
+        private List<Station> AllStations = StationRepo.GetStations();
+        private readonly ManagerWindow managerWindow;
+        private readonly object previousPage;
         private List<DraggablePin> newPins = new List<DraggablePin>();
 
         public string StationNameInput;
 
-        public StationsWindow(ManagerWindow managerWindow)
+        private Station stationForDelete;
+
+        public StationsWindow(ManagerWindow managerWindow, object previousPage)
         {
             InitializeComponent();
 
             stations.ItemsSource = AllStations;
-            // this.managerWindow = managerWindow;
+            this.managerWindow = managerWindow;
+            this.previousPage = previousPage;
         }
 
         private void AddStation_Click(object sender, RoutedEventArgs e)
         {
-            InputStationNamePopup inputPopup = new InputStationNamePopup("Please input the name of new station.", this);
+            InputStationNamePopup inputPopup = new InputStationNamePopup("Please input the name of new station.", "*Then you will be able to set it's location", this);
             inputPopup.Show();
         }
 
@@ -52,46 +47,74 @@ namespace HCI_Project
 
         private void DeleteStation_Click(object sender, RoutedEventArgs e)
         {
+            if(stationForDelete != null)
+            {
+                StationRepo.RemoveStation(stationForDelete);
+            }
+            stations.ItemsSource = null;
+            stations.ItemsSource = AllStations;
 
+//            mapPage.RemoveDraggablePins()
         }
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
+            
             foreach(DraggablePin pin in newPins)
             {
-                Console.WriteLine(pin.Name);
-                Console.WriteLine(pin.Location);
-                Console.WriteLine("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                StationRepo.AddStation(new Station(pin.Name, false, pin.Location));
+                StationRepo.AddStation(new Station(pin.StationName, false, pin.Location));
             }
-            
-        }
-/*
-        private void OpenInpuPopup(object sender, RoutedEventArgs e)
-        {
-            popup.YesButton.Click += AddStation_Click;
-            popup.YesButton.Click += CloseInpuPopup;
-            popup.NoButton.Click += CloseInpuPopup;
-            popup.confirmMessage.Text = "Are you sure you want to delete this station?";
+
+            stations.ItemsSource = null;
+            stations.ItemsSource = AllStations;
+            mapPage.RemoveDraggablePins(newPins);
+            newPins.Clear();
         }
 
-        private void CloseConfirmPopup(object sender, RoutedEventArgs e)
+        private void ShowAll_Click(object sender, RoutedEventArgs e)
         {
-            popup.YesButton.Click -= DeleteStation_Click;
-            popup.NoButton.Click -= CloseConfirmPopup;
+           
         }
-*/
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (DraggablePin pin in newPins)
+            {
+                StationRepo.AddStation(new Station(pin.StationName, false, pin.Location));
+            }
+
+            managerWindow.Main.Content = previousPage;
+        }
+
 
         private void OpenConfirmPopup(object sender, RoutedEventArgs e)
         {
-            popup.YesButton.Click += DeleteStation_Click;
-            popup.YesButton.Click += CloseConfirmPopup;
-            popup.NoButton.Click += CloseConfirmPopup;
-            popup.confirmMessage.Text = "Are you sure you want to delete this station?";
+            Button button = sender as Button;
+            Station cliecked_station = button.DataContext as Station;
+            
+            if(cliecked_station == null)
+            {
+                return;
+            }
+            stationForDelete = cliecked_station;
+
+            managerWindow.popup.YesButton.Click += DeleteStation_Click;
+            managerWindow.popup.YesButton.Click += CloseConfirmPopup;
+            managerWindow.popup.NoButton.Click += CloseConfirmPopup;
+            managerWindow.popup.confirmMessage.Text = "Are you sure you want to delete station?";
+
+            managerWindow.host.ShowDialog(managerWindow.popup);
         }
         private void CloseConfirmPopup(object sender, RoutedEventArgs e)
         {
-            popup.YesButton.Click -= DeleteStation_Click;
-            popup.NoButton.Click -= CloseConfirmPopup;
+            managerWindow.popup.YesButton.Click -= DeleteStation_Click;
+            managerWindow.popup.NoButton.Click -= CloseConfirmPopup;
+        }
+
+
+
+        private DraggablePin FindPinByStation(Station station)
+        {
+            return null;
         }
     }
 }

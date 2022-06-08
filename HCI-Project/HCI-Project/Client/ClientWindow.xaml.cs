@@ -45,9 +45,14 @@ namespace HCI_Project
             Main.Content = new TimetableViewClientPage();
         }
 
-        private void FinancesBtn_Click(object sender, RoutedEventArgs e)
+        private void MyTicketsBtn_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new FinancesViewPage();
+            Main.Content = new MyTicketsPage();
+        }
+        
+        private void MyReservationsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new MyReservations();
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)

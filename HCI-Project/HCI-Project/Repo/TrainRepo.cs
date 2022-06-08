@@ -10,6 +10,6 @@ namespace HCI_Project.Repo
     public class TrainRepo
     {
         private static Dictionary<string, List<WagonType>> TrainTypeMap = new Dictionary<string, List<WagonType>>();
-
+        
     }
 }

@@ -40,7 +40,7 @@
                 <Button Margin="10 60 19 0" Grid.Row="1" BorderBrush="Transparent" Background="#cc1111" Content="SEARCH" Foreground="White" Click="Button_Click"></Button>
             </Grid>
         </StackPanel>
-        <StackPanel x:Name="TablePanel" Grid.Column="1" Margin="20,0,20,20" Visibility="Hidden">
+        <StackPanel x:Name="TablePanel" Grid.Column="1" Margin="20,0,20,20" >
             <TextBlock x:Name="FromLoc" FontSize="25" Foreground="#336699" />
             <Grid>
                 <Grid.ColumnDefinitions>

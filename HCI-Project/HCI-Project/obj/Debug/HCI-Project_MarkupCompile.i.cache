@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\obj\Debug\
+C:\Faks\VI\HCI - Interakcija covek racunar\HCI-Project\HCI-Project\HCI-Project\obj\Debug\
 HCI_Project
 none
 false
 DEBUG;TRACE
-C:\Users\Korisnik\Desktop\HCI-Proj\HCI-Project\HCI-Project\App.xaml
-121188713744
+C:\Faks\VI\HCI - Interakcija covek racunar\HCI-Project\HCI-Project\HCI-Project\App.xaml
+141149420162
 
-44-1251863677
-133-1566250235
-Client\ClientWindow.xaml;Client\TimetableViewClientPage.xaml;Manager\AddNewScheduledRoute.xaml;Manager\EditRouteWindow.xaml;Manager\FinancesViewPage.xaml;Manager\HomeViewPage.xaml;Manager\LinesViewPage.xaml;MainWindow.xaml;Manager\ManagerWindow.xaml;Client\ScheduledRouteWindow.xaml;Manager\TimetableViewPage.xaml;Manager\TrainsViewPage.xaml;
+49-1023083084
+133880487026
+Client\ClientWindow.xaml;Client\MyReservations.xaml;Client\MyTicketsPage.xaml;Client\TimetableViewClientPage.xaml;Manager\AddNewScheduledRoute.xaml;Manager\EditRouteWindow.xaml;Manager\FinancesViewPage.xaml;Manager\HomeViewPage.xaml;Manager\LinesViewPage.xaml;MainWindow.xaml;Manager\ManagerWindow.xaml;Client\ScheduledRouteWindow.xaml;Manager\TimetableViewPage.xaml;Manager\TrainsViewPage.xaml;
 
 True
 

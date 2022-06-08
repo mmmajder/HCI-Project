@@ -9,6 +9,8 @@ namespace HCI_Project.Model
     public enum TicketStatus
     {
         Reserved,
-        Payed
+        Payed,
+        UserCanceled,
+        ServiceCanceled
     }
 }

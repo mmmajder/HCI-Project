@@ -36,6 +36,15 @@ namespace HCI_Project.Repo
             return Routes;
         }
         
+        public static string getTrainTypeByScheduledRouteId(long scheduledRouteId)
+        {
+            foreach (Route r in Routes)
+                foreach (ScheduledRoute sr in r.ScheduledRoutes)
+                    if (sr.id == scheduledRouteId)
+                        return r.TrainType;
+
+            return null;
+        }
 
     }
     

@@ -109,6 +109,12 @@
     <Compile Include="Client\ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Client\MyReservations.xaml.cs">
+      <DependentUpon>MyReservations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client\MyTicketsPage.xaml.cs">
+      <DependentUpon>MyTicketsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Client\TimetableViewClientPage.xaml.cs">
       <DependentUpon>TimetableViewClientPage.xaml</DependentUpon>
     </Compile>
@@ -116,6 +122,7 @@
     <Compile Include="DTO\RouteTableDTO.cs" />
     <Compile Include="DTO\RouteTableManagerDTO.cs" />
     <Compile Include="DTO\ScheduledListItemDTO.cs" />
+    <Compile Include="Exceptions\SeatTakenException.cs" />
     <Compile Include="Manager\AddNewScheduledRoute.xaml.cs">
       <DependentUpon>AddNewScheduledRoute.xaml</DependentUpon>
     </Compile>
@@ -152,6 +159,7 @@
     <Compile Include="Repo\ScheduledRouteRepo.cs" />
     <Compile Include="Repo\ScheduledStationRepo.cs" />
     <Compile Include="Repo\StationRepo.cs" />
+    <Compile Include="Repo\TicketRepo.cs" />
     <Compile Include="Repo\TrainRepo.cs" />
     <Compile Include="Repo\UserRepo.cs" />
     <Compile Include="Model\User.cs" />
@@ -165,8 +173,17 @@
     <Compile Include="Manager\TrainsViewPage.xaml.cs">
       <DependentUpon>TrainsViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service\TicketService.cs" />
     <Compile Include="util\DateTimeUtils.cs" />
     <Page Include="Client\ClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Client\MyReservations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Client\MyTicketsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

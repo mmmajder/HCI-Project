@@ -3,6 +3,7 @@ using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.ViewModels;
 using MaterialDesignThemes.Wpf;
+using Microsoft.Maps.MapControl.WPF;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,7 @@ namespace HCI_Project
         private readonly ManagerWindow managerWindow;
         private readonly object previousPage;
         private List<DraggablePin> newPins = new List<DraggablePin>();
+        private List<Pushpin> allpushpins = new List<Pushpin>();
 
         public string StationNameInput;
 
@@ -72,7 +74,15 @@ namespace HCI_Project
 
         private void ShowAll_Click(object sender, RoutedEventArgs e)
         {
-           
+            if((bool)showAll.IsChecked)
+            {
+                allpushpins =  mapPage.AddPushPins(AllStations);
+            }
+            else
+            {
+                mapPage.RemovePushPins(allpushpins);
+            }
+
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

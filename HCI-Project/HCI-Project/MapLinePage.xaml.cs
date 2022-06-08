@@ -21,15 +21,17 @@ namespace HCI_Project
     public partial class MapLinePage : Page
     {
         private ManagerWindow managerWindow;
-        public MapLinePage(ManagerWindow managerWindow)
+        private Action refreshData;
+        public MapLinePage(ManagerWindow managerWindow, Action refreshData)
         {
             InitializeComponent();
             this.managerWindow = managerWindow;
+            this.refreshData = refreshData;
         }
 
         private void EditStations_Click(object obj, RoutedEventArgs eventHandler)
         {
-            StationsWindow sw = new StationsWindow(managerWindow, managerWindow.Main.Content);
+            StationsWindow sw = new StationsWindow(managerWindow, managerWindow.Main.Content, refreshData);
             sw.Visibility = Visibility.Visible;
             managerWindow.Main.Content = sw;
         }

@@ -82,8 +82,9 @@
             <local:MapPage x:Name="mapPage" Margin="0,20,0,0" Grid.Row="0"  Grid.Column="1" Grid.ColumnSpan="2"/>
 
 
-            <Button Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveChanges_Click"></Button>
-            <Button Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Right"  Margin="10 0 0 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Close"  Foreground="White" Click="Close_Click"></Button>
+            <Button Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Right" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save new stations"  Foreground="White" Click="SaveChanges_Click"></Button>
+            <Button Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel new stations"  Foreground="White" Click="CancelChanges_Click"></Button>
+            <Button Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Right"  Margin="10 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Close"  Foreground="White" Click="Close_Click"></Button>
 
 
         </Grid>

@@ -67,7 +67,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button x:Name="removeRoute" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 30 10 0" Grid.Row="6" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="OpenConfirmPopup">
+                <Button x:Name="removeRoute" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 30 10 0" Grid.Row="6" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="OpenConfirmPopup">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:FontAwesome  Icon="Trash" FontSize="20"/>

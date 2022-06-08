@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Maps.MapControl.WPF;
 using System.Windows.Input;
-
+using System.Windows.Media;
 
 namespace HCI_Project.ViewModels
 {
@@ -21,6 +21,7 @@ namespace HCI_Project.ViewModels
         {
             _map = map;
             StationName = name;
+            Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)

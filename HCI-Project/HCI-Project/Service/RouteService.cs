@@ -1,4 +1,5 @@
-﻿using HCI_Project.DTO;
+﻿using DragDropDemo.ViewModels;
+using HCI_Project.DTO;
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.util;
@@ -104,6 +105,16 @@ namespace HCI_Project.Service
                 }
             }
             return false;
+        }
+
+        public static TodoItemListingViewModel MapStations(List<Station> stations)
+        {
+            TodoItemListingViewModel mappedStations = new TodoItemListingViewModel();
+            foreach (Station s in stations)
+            {
+                mappedStations.AddTodoItem(new TodoItemViewModel(s));
+            }
+            return mappedStations;
         }
 
     }

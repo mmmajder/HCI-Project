@@ -3,6 +3,7 @@ using DragDropDemo.ViewModels;
 using HCI_Project.Model;
 using HCI_Project.Popups;
 using HCI_Project.Repo;
+using HCI_Project.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,10 +29,11 @@ namespace HCI_Project
         private readonly Frame main;
         private readonly MapLinePage mapLinePage;
         private ManagerWindow managerWindow;
+        private LinesViewPage linesPage;
 
         public Route route { get; set; }
 
-        public EditRouteWindow(Route route, Frame main, MapLinePage mapLinePage, ManagerWindow managerWindow)
+        public EditRouteWindow(Route route, Frame main, MapLinePage mapLinePage, ManagerWindow managerWindow, LinesViewPage linesPage)
         {
             InitializeComponent();
             Title = "Edit Route";
@@ -39,6 +41,7 @@ namespace HCI_Project
             this.main = main;
             this.mapLinePage = mapLinePage;
             this.managerWindow = managerWindow;
+            this.linesPage = linesPage;
 
             if (route != null)
             {
@@ -69,6 +72,8 @@ namespace HCI_Project
                 RouteRepo.AddRoute(route);
             }
             main.Content = mapLinePage;
+            linesPage.RefreshCombobox();
+            linesPage.VisualiseChange();
         }
 
         private void CancelChanges_Click(object sender, RoutedEventArgs e)
@@ -78,9 +83,25 @@ namespace HCI_Project
 
         private void EditStations_Click(object sender, RoutedEventArgs e)
         {
-            StationsWindow sw = new StationsWindow(managerWindow, managerWindow.Main.Content);
+            StationsWindow sw = new StationsWindow(managerWindow, linesPage, RefreshData);
             sw.Visibility = Visibility.Visible;
             managerWindow.Main.Content = sw;
+
+
         }
+
+        public void RefreshData()
+        {
+            TodoViewModel model = (TodoViewModel)this.DataContext;
+            TodoItemListingViewModel allStations = RouteService.MapStations(StationRepo.GetStations());
+            model.CompletedTodoItemListingViewModel = allStations;
+
+            DataContext = new TodoViewModel(model.InProgressTodoItemListingViewModel, allStations);
+//            this.DataContext = model;
+
+            linesPage.RefreshCombobox();
+        }
+
+
     }
 }

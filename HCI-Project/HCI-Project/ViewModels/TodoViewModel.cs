@@ -8,7 +8,7 @@ namespace DragDropDemo.ViewModels
     public class TodoViewModel : INotifyPropertyChanged
     {
         public TodoItemListingViewModel InProgressTodoItemListingViewModel { get; }
-        public TodoItemListingViewModel CompletedTodoItemListingViewModel { get; }
+        public TodoItemListingViewModel CompletedTodoItemListingViewModel { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

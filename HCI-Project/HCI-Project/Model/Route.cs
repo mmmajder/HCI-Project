@@ -21,5 +21,24 @@ namespace HCI_Project.Model
             ScheduledRoutes = scheduledRoutes;
             TrainType = trainType;
         }
+
+        public override string ToString()
+        {
+            string route = "";
+            int length = Stations.Count;
+            for (int i = 0; i < length; i++)
+            {
+                if (i == length - 1)
+                {
+                    route += Stations[i].Name;
+                }
+                else
+                {
+                    route += Stations[i].Name + "-";
+                }
+            }
+            return route;
+            
+        }
     }
 }

@@ -41,6 +41,7 @@ namespace HCI_Project
                 new StationRepo();
                 new ScheduledStationRepo();
                 new ScheduledRouteRepo();
+                new WagonRepo();
                 new TrainRepo();
                 new UserRepo();
                 new RouteRepo();

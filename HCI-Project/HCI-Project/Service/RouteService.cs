@@ -1,4 +1,5 @@
-﻿using HCI_Project.DTO;
+﻿using DragDropDemo.ViewModels;
+using HCI_Project.DTO;
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.util;
@@ -218,6 +219,19 @@ namespace HCI_Project.Service
         }
 
 
+        public static List<Route> GetRoutes(string from, string to)
+        {
+            List<Route> routes = new List<Route>();
+            foreach (Route route in RouteRepo.GetRoutes())
+            {
+                if (isGoodRoute(route, from, to))
+                {
+                    routes.Add(route);
+                }
+            }
+            return routes;
+        }
+
 
         private static bool isGoodRoute(Route route, string from, string to)
         {
@@ -235,5 +249,16 @@ namespace HCI_Project.Service
             }
             return false;
         }
+
+        public static TodoItemListingViewModel MapStations(List<Station> stations)
+        {
+            TodoItemListingViewModel mappedStations = new TodoItemListingViewModel();
+            foreach (Station s in stations)
+            {
+                mappedStations.AddTodoItem(new TodoItemViewModel(s));
+            }
+            return mappedStations;
+        }
+
     }
 }

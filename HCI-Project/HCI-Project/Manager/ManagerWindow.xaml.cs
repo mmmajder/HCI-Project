@@ -26,7 +26,7 @@ namespace HCI_Project
 
         private void LinesViewSelected(object sender, RoutedEventArgs e)
         {
-            Main.Content = new LinesViewPage();
+            Main.Content = new LinesViewPage(this);
         }
 
         private void TrainsViewSelected(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using DragDropDemo.ViewModels;
+using HCI_Project.Manager;
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
@@ -66,7 +67,7 @@ namespace HCI_Project
             TodoItemListingViewModel routeStations = new TodoItemListingViewModel();
             TodoItemListingViewModel allStations = RouteService.MapStations(AllStations);
 
-            EditRouteWindow editRoute = new EditRouteWindow(null, Main, mapLinePage, managerWindow, this)
+            EditTrainRoutPage editRoute = new EditTrainRoutPage(null, Main, mapLinePage, managerWindow, this)
             {
                 DataContext = new TodoViewModel(routeStations, allStations)
             };
@@ -85,7 +86,7 @@ namespace HCI_Project
             TodoItemListingViewModel routeStations =  RouteService.MapStations(route.Stations);
             TodoItemListingViewModel allStations = RouteService.MapStations(AllStations);
 
-            EditRouteWindow editRoute = new EditRouteWindow(route, Main, mapLinePage, managerWindow, this)
+            EditTrainRoutPage editRoute = new EditTrainRoutPage(route, Main, mapLinePage, managerWindow, this)
             {
                 DataContext = new TodoViewModel(routeStations, allStations)
             };

@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DragDropDemo.Views
+namespace HCI_Project.Views
 {
     /// <summary>
     /// Interaction logic for TodoView.xaml

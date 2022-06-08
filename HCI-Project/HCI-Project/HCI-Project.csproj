@@ -85,8 +85,8 @@
     </Reference>
     <Reference Include="Syncfusion.Shared.WPF, Version=20.1460.0.58, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Shared.WPF.20.1.0.58\lib\net46\Syncfusion.Shared.WPF.dll</HintPath>
-	</Reference>
-	<Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    </Reference>
+    <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Maps.MapControl.WPF.1.0.0.3\lib\net40-Client\Microsoft.Maps.MapControl.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -137,6 +137,9 @@
     <Compile Include="Manager\EditRouteWindow.xaml.cs">
       <DependentUpon>EditRouteWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Manager\EditTrainRoutPage.xaml.cs">
+      <DependentUpon>EditTrainRoutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manager\FinancesViewPage.xaml.cs">
       <DependentUpon>FinancesViewPage.xaml</DependentUpon>
     </Compile>
@@ -186,8 +189,8 @@
     <Compile Include="Repo\TrainRepo.cs" />
     <Compile Include="Repo\UserRepo.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Client\ScheduledRouteWindow.xaml.cs">
-    <Compile Include="Repo\WagonRepo.cs" />
+    <Compile Include="Client\ScheduledRouteWindow.xaml.cs" />
+    <Compile Include="Repo\WagonRepo.cs">
       <DependentUpon>ScheduledRouteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SeatsPickControl.xaml.cs">
@@ -197,11 +200,11 @@
       <DependentUpon>SeatsViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service\RouteService.cs" />
-    <Compile Include="Manager\TimetableViewPage.xaml.cs">
+    <Compile Include="Manager\TimetableViewPage.xaml.cs" />
     <Compile Include="StationsWindow.xaml.cs">
       <DependentUpon>StationsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Styles\ToggleButton.cs" />
+    <Compile Include="Styles\ToggleButton.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manager\TrainsViewPage.xaml.cs">
@@ -213,9 +216,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Client\TimetableViewClientPage.xaml">
-		<SubType>Designer</SubType>
-		<Generator>MSBuild:Compile</Generator>
-	</Page>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="ViewModels\DraggablePushpin.cs" />
     <Compile Include="ViewModels\TodoItemListingViewModel.cs" />
     <Compile Include="ViewModels\TodoItemViewModel.cs" />
@@ -225,20 +228,16 @@
     </Compile>
     <Compile Include="Views\TodoView.xaml.cs">
       <DependentUpon>TodoView.xaml</DependentUpon>
-    </Compile>>
-    <Page Include="EditRouteWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FinancesViewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    </Compile>
     <Page Include="Manager\AddNewScheduledRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Manager\EditRouteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\EditTrainRoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,9 +274,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Manager\TimetableViewPage.xaml">
-		<SubType>Designer</SubType>
-		<Generator>MSBuild:Compile</Generator>
-	</Page>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MapLinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -9,6 +9,65 @@
       Title="FinancesViewPage">
 
     <Grid>
-        <TextBlock Text="Finances"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Background="#336699">
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Label Content="Route:" Foreground="#FFFFFF" FontSize="15"/>
+                <ComboBox x:Name="routeCB" SelectedIndex="-1" SelectionChanged="RouteSelected_Click"
+                      Foreground="Black" IsEditable="False" FontSize="12" Background="White"
+                          Margin="5 0 20 0" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Label x:Name="scheduleLbl"  Content="Schedule:" Foreground="LightSlateGray" FontSize="15"/>
+                <ComboBox x:Name="scheduleCB" SelectedIndex="-1"  SelectionChanged="ScheduledRouteSelected_Click"
+                      Foreground="Black" IsEditable="False" FontSize="12" Background="LightSlateGray"
+                          Margin="5 0 20 0" Width="150"/>
+            </StackPanel>
+            <Button x:Name="ClearScheduleBtn"
+                Content="CLEAR SCHEDULE"  FontSize="10" Height="20" 
+                Click="ClearShcedule_Click" Visibility="Hidden"
+                Margin="110 0 50 0" Padding="0" VerticalAlignment="Center"
+                Background="#cc1111" BorderBrush="#cc1111"/>
+
+            <Label Content="Route is running on days: " Foreground="White" FontSize="12"
+                   Margin="15 15 15 0"  HorizontalAlignment="Center" Visibility="Hidden"/>
+            <TextBlock Text="" 
+                       TextWrapping="WrapWithOverflow" Foreground="White" FontSize="12" 
+                       Margin="15 0 15 0" HorizontalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 25 0 0">
+                <Label x:Name="monthsLbl" Content="Month:" Foreground="White" FontSize="15"/>
+                <ComboBox x:Name="monthsCB" SelectedIndex="-1"  SelectionChanged="MonthSelected_Click"
+                        Foreground="Black" IsEditable="False" FontSize="12" Background="White"
+                            Margin="5 0 5 0" Width="150"/>
+                <RadioButton x:Name="MonthRB" GroupName="reportType" Margin="-2 0 2 0" Checked="MonthRadioBtn_Check" />
+            </StackPanel>
+            <Label x:Name="monthNotChosenErrorLbl" Content="Please, choose month." Foreground="#cc1111" FontSize="15"
+                   Margin="15 0 15 0"  HorizontalAlignment="Center" Visibility="Collapsed"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Label x:Name="dateLbl" HorizontalAlignment="Left" Content="Date:" Foreground="White" FontSize="15"/>
+                <DatePicker x:Name="datePicker" Background="White"  SelectedDateChanged="DateSelected_Click"
+                            Margin="5 0 5 0" FontSize="12" Width="150"/>
+                <RadioButton x:Name="DateRB" GroupName="reportType" Margin="-2 0 2 0" Checked="DateRadioBtn_Check"/>
+            </StackPanel>
+            <Label x:Name="dateNotChosenErrorLbl" Content="Please, choose date." Foreground="#cc1111" FontSize="15"
+                   Margin="15 0 15 0"  HorizontalAlignment="Center" Visibility="Collapsed"/>
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="incomeLbl" Content="Income: " Foreground="#336699" FontSize="20"/>
+                <Label x:Name="varIncomeLbl" Content="1120$" Foreground="#336699"  FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="numOfTicketsSoldLbl" Content="Sold tickets: " Foreground="#336699" FontSize="20"/>
+                <Label x:Name="varNumOfTicketsSoldLbl" Content="53" Foreground="#336699"  FontSize="20"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

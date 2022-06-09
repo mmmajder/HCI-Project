@@ -31,5 +31,36 @@ namespace HCI_Project.Model
 
             return null;
         }
+
+        public override string ToString()
+        {
+            string str = "";
+
+            if (Stations.Count > 0)
+                str += Stations[0].TimeRange.Depature.ToString("HH:mm");
+
+            if (Stations.Count > 1)
+                str += " - " + Stations[Stations.Count - 1].TimeRange.Depature.ToString("HH:mm");
+
+            foreach (int i in RepeatigDays)
+                str += " " + getDay(i);
+
+            return str;
+        }
+
+        private string getDay(int day)
+        {
+            switch (day)
+            {
+                case 1: return "Mon";
+                case 2: return "Tue";
+                case 3: return "Wed";
+                case 4: return "Thu";
+                case 5: return "Fri";
+                case 6: return "Sat";
+                case 7: return "Sun";
+                default: return "";
+            }
+        }
     }
 }

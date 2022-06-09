@@ -119,5 +119,13 @@ namespace HCI_Project.Service
 
             return datePart + ":" + routeIdPart;
         }
+
+        public static List<string> getMonths()
+        {
+            List<string> months = new List<string> { "January", "February", "March", "April", "May", "June",
+                                                      "July", "August", "Spetember", "November", "December"};
+
+            return months;
+        }
     }
 }

@@ -37,14 +37,36 @@
 
                 <Label  Margin="0 10 0 50" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="White" FontSize="25" Content="Train Lines " />
 
-                
+
                 <Label Content="From:"  Margin ="10" Grid.Row="2" HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
-                <ComboBox x:Name="fromLocationCombobox"  Margin ="10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" SelectionChanged="FillRouteCombobox"/>
+
+                
+                <ComboBox x:Name="fromLocationCombobox"  Margin ="10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" SelectionChanged="FillRouteCombobox">
+                    <ComboBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose start station
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
 
                 <Label Content="To:" Margin ="10"  Grid.Row="3"  HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
-                <ComboBox x:Name="toLocationCombobox"  Margin ="10" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" SelectionChanged="FillRouteCombobox"/>
+                <ComboBox x:Name="toLocationCombobox"  Margin ="10" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" SelectionChanged="FillRouteCombobox">
+                    <ComboBox.ToolTip  >
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose end station
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
 
-                <Button Grid.Row="5"  Height="40" MaxWidth="300" Margin ="10 20 10 20" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="#cc1111" Content="Show line"  Foreground="White" Click="Show_Click"></Button>
+                    <Button Grid.Row="5"  Height="40" MaxWidth="300" Margin ="10 20 10 20" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="#cc1111" Content="Show line"  Foreground="White" Click="Show_Click"></Button>
 
 
                 <Label Content="Lines:" x:Name="routesLbl" Visibility="Visible"  Margin ="10, 10, 10, 10"  Grid.Row="4"  HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>

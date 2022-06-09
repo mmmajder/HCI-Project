@@ -131,6 +131,11 @@
     <Compile Include="DTO\RouteTableDTO.cs" />
     <Compile Include="DTO\RouteTableManagerDTO.cs" />
     <Compile Include="DTO\ScheduledListItemDTO.cs" />
+    <Compile Include="Help\HelpProvider.cs" />
+    <Compile Include="Help\HelpViewer.xaml.cs">
+      <DependentUpon>HelpViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\JavaScriptControlHelper.cs" />
     <Compile Include="Manager\AddNewScheduledRoute.xaml.cs">
       <DependentUpon>AddNewScheduledRoute.xaml</DependentUpon>
     </Compile>
@@ -229,6 +234,10 @@
     <Compile Include="Views\TodoView.xaml.cs">
       <DependentUpon>TodoView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Help\HelpViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Manager\AddNewScheduledRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -372,6 +381,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\seat_icon_left.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="html\Stations.htm" />
+    <Content Include="html\MapLine.htm" />
+    <Content Include="html\AddTrainRoute.htm" />
+    <Content Include="html\EditTrainRoute.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />

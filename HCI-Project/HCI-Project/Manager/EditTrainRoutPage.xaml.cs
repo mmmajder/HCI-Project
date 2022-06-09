@@ -2,6 +2,7 @@
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,6 +101,17 @@ namespace HCI_Project.Manager
             linesPage.RefreshCombobox();
         }
 
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            if (route != null)
+            {
+                HelpProvider.ShowHelp("EditTrainRoute");
+            }
+            else
+            {
+                HelpProvider.ShowHelp("AddTrainRoute");
+            }
+        }
     }
 
 }

@@ -21,7 +21,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <Button  Grid.Row="0" Grid.Column="2" Margin ="20 10 20 10"   materialDesign:ButtonAssist.CornerRadius="10"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditStations_Click">
+            <Button  Grid.Row="0" Grid.Column="0" Margin ="20 10 20 10"   materialDesign:ButtonAssist.CornerRadius="10"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditStations_Click">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome  Icon="PencilSquareOutline" FontSize="20"/>
@@ -30,8 +30,17 @@
                 </Button.Content>
             </Button>
 
+        <Button Grid.Row="0" Grid.Column="2" Margin="0, 0, 20, 0" HorizontalAlignment="Right"  VerticalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="25"  BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
 
-            <local:MapPage x:Name="mapPage" Grid.Row="1"  Grid.ColumnSpan="3" /> 
+
+
+        <local:MapPage x:Name="mapPage" Grid.Row="1"  Grid.ColumnSpan="3" /> 
 
     </Grid>
 </Page>

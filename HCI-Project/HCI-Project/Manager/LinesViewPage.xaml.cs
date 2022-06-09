@@ -24,6 +24,7 @@ namespace HCI_Project
         private ManagerWindow managerWindow;
 
         private Route routeForDelete;
+
         public LinesViewPage(ManagerWindow managerWindow)
         {
             
@@ -54,13 +55,19 @@ namespace HCI_Project
             routesCombobox.IsTextSearchCaseSensitive = false;
 
         }
-       /* private void MouseRightButtonDownEvent(object sender, RoutedEventArgs e)
+        
+        private void FillRouteCombobox(object sender, RoutedEventArgs e)
         {
-            if (sender is Pushpin pushpin)
+            object fromLocation = GetComboboxValue(fromLocationCombobox);
+            object toLocation = GetComboboxValue(toLocationCombobox);
+            routesCombobox.ItemsSource = null;
+
+            if (fromLocation != null && toLocation != null)
             {
-                MessageBox.Show(string.Format("Pushpin {0} was clicked", pushpin.Content.ToString()));
+                List<Route> routes = RouteService.GetRoutes(fromLocation.ToString(), toLocation.ToString());
+                routesCombobox.ItemsSource = routes;
             }
-        }*/
+        }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
@@ -116,7 +123,13 @@ namespace HCI_Project
 
         private void Show_Click(object sender, RoutedEventArgs e)
         {
-            VisualiseChange();
+            object selectedRoute = GetComboboxValue(routesCombobox);
+            if (selectedRoute != null)
+            {
+                Route route = (Route)selectedRoute;
+                mapLinePage.mapPage.AddPushPins(route.Stations);
+                mapLinePage.mapPage.DrawMapPolygon(new List<Route> { route});
+            }
         }
 
         public void VisualiseChange() 
@@ -127,9 +140,7 @@ namespace HCI_Project
 
             if (fromLocation != null && toLocation != null)
             {
-                List<Route> routes = RouteService.GetRoutes(fromLocation.ToString(), toLocation.ToString());
-                mapLinePage.mapPage.DrawMapPolygon(routes);
-                routesCombobox.ItemsSource = routes;
+                routesCombobox.ItemsSource = RouteService.GetRoutes(fromLocation.ToString(), toLocation.ToString());
             }
         }
 
@@ -180,14 +191,6 @@ namespace HCI_Project
 
         public void RefreshCombobox()
         {
-            /*AllStations = StationRepo.GetStations();
-            AllStationNames = StationRepo.GetStationNames();
-            fromLocationCombobox.ItemsSource = null;
-            toLocationCombobox.ItemsSource = null;
-            routesCombobox.ItemsSource = null;
-            fromLocationCombobox.ItemsSource = AllStationNames;
-            toLocationCombobox.ItemsSource = AllStationNames;*/
-
             AllStations = StationRepo.GetStations();
             AllStationNames = StationRepo.GetStationNames();
 
@@ -197,10 +200,7 @@ namespace HCI_Project
         public void RefreshData()
         {
             RefreshCombobox();
-
             mapLinePage = new MapLinePage(managerWindow, RefreshData);
-            mapLinePage.mapPage.AddPushPins(AllStations);
-
             Main.Content = mapLinePage;
         }
     }

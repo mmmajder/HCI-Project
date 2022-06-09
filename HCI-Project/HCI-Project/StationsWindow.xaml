@@ -79,8 +79,28 @@
                 </Grid>
             </StackPanel>
 
-            <local:MapPage x:Name="mapPage" Margin="0,20,0,0" Grid.Row="0"  Grid.Column="1" Grid.ColumnSpan="2"/>
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="20,20,0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
 
+                <Button Grid.Row="0" Grid.Column="2" Margin="0, 0, 20, 0" HorizontalAlignment="Right"  VerticalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="25"  BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <local:MapPage x:Name="mapPage" Margin="0,20,0,0" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2"/>
+
+            </Grid>
+            
 
             <Button Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Right" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save new stations"  Foreground="White" Click="SaveChanges_Click"></Button>
             <Button Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel new stations"  Foreground="White" Click="CancelChanges_Click"></Button>

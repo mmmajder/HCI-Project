@@ -92,16 +92,14 @@ namespace HCI_Project
 
         public void DrawMapPolygon(List<Route> routes)
         {
-            PickBrush();
+//             PickBrush();
             RemoveDrawnPolylines(myMap);
             foreach (Route route in routes)
             {
                 MapPolyline polyline = new MapPolyline
                 {
-                    // Stroke = new SolidColorBrush( Color.FromArgb(255, 255, 139, 0)),
-                    Stroke = PickBrush(),
+                    Stroke = new SolidColorBrush( Color.FromRgb(255, 0, 0)),
                     Locations = new LocationCollection(),
-                    // StrokeEndLineCap = PenLineCap.Triangle
                 };
                 foreach (Station station in route.Stations)
                 {

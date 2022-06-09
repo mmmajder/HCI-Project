@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelpSistem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,11 @@ namespace HCI_Project
             StationsWindow sw = new StationsWindow(managerWindow, managerWindow.Main.Content, refreshData);
             sw.Visibility = Visibility.Visible;
             managerWindow.Main.Content = sw;
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+             HelpProvider.ShowHelp("MapLine");
         }
     }
 }

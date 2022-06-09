@@ -2,6 +2,7 @@
 using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.ViewModels;
+using HelpSistem;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Maps.MapControl.WPF;
 using System;
@@ -170,6 +171,11 @@ namespace HCI_Project
                 }
             }
             return null;
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("Stations");
         }
     }
 }

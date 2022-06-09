@@ -25,7 +25,7 @@ namespace HCI_Project.Service
             List<Ticket> tickets = new List<Ticket>();
 
             foreach (Ticket ticket in TicketRepo.getUserTickets(username))
-                if (ticket.TicketStatus == status && ticket.Date >= DateTime.Now)
+                if (ticket.TicketStatus == status && ticket.Departure >= DateTime.Now)
                     tickets.Add(ticket);
 
             return tickets;

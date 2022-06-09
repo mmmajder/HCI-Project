@@ -22,5 +22,14 @@ namespace HCI_Project.Model
             RepeatigDays = repeatigDays;
             NotWorkingDays = notWorkingDays;
         }
+
+        public DateTime ?getDepartureTime(string stationName)
+        {
+            foreach (ScheduledStation s in Stations)
+                if (s.Station.Name.Equals(stationName))
+                    return s.TimeRange.Depature;
+
+            return null;
+        }
     }
 }

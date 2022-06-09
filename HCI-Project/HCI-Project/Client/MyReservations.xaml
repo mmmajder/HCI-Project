@@ -7,35 +7,37 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MyReservations">
-
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Rectangle Grid.Column="0" Grid.RowSpan="2" Fill="#336699"/>
+        <Rectangle Grid.Column="3" Grid.RowSpan="2" Fill="#336699"/>
+
         <Button Grid.Column="1" 
-                Content="BUY TICKET"
+                Content="BUY TICKET" Click="BuyBtn_Click"
                 Margin="40 0 40 0" VerticalAlignment="Center"
                 Background="#cc1111" BorderBrush="#cc1111"/>
         <Button Grid.Column="2" 
-                Content="CANCEL TICKET"
+                Content="CANCEL TICKET" Click="CancelBtn_Click"
                 Margin="40 0 40 0" VerticalAlignment="Center"
                 Background="#cc1111" BorderBrush="#cc1111"/>
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <DataGrid SelectionMode="Single" SelectionUnit="FullRow"
-                      AutoGenerateColumns="False"
+                      x:Name="dgrMain"  AutoGenerateColumns="False"
                       RowBackground="White" Background="#336699"
                       ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False"
                       >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date" Width="2*" IsReadOnly="True">
+                    <DataGridTextColumn Header="Date" Width="2*" Binding="{Binding Path='DateStr'}" IsReadOnly="True">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -44,8 +46,14 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Departure" Width="2*" IsReadOnly="True">
+                    <DataGridTextColumn Header="Departure" Width="2*" 
+                                        Binding="{Binding Path='DepartureTimeStr'}" IsReadOnly="True">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -53,9 +61,15 @@
                                 <Setter Property="Background" Value="#336699"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
+                            
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="From" Width="2*" IsReadOnly="True">
+                    <DataGridTextColumn Header="From" Width="2*" Binding="{Binding Path='From'}" IsReadOnly="True">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -64,8 +78,13 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="To" Width="2*" IsReadOnly="True">
+                    <DataGridTextColumn Header="To" Width="2*" Binding="{Binding Path='To'}" IsReadOnly="True">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -74,8 +93,13 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Seat" Width="2*" IsReadOnly="True">
+                    <DataGridTextColumn Header="Seats" Binding="{Binding Path='Seats'}" Width="2*" IsReadOnly="True">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -84,8 +108,13 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Price" Width="2*" IsReadOnly="True">
+                    <DataGridTextColumn Header="Price" Width="2*" Binding="{Binding Path='Price'}" IsReadOnly="True">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -94,6 +123,11 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>

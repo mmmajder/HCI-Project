@@ -24,15 +24,20 @@ namespace HCI_Project.Repo
                 if (!isChosenSeatFree())
                     throw new SeatTakenException();
                 TicketsMap[key].Add(ticket);
+            } 
+            else
+            {
+                TicketsMap[key] = new List<Ticket>();
+                TicketsMap[key].Add(ticket);
             }
         }
 
         private static string formTicketMapKey(Ticket ticket)
         {
-            string datePart = ticket.Date.ToString("dd_MM_yyyy");
+            string datePart = ticket.Departure.ToString("dd_MM_yyyy");
             string routeIdPart = ticket.ScheduledRoute.id.ToString();
 
-            return datePart + routeIdPart;
+            return datePart + ":" + routeIdPart;
         }
 
         public static Boolean doesFreeSeatExists()

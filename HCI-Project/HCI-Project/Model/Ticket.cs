@@ -8,28 +8,29 @@ namespace HCI_Project.Model
 {
     public class Ticket
     {
-        public int Id;
-        public TicketStatus TicketStatus;
-        public ScheduledRoute ScheduledRoute;
-        public DateTime Date;
-        public String Username;
-        public List<string> Seats;
+        public int Id { get; set; }
+        public TicketStatus TicketStatus { get; set; }
+        public ScheduledRoute ScheduledRoute { get; set; }
+        public String Username { get; set; }
+        public List<string> Seats { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
+        public double Price { get; set; }
+        public DateTime Departure { get; set; }
+        public string DepartureTimeStr { get; set; }
+        public string DateStr { get; set; }
 
-        public Ticket(ScheduledRoute scheduledroute, DateTime date, String username, List<string> seats)
+        public Ticket(ScheduledRoute scheduledroute, DateTime date, String username, List<string> seats, string from, string to, double price, DateTime departure)
         {
             ScheduledRoute = scheduledroute;
-            Date = date;
             Username = username;
             Seats = seats;
-        }
-
-        public Ticket(TicketStatus ticketStatus, ScheduledRoute scheduledroute, DateTime date, String username, List<string> seats)
-        {
-            TicketStatus = ticketStatus;
-            ScheduledRoute = scheduledroute;
-            Date = date;
-            Username = username;
-            Seats = seats;
+            From = from;
+            To = to;
+            Price = price;
+            Departure = departure;
+            DepartureTimeStr = Departure.ToString("HH:mm");
+            DateStr = Departure.ToString("dd.MM.yyyy.");
         }
     }
 }

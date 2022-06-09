@@ -25,6 +25,8 @@ namespace HCI_Project.Client
     {
         public static List<ScheduledRoute> Routes = new List<ScheduledRoute>();
         private static DateTime SearchedDate;
+        private static string SearchedFrom;
+        private static string SearchedTo;
 
         public TimetableViewClientPage()
         {
@@ -67,6 +69,8 @@ namespace HCI_Project.Client
             {
                 DateTime date = selectedDate.Value;
                 SearchedDate = date;
+                SearchedFrom = GetLocationValue(fromLocationCombobox);
+                SearchedTo = GetLocationValue(toLocationCombobox);
                 Routes = RouteService.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
                 dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
             }
@@ -94,15 +98,13 @@ namespace HCI_Project.Client
             try
             {
                 ScheduledRoute selectedScheduledRoute = getSelectedScheduledRoute();
-                string seat = "1A"; //
+                if (selectedScheduledRoute == null) return;
 
-                if (!BuyResValidations(selectedScheduledRoute, seat))
-                    return;
-                
-                List<string> seats = new List<string>(); //
-                seats.Add(seat); //
+                Ticket ticket = createTicket(selectedScheduledRoute);
+                if (ticket == null) return;
 
-                TicketService.buyTicket(createTicket(selectedScheduledRoute, seats));
+                TicketService.buyTicket(ticket);
+                MessageBoxResult result = MessageBox.Show("You have succesfully bought ticket");
             }
             catch (Exception ex)
             {
@@ -115,16 +117,13 @@ namespace HCI_Project.Client
             try
             {
                 ScheduledRoute selectedScheduledRoute = getSelectedScheduledRoute();
-                string seat = "1A"; //
+                if (selectedScheduledRoute == null) return;
 
-                if (!BuyResValidations(selectedScheduledRoute, seat))
-                    return;
+                Ticket ticket = createTicket(selectedScheduledRoute);
+                if (ticket == null) return;
 
-                List<string> seats = new List<string>(); //
-                seats.Add(seat); //
-
-                TicketService.reserveTicket(createTicket(selectedScheduledRoute, seats));
-
+                TicketService.reserveTicket(ticket);
+                MessageBox.Show("You have succesfully reserved ticket.");
             }
             catch (Exception ex)
             {
@@ -132,25 +131,41 @@ namespace HCI_Project.Client
             }
         }
 
-        private Ticket createTicket(ScheduledRoute selectedScheduledRoute, List<string> seats)
+        private Ticket createTicket(ScheduledRoute selectedScheduledRoute)
         {
+            string seat = "1A"; //
+
+            DateTime departureTime = selectedScheduledRoute.getDepartureTime(SearchedFrom).Value;
+            DateTime departure = SearchedDate.AddHours(departureTime.Hour).AddMinutes(departureTime.Minute);
+
+            if (!BuyResValidations(departure, selectedScheduledRoute, seat))
+                return null;
+
+            List<string> seats = new List<string>(); //
+            seats.Add(seat); //
+            double price = 100; //
             User u = UserRepo.getLogged();
-            return new Ticket(selectedScheduledRoute, SearchedDate, u.Username, seats);
+
+            return new Ticket(selectedScheduledRoute, SearchedDate, u.Username, seats, SearchedFrom, SearchedTo, price, departure);
         }
 
-        private bool BuyResValidations(ScheduledRoute selectedScheduledRoute, string seat = "1A")
+        private bool BuyResValidations(DateTime departure, ScheduledRoute selectedScheduledRoute, string seat = "1A")
         {
-            if (SearchedDate > DateTime.Now.AddDays(5))
+            if (departure > DateTime.Now.AddDays(5))
             {
-                MessageBoxResult result = MessageBox.Show("You can buy tickets no more than 5 days in advance.", "Buying error");
+                MessageBox.Show("You can buy/reserve tickets no more than 5 days in advance.", "Buying error");
+            }
+            else if (departure < DateTime.Now)
+            {
+                MessageBox.Show("You can not buy/reserve tickets for the trains that have left already.");
             }
             else if (!TicketService.doesFreeSeatExists(SearchedDate, selectedScheduledRoute.id))
             {
-                MessageBoxResult result = MessageBox.Show("You can buy tickets no more than 5 days in advance.");
+                MessageBox.Show("You can buy/reserve tickets no more than 5 days in advance.");
             }
-            else if (!TicketService.isSeatTaken(SearchedDate, selectedScheduledRoute.id, seat))
+            else if (TicketService.isSeatTaken(SearchedDate, selectedScheduledRoute.id, seat))
             {
-                MessageBoxResult result = MessageBox.Show("Chosen seat is already taken. Please chose another one.");
+                MessageBox.Show("Chosen seat is already taken. Please choose another one.");
             }
             else
                 return true;
@@ -162,7 +177,12 @@ namespace HCI_Project.Client
         {
             int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
             
-            return Routes[i];
+            if (i != -1)
+                return Routes[i];
+
+            MessageBox.Show("Please, choose the table row first.");
+
+            return null;
         }
     }
 }

@@ -3,13 +3,157 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HCI_Project"
+      xmlns:grid="clr-namespace:HCI_Project.ViewModels" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:views="clr-namespace:HCI_Project.Views" xmlns:styles="clr-namespace:HCI_Project.Styles"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TrainsViewPage">
 
     <Grid>
-        <TextBlock Text="Trains"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition Width="1.1*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="20,0,0,20" Background="#336699" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
 
+                <Label  Margin="0 10 0 50" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="White" FontSize="25" Content="Trains" />
+
+                <Label Content="Train Type:"  Margin ="10, 10, 0, 10" Grid.Row="2" HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
+                <ComboBox x:Name="trainTypesCombobox"  Margin ="10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" SelectionChanged="ShowWagons">
+                    <ComboBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose train type
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+
+                <Button x:Name="addRoute" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 50 -5 0" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Left" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="AddTrainType_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="plus" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0"  Text="ADD"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="removeRoute" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 50 10 0" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="OpenConfirmPopupTrain">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome  Icon="Trash" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0" Text="DELETE"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+
+            </Grid>
+        </StackPanel>
+
+        <StackPanel  x:Name="wagonsContainer" Grid.Column="1" Visibility="Hidden" Margin="20,0,0,20" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label  Margin="0 10 0 50" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="Black" FontSize="25" Content="Wagons" />
+                <ListView x:Name="wagonsList" Grid.Row="1" Margin ="10, 10, 10, 10" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" PreviewMouseLeftButtonUp="ShowSeats">
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <DockPanel>
+                                <fa:FontAwesome Margin ="10 10 0 0" Icon="square" FontSize="24" />
+                                <TextBlock Margin ="15 10 0 10" Text="{Binding Name}" FontSize="14" FontWeight="Black"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button  materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 50 -5 0" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="AddWagon_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="plus" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0"  Text="ADD"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <Button  materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 50 10 0" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="OpenConfirmPopupWagon">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome  Icon="Trash" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0" Text="DELETE"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel  x:Name="seatsViewContainter" Grid.Column="2" Margin="20,0,0,20" Visibility="Hidden">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label  Margin="0 10 0 50" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Foreground="Black" FontSize="25" Content="Seats" />
+
+                <Grid x:Name="seatsContainter" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" HorizontalAlignment="Center">
+
+                </Grid>
+
+                <Label x:Name="sa" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center"  Margin="0, 50 ,50,15" VerticalAlignment="Center"   FontSize="20" Content="Columns:"/>
+                <styles:IntegerUpDown x:Name="ColumnCountPicker" Grid.Column="0" Grid.Row="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Value="{Binding ColumnCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            FontSize="20"
+                            Width="70" Height="50"  Margin="0, 50 ,50,0"
+                            />
+                <Label Grid.Column="1"  Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50, 50 ,0,15"   FontSize="20" Content="Rows:"/>
+                <styles:IntegerUpDown x:Name="RowCountPicker" Grid.Column="1"  Grid.Row="2"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Value="{Binding RowCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            FontSize="20" Width="70" Height="50" Margin="0, 50 ,0,0"
+                                        
+                            />
+
+                <Button Grid.Row="3"  Height="40" MaxWidth="300" Margin ="10 20 10 20" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveSeats_Click"></Button>
+
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

@@ -53,6 +53,9 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=4.5.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.4.5.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Prism, Version=8.1.97.5141, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Core.XForms, Version=20.1451.0.58, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Xamarin.Core.20.1.0.58\lib\netstandard2.0\Syncfusion.Core.XForms.dll</HintPath>
     </Reference>
@@ -198,16 +201,13 @@
     <Compile Include="Repo\WagonRepo.cs">
       <DependentUpon>ScheduledRouteWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SeatsPickControl.xaml.cs">
-      <DependentUpon>SeatsPickControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SeatsViewPage.xaml.cs">
-      <DependentUpon>SeatsViewPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Service\RouteService.cs" />
     <Compile Include="Manager\TimetableViewPage.xaml.cs" />
     <Compile Include="StationsWindow.xaml.cs">
       <DependentUpon>StationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styles\IntegerUpDown.xaml.cs">
+      <DependentUpon>IntegerUpDown.xaml</DependentUpon>
     </Compile>
     <Compile Include="Styles\ToggleButton.cs">
       <DependentUpon>TimetableViewPage.xaml</DependentUpon>
@@ -225,9 +225,13 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="ViewModels\DraggablePushpin.cs" />
+    <Compile Include="ViewModels\GridHelpers.cs" />
     <Compile Include="ViewModels\TodoItemListingViewModel.cs" />
     <Compile Include="ViewModels\TodoItemViewModel.cs" />
     <Compile Include="ViewModels\TodoViewModel.cs" />
+    <Compile Include="Views\SeatsView.xaml.cs">
+      <DependentUpon>SeatsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TodoItemListingView.xaml.cs">
       <DependentUpon>TodoItemListingView.xaml</DependentUpon>
     </Compile>
@@ -306,15 +310,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SeatsPickControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SeatsViewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="StationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\IntegerUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,6 +323,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Manager\TrainsViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SeatsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

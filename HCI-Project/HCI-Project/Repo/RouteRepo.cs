@@ -17,7 +17,7 @@ namespace HCI_Project.Repo
         public RouteRepo()
         {
             List<Station> allStations = StationRepo.GetStations();
-            List<string> allTrainTypes = TrainRepo.GetTrainTypes();
+            List<string> allTrainTypes = TrainRepo.GetTrainTypeNames();
             List<Station> stations1 = new List<Station> { allStations[0], allStations[1], allStations[2] };
             List<Station> stations2 = new List<Station> { allStations[0], allStations[3], allStations[2] };
             List<ScheduledRoute> allScheduledRoutes = ScheduledRouteRepo.GetScheduledRoutes();

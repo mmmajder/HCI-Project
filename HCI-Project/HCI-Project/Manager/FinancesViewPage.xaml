@@ -57,17 +57,39 @@
             </StackPanel>
             <Label x:Name="dateNotChosenErrorLbl" Content="Please, choose date." Foreground="#cc1111" FontSize="15"
                    Margin="15 0 15 0"  HorizontalAlignment="Center" Visibility="Collapsed"/>
+            <Button x:Name="GetReportBtn" Click="GetReport_Click"
+                Content="GET REPORT"  FontSize="12" Height="20" 
+                Margin="70 25 70 0" Padding="0" VerticalAlignment="Center"
+                Background="#cc1111" BorderBrush="#cc1111"/>
         </StackPanel>
 
-        <StackPanel  Grid.Column="1">
+        <Grid x:Name="reportGrid" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+
             <StackPanel Orientation="Horizontal">
-                <Label x:Name="incomeLbl" Content="Income: " Foreground="#336699" FontSize="20"/>
-                <Label x:Name="varIncomeLbl" Content="1120$" Foreground="#336699"  FontSize="20"/>
+                <TextBlock x:Name="showingReportsForTB" Text="Showing reports for: "  Foreground="#336699" FontSize="20" TextWrapping="WrapWithOverflow"/>
+                <TextBlock x:Name="varShowingReportsForTB" Text=""  Foreground="#336699" FontSize="20" TextWrapping="WrapWithOverflow"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label x:Name="numOfTicketsSoldLbl" Content="Sold tickets: " Foreground="#336699" FontSize="20"/>
-                <Label x:Name="varNumOfTicketsSoldLbl" Content="53" Foreground="#336699"  FontSize="20"/>
+            
+            <StackPanel  Grid.Row="1" >
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="incomeLbl" Content="Income: " Foreground="#336699" FontSize="20"/>
+                    <Label x:Name="varIncomeLbl" Content="" Foreground="#336699"  FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="numOfTicketsSoldLbl" Content="Sold tickets: " Foreground="#336699" FontSize="20"/>
+                    <Label x:Name="varNumOfTicketsSoldLbl" Content="" Foreground="#336699"  FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label x:Name="seatsSoldLbl" Content="Sold seats: " Foreground="#336699" FontSize="20"/>
+                    <Label x:Name="varSeatsSoldLbl" Content="" Foreground="#336699"  FontSize="20"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
+        
     </Grid>
 </Page>

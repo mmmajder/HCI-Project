@@ -11,7 +11,7 @@ namespace HCI_Project.Repo
     class TicketRepo
     {
         // unique Date + ScheduledRouteId
-        private static Dictionary<string, List<Ticket>> TicketsMap = new Dictionary<string, List<Ticket>>();
+        public static Dictionary<string, List<Ticket>> TicketsMap = new Dictionary<string, List<Ticket>>();
 
         public static void addTicket(Ticket ticket)
         {
@@ -93,6 +93,30 @@ namespace HCI_Project.Repo
             if (TicketsMap.ContainsKey(key))
                 foreach (Ticket t in TicketsMap[key])
                     if (t.TicketStatus == TicketStatus.Payed || t.TicketStatus == TicketStatus.Reserved)
+                        tickets.Add(t);
+
+            return tickets;
+        }
+
+        public static List<Ticket> getPayedTickets(DateTime date, long routeId)
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            string key = formTicketMapKey(date, routeId);
+            if (TicketsMap.ContainsKey(key))
+                foreach (Ticket t in TicketsMap[key])
+                    if (t.TicketStatus == TicketStatus.Payed)
+                        tickets.Add(t);
+
+            return tickets;
+        }
+
+        public static List<Ticket> getTicketsForReport(string key)
+        {
+            List<Ticket> tickets = new List<Ticket>();
+
+            if (TicketsMap.ContainsKey(key))
+                foreach (Ticket t in TicketsMap[key])
+                    if (t.TicketStatus == TicketStatus.Payed)
                         tickets.Add(t);
 
             return tickets;

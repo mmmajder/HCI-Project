@@ -127,5 +127,160 @@ namespace HCI_Project.Service
 
             return months;
         }
+
+        public static List<Report> getReport(Route route, int month)
+        {
+            List<Report> reports = new List<Report>();
+            List<string> scRoutesIds = new List<string>();
+
+            foreach (ScheduledRoute sc in route.ScheduledRoutes)
+                scRoutesIds.Add(sc.id.ToString());
+
+            Dictionary<string, Report> reportsByDates = new Dictionary<string, Report>();
+            List<string> dates = new List<string>();
+
+            foreach (string key in TicketRepo.TicketsMap.Keys)
+            {
+                string[] splits = key.Split(':');
+                string dateStr = splits[0];
+                string scRouteIdStr = splits[1];
+                string[] dateSplits = dateStr.Split('_');
+                string monthStr = dateSplits[1];
+
+                if (scRoutesIds.Contains(scRouteIdStr) && month == int.Parse(monthStr))
+                {
+                    string formatedDateStrKey = dateSplits[2] + "_" + dateSplits[1] + "_" + dateSplits[0];
+
+                    if (!reportsByDates.ContainsKey(formatedDateStrKey))
+                    {
+                        reportsByDates[formatedDateStrKey] = new Report(dateStr.Replace('_', '.') + ".", 0, 0, 0);
+                        dates.Add(formatedDateStrKey);
+                    }
+
+                    Report r = reportsByDates[formatedDateStrKey];
+
+                    foreach (Ticket t in TicketRepo.getTicketsForReport(key))
+                    {
+                        r.Income += t.Price;
+                        r.NumOfTickets += 1;
+                        r.Seats += t.Seats.Count;
+                    }
+                }
+            }
+
+            dates.Sort();
+
+            foreach (string d in dates)
+                reports.Add(reportsByDates[d]);
+
+            return reports;
+        }
+
+        public static List<Report> getReport(ScheduledRoute scRoute, int month)
+        {
+            List<Report> reports = new List<Report>();
+
+            foreach (string key in TicketRepo.TicketsMap.Keys)
+            {
+                string[] splits = key.Split(':');
+                string dateStr = splits[0];
+                string scRouteIdStr = splits[1];
+                string[] dateSplits = dateStr.Split('_');
+                string monthStr = dateSplits[1];
+
+                if (scRoute.id == long.Parse(scRouteIdStr) && month == int.Parse(monthStr))
+                {
+                    double income = 0;
+                    int numOfTickets = 0;
+                    int seats = 0;
+
+                    foreach (Ticket t in TicketRepo.getTicketsForReport(key))
+                    {
+                        income += t.Price;
+                        numOfTickets += 1;
+                        seats += t.Seats.Count;
+                    }
+
+                    Report r = new Report(dateStr, income, numOfTickets, seats);
+                    reports.Add(r);
+                }
+            }
+
+            return reports;
+        }
+
+        public static Report getReport(Route route, DateTime date)
+        {
+            List<Report> reports = new List<Report>();
+            List<string> scRoutesIds = new List<string>();
+
+            foreach (ScheduledRoute sc in route.ScheduledRoutes)
+            {
+                Report r = getReport(sc, date);
+                reports.Add(r);
+            }
+
+            return combineReports(date.ToString("dd.MM.yyyy."), reports);
+        }
+
+        public static List<Report> getPastMonthsReports(Route route, DateTime date)
+        {
+            List<Report> reports = new List<Report>();
+            List<DateTime> dates = new List<DateTime> { date.AddMonths(-4), date.AddMonths(-3), date.AddMonths(-2), date.AddMonths(-1) };
+
+            foreach (DateTime d in dates)
+            {
+                Report r = getReport(route, d);
+                reports.Add(r);
+            }
+
+            reports.Add(getReport(route, date));
+
+            return reports;
+        }
+
+        public static Report getReport(ScheduledRoute scRoute, DateTime date)
+        {
+            Report report = new Report(date.ToString("dd.MM.yyyy."), 0, 0, 0);
+
+            foreach (Ticket t in TicketRepo.getPayedTickets(date, scRoute.id))
+            {
+                report.Income += t.Price;
+                report.NumOfTickets += 1;
+                report.Seats += t.Seats.Count;
+            }
+
+            return report;
+        }
+
+        public static List<Report> getPastMonthsReports(ScheduledRoute scRoute, DateTime date)
+        {
+            List<Report> reports = new List<Report>();
+            List<DateTime> dates = new List<DateTime> { date.AddMonths(-4), date.AddMonths(-3), date.AddMonths(-2), date.AddMonths(-1) };
+
+            foreach (DateTime d in dates)
+            {
+                Report r = getReport(scRoute, d);
+                reports.Add(r);
+            }
+
+            reports.Add(getReport(scRoute, date));
+
+            return reports;
+        }
+
+        public static Report combineReports(string group, List<Report> reports)
+        {
+            Report report = new Report(group, 0, 0, 0);
+
+            foreach (Report r in reports)
+            {
+                report.Income += r.Income;
+                report.NumOfTickets += r.NumOfTickets;
+                report.Seats += r.Seats;
+            }
+
+            return report;
+        }
     }
 }

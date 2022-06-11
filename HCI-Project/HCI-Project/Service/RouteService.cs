@@ -26,6 +26,12 @@ namespace HCI_Project.Service
                     {
                         scheduledRoutes.Add(scheduledRoute);
                     }
+                } else if ((int)date.DayOfWeek==0)
+                {
+                    if (scheduledRoute.RepeatigDays.Contains(7))
+                    {
+                        scheduledRoutes.Add(scheduledRoute);
+                    }
                 }
             }
             return scheduledRoutes;

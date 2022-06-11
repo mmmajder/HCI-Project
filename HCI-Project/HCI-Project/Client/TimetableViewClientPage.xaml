@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project.Client"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:fa="http://schemas.fontawesome.io/icons/" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TimetableViewClientPage">
@@ -28,20 +30,58 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
+                
                 <Label Name="TimeTableTitle" Grid.Row="0" HorizontalAlignment="Center" Foreground="White" FontSize="25" Content="Timetable" />
 
                 <Label Content="From:" Grid.Row="1" Margin="10 10 10 50" HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
-                <ComboBox x:Name="fromLocationCombobox" Grid.Row="1" Margin="80 0 20 130" Foreground="Black" IsEditable="False" FontSize="18" Background="White"/>
+                <ComboBox x:Name="fromLocationCombobox" Grid.Row="1" Margin="80 0 20 130" Foreground="Black" IsEditable="True" FontSize="18" Background="White">
+                    <ComboBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose start station
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
                 <!--                <ComboBox x:Name="fromLocation" Grid.Row="1" Margin="100 0 20 130" Foreground="White" IsEditable="False" FontSize="18" Background="White" SelectionChanged="IntervalChanged"/>-->
 
                 <Label Content="To:" Grid.Row="1" Margin="10 55 10 50" HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
-                <ComboBox x:Name="toLocationCombobox" Grid.Row="1" Margin="80 0 20 40" Foreground="Black" Background="White" IsEditable="False" FontSize="18" />
+                <ComboBox x:Name="toLocationCombobox" Grid.Row="1" Margin="80 0 20 40" Foreground="Black" Background="White" IsEditable="True" FontSize="18">
+                    <ComboBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose end station
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
 
                 <Label Content="Date:" Grid.Row="1" Margin="10 100 10 50" HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
-                <DatePicker x:Name="datePicker" Grid.Row="1"  Background="White" Margin="80 50 20 0" FontSize="18"  MinWidth="115"/>
+                <DatePicker x:Name="datePicker" Grid.Row="1"  Background="White" Margin="80 50 20 0" FontSize="18"  MinWidth="115">
+                    <DatePicker.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose depature time
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </DatePicker.ToolTip>
+                </DatePicker>
                 <Button Margin="10 150 19 0" Grid.Row="1" BorderBrush="Transparent" Background="#cc1111" Content="SEARCH" Foreground="White" Click="Button_Click"></Button>
             </Grid>
         </StackPanel>
+        <Button materialDesign:ButtonAssist.CornerRadius="25" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
         <StackPanel x:Name="TablePanel" Grid.Column="1" Margin="20,0,20,20" Visibility="Hidden">
             <TextBlock x:Name="FromLoc" FontSize="25" Foreground="#336699" />
             <TextBlock x:Name="ToLoc" FontSize="25" Foreground="#336699" />

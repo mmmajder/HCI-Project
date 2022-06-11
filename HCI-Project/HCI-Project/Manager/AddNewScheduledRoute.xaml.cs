@@ -2,6 +2,7 @@
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,7 @@ namespace HCI_Project.Manager
 
             TextBox t = e.EditingElement as TextBox;
             string editedCellValue = t.Text.ToString();
+            
 
             if (ColumnIndex == 0)
             {
@@ -91,11 +93,12 @@ namespace HCI_Project.Manager
             {
                 if (ColumnIndex == 1)
                 {
-                    selctedScheduledStation.TimeRange.Arrival = DateTime.Parse(editedCellValue);
+                    //int date = dayOfTrip(DateTime.Parse(editedCellValue));
+                    selctedScheduledStation.TimeRange.Arrival = dayOfTrip(new DateTime(1, 1, 1) + DateTime.Parse(editedCellValue).TimeOfDay);
                 }
                 if (ColumnIndex == 2)
                 {
-                    selctedScheduledStation.TimeRange.Depature = DateTime.Parse(editedCellValue);
+                    selctedScheduledStation.TimeRange.Depature = dayOfTrip(new DateTime(1, 1, 1) + DateTime.Parse(editedCellValue).TimeOfDay);
                 }
             }
             catch (Exception)
@@ -103,6 +106,21 @@ namespace HCI_Project.Manager
 
             }
 
+        }
+        private DateTime dayOfTrip(DateTime dateTime)
+        {
+            int i = dgScheduledRoute.Items.IndexOf(dgScheduledRoute.SelectedItem);
+            if (i>0)
+            {
+                DateTime previousDate = editedScheduledStations[i - 1].TimeRange.Depature;
+
+                if (previousDate.TimeOfDay > dateTime.TimeOfDay)
+                {
+                    return new DateTime(previousDate.Year, previousDate.Month, previousDate.Day + 1) + dateTime.TimeOfDay;
+                }
+                return new DateTime(previousDate.Year, previousDate.Month, previousDate.Day) + dateTime.TimeOfDay;
+            }
+            return dateTime;
         }
 
         private Route GetRouteValue(ComboBox routeCombobox)
@@ -204,9 +222,24 @@ namespace HCI_Project.Manager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ScheduledRoute scheduledRoute = new ScheduledRoute(ScheduledRouteRepo.GetNewScheduledRouteId(), editedScheduledStations, selectedRoute.Id, selectedDays, new List<DateTime>());
-            selectedRoute.ScheduledRoutes.Add(scheduledRoute);
-            AddItem(this, scheduledRoute);
+            try
+            {
+                ScheduledRoute scheduledRoute = new ScheduledRoute(ScheduledRouteRepo.GetNewScheduledRouteId(), editedScheduledStations, selectedRoute.Id, selectedDays, new List<DateTime>());
+                selectedRoute.ScheduledRoutes.Add(scheduledRoute);
+                AddItem(this, scheduledRoute);
+                MessageBox.Show("You have successfully added scheduled route!");
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Please fill all necessary fields!");
+            }
+
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("AddScheduledRoute");
         }
     }
 }

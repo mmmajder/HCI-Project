@@ -384,10 +384,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="html\AddScheduledRoute.htm" />
+    <Content Include="html\EditScheduledRouteManager.htm" />
+    <Content Include="html\ScheduledRoutePreviewClient.htm" />
     <Content Include="html\Stations.htm" />
     <Content Include="html\MapLine.htm" />
     <Content Include="html\AddTrainRoute.htm" />
     <Content Include="html\EditTrainRoute.htm" />
+    <Content Include="html\TimetableClient.htm" />
+    <Content Include="html\TimetableManager.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />

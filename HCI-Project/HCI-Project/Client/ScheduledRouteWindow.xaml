@@ -3,11 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HCI_Project"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:local="clr-namespace:HCI_Project"
         mc:Ignorable="d"
         Title="ScheduledRouteWindow" Height="450" Width="800">
     <Grid Margin="10">
-        <DataGrid IsEnabled="True"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged">
+        <Label Grid.Row="0" Content="Scheduled route" x:Name="TitleLbl" HorizontalAlignment="Center"  Foreground="#000" FontSize="18"/>
+        <Button materialDesign:ButtonAssist.CornerRadius="25" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        
+        <DataGrid IsEnabled="True" Margin="0,40,0,0"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged">
             <DataGrid.Columns>
                 <!--  <DataGridTemplateColumn Header="Station" Width="*" >
                     <DataGridTemplateColumn.CellTemplate>

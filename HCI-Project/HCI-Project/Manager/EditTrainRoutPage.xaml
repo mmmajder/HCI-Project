@@ -34,6 +34,15 @@
                     <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                            Help
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
         </Button>
         
         <TextBlock Grid.ColumnSpan="3" x:Name="routeNameLbl" Grid.Row="0" FontSize="25" HorizontalAlignment="Center"></TextBlock>
@@ -50,6 +59,15 @@
                     <TextBlock Margin ="10 0 0 0" Text="EDIT"></TextBlock>
                 </StackPanel>
             </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="250" Foreground="White">
+                            Edit all stations for easy route edit
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
         </Button>
 
         <views:TodoView Grid.Row="4" Grid.ColumnSpan="3"/>
@@ -60,8 +78,28 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" HorizontalAlignment="Center" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel"  Foreground="White" Click="CancelChanges_Click"></Button>
-            <Button Grid.Column="1" HorizontalAlignment="Center"  Margin="10 0 0 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveChanges_Click"></Button>
+            <Button Grid.Column="0" HorizontalAlignment="Center" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel"  Foreground="White" Click="CancelChanges_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                            Cancel all changes you made
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Center"  Margin="10 0 0 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveChanges_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                Save all changes you made
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
         </Grid>
 
     </Grid>

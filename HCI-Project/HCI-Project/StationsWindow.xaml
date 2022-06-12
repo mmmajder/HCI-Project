@@ -40,6 +40,15 @@
                                 <TextBlock Margin ="10 0 0 0"  Text="ADD"></TextBlock>
                             </StackPanel>
                         </Button.Content>
+                        <Button.ToolTip>
+                            <ToolTip   Placement="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock MaxWidth="150" Foreground="White">
+                                        Add new station
+                                    </TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
 
 
@@ -65,6 +74,15 @@
                                                 <TextBlock Margin ="10 0 0 0" Text="DELETE"></TextBlock>
                                             </StackPanel>
                                         </Button.Content>
+                                        <Button.ToolTip>
+                                            <ToolTip   Placement="Right">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock MaxWidth="150" Foreground="White">
+                                                         Delete this station
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </ToolTip>
+                                        </Button.ToolTip>
                                     </Button>
                                 </Grid>
                             </DataTemplate>
@@ -74,7 +92,17 @@
 
                     <Label  Margin="-20 30 0 15" Grid.Row="3" VerticalAlignment="Bottom"  HorizontalAlignment="Center" Foreground="White" FontSize="20" Content="Show all stations" />
                     <ToggleButton x:Name="showAll" Click="ShowAll_Click" Grid.Row="3"  Grid.Column="1"  VerticalAlignment="Bottom" HorizontalAlignment="Left"  Margin="0,30,0,15" Height="40" Width="56"
-                                   Style="{StaticResource MaterialDesignSwitchLightToggleButton}"/>
+                                   Style="{StaticResource MaterialDesignSwitchLightToggleButton}">
+                        <ToggleButton.ToolTip>
+                            <ToolTip   Placement="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock MaxWidth="150" Foreground="White">
+                                        Show/Hide all stations on the map
+                                    </TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </ToggleButton.ToolTip>
+                    </ToggleButton>
 
                 </Grid>
             </StackPanel>
@@ -95,16 +123,56 @@
                             <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                Help
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
                 </Button>
+                
 
                 <local:MapPage x:Name="mapPage" Margin="0,20,0,0" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2"/>
 
             </Grid>
             
 
-            <Button Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Right" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save new stations"  Foreground="White" Click="SaveChanges_Click"></Button>
-            <Button Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel new stations"  Foreground="White" Click="CancelChanges_Click"></Button>
-            <Button Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Right"  Margin="10 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Close"  Foreground="White" Click="Close_Click"></Button>
+            <Button Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Right" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save new stations"  Foreground="White" Click="SaveChanges_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                Save new station location
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Left" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel new stations"  Foreground="White" Click="CancelChanges_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                Cancel new station's creation
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Right"  Margin="10 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Close"  Foreground="White" Click="Close_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                Go back to editing lines
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
 
 
         </Grid>

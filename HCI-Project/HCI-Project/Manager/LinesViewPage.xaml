@@ -66,11 +66,31 @@
                     </ComboBox.ToolTip>
                 </ComboBox>
 
-                    <Button Grid.Row="5"  Height="40" MaxWidth="300" Margin ="10 20 10 20" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="#cc1111" Content="Show line"  Foreground="White" Click="Show_Click"></Button>
+                <Button Grid.Row="5"  Height="40" MaxWidth="300" Margin ="10 20 10 20" Grid.ColumnSpan="3" BorderBrush="Transparent" Background="#cc1111" Content="Show line"  Foreground="White" Click="Show_Click">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="250" Foreground="White">
+                                   Show chosen line on the map
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
 
 
                 <Label Content="Lines:" x:Name="routesLbl" Visibility="Visible"  Margin ="10, 10, 10, 10"  Grid.Row="4"  HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
-                <ComboBox x:Name="routesCombobox" Visibility="Visible"  Margin ="10, 10, 10, 10" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" />
+                <ComboBox x:Name="routesCombobox" Visibility="Visible"  Margin ="10, 10, 10, 10" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18">
+                    <ComboBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose specific line
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
 
                 <Button x:Name="addRoute" Visibility="Visible" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 50 -5 0" Grid.Row="6" Grid.Column="0" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Add_Click">
                     <Button.Content>
@@ -79,6 +99,15 @@
                             <TextBlock Margin ="10 0 0 0"  Text="ADD"></TextBlock>
                         </StackPanel>
                     </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Add new line
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
                 </Button>
 
                 <Button x:Name="editRoute" Visibility="Visible" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 50 -5 0" Grid.Row="6" Grid.Column="1"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="Edit_Click">
@@ -88,6 +117,15 @@
                             <TextBlock Margin ="10 0 0 0" Text="EDIT"></TextBlock>
                         </StackPanel> 
                     </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                   Edit chosen line
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
                 </Button>
 
                 <Button x:Name="removeRoute" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 50 10 0" Grid.Row="6" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="OpenConfirmPopup">
@@ -97,6 +135,15 @@
                             <TextBlock Margin ="10 0 0 0" Text="DELETE"></TextBlock>
                         </StackPanel>
                     </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                   Delete chosen line
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
                 </Button>
 
                 

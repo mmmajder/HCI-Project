@@ -1,6 +1,8 @@
-﻿using HCI_Project.Model;
+﻿using HCI_Project.DTO;
+using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,17 +64,25 @@ namespace HCI_Project.Client
         {
             FromLoc.Text = "From: " + GetLocationValue(fromLocationCombobox);
             ToLoc.Text = "To: " + GetLocationValue(toLocationCombobox);
-            TablePanel.Visibility = Visibility.Visible;
             DateTime? selectedDate = datePicker.SelectedDate;
             Routes.Clear();
             if (selectedDate.HasValue && GetLocationValue(fromLocationCombobox) != null && GetLocationValue(fromLocationCombobox) != null)
             {
+                TablePanel.Visibility = Visibility.Visible;
                 DateTime date = selectedDate.Value;
                 SearchedDate = date;
                 SearchedFrom = GetLocationValue(fromLocationCombobox);
                 SearchedTo = GetLocationValue(toLocationCombobox);
                 Routes = RouteService.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
-                dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                List<RouteTableDTO> data = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
+                dgrMain.ItemsSource = data;
+                if (data.Count==0)
+                {
+                    MessageBox.Show("There are no scheduled routes betweeen these stations on selected date!");
+                }
+            } else
+            {
+                MessageBox.Show("Please input valid values for start and end station and date");
             }
         }
 
@@ -176,13 +186,18 @@ namespace HCI_Project.Client
         private ScheduledRoute getSelectedScheduledRoute()
         {
             int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
-            
+
             if (i != -1)
                 return Routes[i];
 
             MessageBox.Show("Please, choose the table row first.");
 
             return null;
+        }
+       
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("TimetableClient");
         }
     }
 }

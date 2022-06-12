@@ -1,6 +1,7 @@
 ﻿using HCI_Project.DTO;
 using HCI_Project.Model;
 using HCI_Project.Repo;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -94,6 +95,10 @@ namespace HCI_Project
 
             }
             
+        }
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("ScheduledRoutePreviewClient");
         }
     }
 }

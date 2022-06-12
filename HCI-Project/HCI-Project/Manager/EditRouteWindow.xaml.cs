@@ -16,6 +16,7 @@ using HCI_Project.DTO;
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.util;
+using HelpSistem;
 using Syncfusion.Windows.Controls.Input;
 
 namespace HCI_Project.Manager
@@ -253,8 +254,38 @@ namespace HCI_Project.Manager
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SelectedScheduledRoute = EditedValue;
-            EditItem(this, SelectedScheduledRoute);
+            try
+            {
+                SelectedScheduledRoute = EditedValue;
+                EditItem(this, SelectedScheduledRoute);
+                MessageBox.Show("You have successfully editted scheduled route!");
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Please fill all necessary fields!");
+            }
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("EditScheduledRouteManager");
+        }
+    }
+    public class DrAmtValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, System.Globalization.CultureInfo cultureInfo)
+        {
+            string input = value.ToString();
+            try
+            {
+                DateTimeUtils.getTime(input);
+            }
+            catch
+            {
+                return new ValidationResult(false, "Invalid input.");
+            }
+            return new ValidationResult(true, null);
         }
     }
 }

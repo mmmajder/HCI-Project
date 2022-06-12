@@ -3,6 +3,7 @@ using HCI_Project.Manager;
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -66,16 +67,20 @@ namespace HCI_Project
         {
             from = GetLocationValue(fromLocationCombobox);
             to = GetLocationValue(toLocationCombobox);
-            FromLoc.Text = "From: " + from;
-            ToLoc.Text = "To: " + to;
-            TablePanel.Visibility = Visibility.Visible;
-            Routes.Clear();
             if (from != null && to != null)
             {
+                FromLoc.Text = "From: " + from;
+                ToLoc.Text = "To: " + to;
+                TablePanel.Visibility = Visibility.Visible;
+                Routes.Clear();
                 Routes = RouteService.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox));
                 //dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
                 TableData = RouteService.GetRoutesTableData(Routes, from, to);
                 dgrMain.ItemsSource = TableData;
+            } 
+            else
+            {
+                MessageBox.Show("Please input valid values for start and end station");
             }
         }
 
@@ -112,7 +117,7 @@ namespace HCI_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Select row to delete it");
             }
         }
 
@@ -149,6 +154,10 @@ namespace HCI_Project
             TableData.Add(data);
             Routes.Add(itemToAdd);
             dgrMain.ItemsSource = TableData;
+        }
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("TimetableManager");
         }
     }
 }

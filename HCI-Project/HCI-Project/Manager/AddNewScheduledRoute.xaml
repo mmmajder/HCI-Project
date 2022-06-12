@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fa="http://schemas.fontawesome.io/icons/" 
         xmlns:local="clr-namespace:HCI_Project.Manager"
         mc:Ignorable="d"
         Title="Add new scheduled route" MinHeight="470" MinWidth="420">
@@ -25,8 +27,34 @@
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" materialDesign:ButtonAssist.CornerRadius="25"  HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+                <Button.ToolTip>
+                    <ToolTip   Placement="Bottom">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                    Help
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
             <Label Content="Route:" Grid.Column="0" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"  Foreground="Black" FontSize="18"/>
-            <ComboBox x:Name="routeCombobox" Grid.Column="1" Margin="5,0,20,0"  VerticalAlignment="Center" Foreground="Black" IsEditable="False" FontSize="18" Background="White" SelectionChanged="comboboxSelectionChanged"/>
+            <ComboBox x:Name="routeCombobox" Grid.Column="1" Margin="5,0,80,0"  VerticalAlignment="Center" Foreground="Black" IsEditable="False" FontSize="18" Background="White" SelectionChanged="comboboxSelectionChanged">
+                <ComboBox.ToolTip>
+                    <ToolTip   Placement="Bottom">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                    Select route
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </ComboBox.ToolTip>
+            </ComboBox>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -35,6 +63,15 @@
             </Grid.ColumnDefinitions>
             <ListBox Margin="10,30,0,13" x:Name="listBox1" HorizontalAlignment="Left"
              VerticalAlignment="Top" MaxWidth="194" Height="240" Grid.Column="0" >
+                <ListBox.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                    Select days of week
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </ListBox.ToolTip>
                 <ListBoxItem>
                     <CheckBox x:Name="Mon" Checked="MonChecked" Unchecked="MonUnchecked">
                         <TextBlock Text="Monday"/>
@@ -83,7 +120,7 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Arrival" Width="2*" Binding="{Binding Path='ArrivalTime'}" ElementStyle="{StaticResource Centering}">
+                    <DataGridTextColumn Header="Arrival" Width="2*" ElementStyle="{StaticResource Centering}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -92,8 +129,20 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.Binding>
+                            <Binding Path="ArrivalTime" 
+                             NotifyOnTargetUpdated="True" 
+                             UpdateSourceTrigger="PropertyChanged" 
+                             Mode="TwoWay" 
+                             StringFormat="N2"
+                             ValidatesOnDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <local:DrAmtValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Depature" Width="2*" Binding="{Binding Path='DepatureTime'}" ElementStyle="{StaticResource Centering}">
+                    <DataGridTextColumn Header="Depature" Width="2*" ElementStyle="{StaticResource Centering}">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -102,15 +151,34 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.Binding>
+                            <Binding Path="DepatureTime" 
+                             NotifyOnTargetUpdated="True" 
+                             UpdateSourceTrigger="PropertyChanged" 
+                             Mode="TwoWay" 
+                             StringFormat="N2"
+                             ValidatesOnDataErrors="True">
+                                <Binding.ValidationRules>
+                                    <local:DrAmtValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </DataGridTextColumn.Binding>
                     </DataGridTextColumn>
-                 <!--   <DataGridTextColumn Header="Station" Binding="{Binding Station}" Width="*"/>
-                    <DataGridTextColumn Header="Arrival" Binding="{Binding ArrivalTime}"  Width="*"/>
-                    <DataGridTextColumn Header="Depature" Binding="{Binding DepatureTime}" Width="*"/>-->
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
-        <Button Grid.Row="2" Content="Add" Margin="10,0,10,0" HorizontalAlignment="Center" MinWidth="200"  Background="#cc1111" BorderBrush="#cc1111" Click="Button_Click"/>
+        <Button Grid.Row="2" Content="Add" Margin="10,0,10,0" HorizontalAlignment="Center" MinWidth="200"  Background="#cc1111" BorderBrush="#cc1111" Click="Button_Click">
+            <Button.ToolTip>
+                <ToolTip   Placement="Bottom">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                    Add scheduled route
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
 
     </Grid>
 </Window>

@@ -79,7 +79,7 @@
                 Background="#cc1111" BorderBrush="#cc1111"/>
         </StackPanel>
 
-        <Grid x:Name="reportGrid" Grid.Column="1" Visibility="Visible" >
+        <Grid x:Name="reportGrid" Grid.Column="1" Visibility="Hidden" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="4*"/>
@@ -163,7 +163,7 @@
                         SelectionMode="Single" SelectionUnit="FullRow"
                       x:Name="dgrMain"  AutoGenerateColumns="False"
                       RowBackground="White" Background="#336699"
-                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False"
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False" 
                       >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Username" Width="2*" Binding="{Binding Path='Username'}" IsReadOnly="True">

@@ -170,6 +170,9 @@
     <Compile Include="Manager\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Manager\PricesPage.xaml.cs">
+      <DependentUpon>PricesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MapLinePage.xaml.cs">
       <DependentUpon>MapLinePage.xaml</DependentUpon>
     </Compile>
@@ -306,6 +309,10 @@
     <Page Include="Client\ScheduledRouteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Manager\PricesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Manager\TimetableViewPage.xaml">
       <SubType>Designer</SubType>

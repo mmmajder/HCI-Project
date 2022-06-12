@@ -18,5 +18,10 @@ namespace HCI_Project.Model
             IsActive = isActive;
             Position = position;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

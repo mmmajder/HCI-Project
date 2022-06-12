@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCI_Project.Manager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace HCI_Project
 
         private void HomeViewSelected(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HomeViewPage();
+            Main.Content = new HomeViewPage(); 
         }
 
         private void TimetableBtn_Click(object sender, RoutedEventArgs e)
@@ -47,6 +48,11 @@ namespace HCI_Project
         private void FinancesBtn_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new FinancesViewPage();
+        }
+
+        private void PricesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new PricesPage();
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)

@@ -11,7 +11,7 @@ namespace HCI_Project.Model
         public long Id { get; set; }
         public List<Station> Stations { get; set; }
         public List<ScheduledRoute> ScheduledRoutes { get; set; }
-        // TODO PRICE
+        public Dictionary<string, double> PriceCatalog { get; set; }
         public string TrainType { get; set; }
 
         public Route(long id, List<Station> stations, List<ScheduledRoute> scheduledRoutes, string trainType)
@@ -20,6 +20,61 @@ namespace HCI_Project.Model
             Stations = stations;
             ScheduledRoutes = scheduledRoutes;
             TrainType = trainType;
+            PriceCatalog = new Dictionary<string, double>();
+            generateDefaultPriceCatalog();
+        }
+
+        private void generateDefaultPriceCatalog()
+        {
+            Random rand = new Random();
+
+            foreach (Station s in Stations)
+            {
+                int plusOrMinus = rand.Next(0, 2);
+                int randValue = rand.Next(0, 70);
+
+                if (plusOrMinus == 0)
+                    PriceCatalog[s.Name] = 100 + randValue;
+                else
+                    PriceCatalog[s.Name] = 100 - randValue;
+            }
+        }
+
+        public List<StationPrice> getPrices()
+        {
+            List <StationPrice> prices = new List<StationPrice>();
+
+            foreach (Station s in Stations)
+                prices.Add(new StationPrice(s.Name, PriceCatalog[s.Name]));
+
+            return prices;
+        }
+
+        public double getPrice(string stationName)
+        {
+            if (PriceCatalog.ContainsKey(stationName))
+                return PriceCatalog[stationName];
+            else
+                return 100;
+        }
+
+        public double getPrice(string fromName, string toName)
+        {
+            bool hasComeToFrom = false;
+            double price = 0;
+
+            foreach (Station s in Stations)
+                if (hasComeToFrom)
+                {
+                    if (s.Name.Equals(toName))
+                        return price;
+                    price += getPrice(s.Name);
+                }
+                else
+                    if (s.Name.Equals(fromName))
+                        hasComeToFrom = true;
+
+            return price;
         }
 
         public override string ToString()

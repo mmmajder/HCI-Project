@@ -41,7 +41,12 @@ namespace HCI_Project.Client
             try
             {
                 Ticket selectedTicket = getSelectedTicket();
-                if (selectedTicket == null) return;
+                if (selectedTicket == null)
+                {
+                    ticketNotChoosenLbl.Visibility = Visibility.Visible;
+                    return;
+                }
+                ticketNotChoosenLbl.Visibility = Visibility.Hidden;
 
                 if (selectedTicket.Departure < DateTime.Now.AddDays(1))
                 {

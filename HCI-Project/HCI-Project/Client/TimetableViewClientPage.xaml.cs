@@ -143,7 +143,7 @@ namespace HCI_Project.Client
 
             List<string> seats = new List<string>(); //
             seats.Add(seat); //
-            double price = 100; //
+            double price = RouteRepo.getRoute(selectedScheduledRoute.RouteId).getPrice(SearchedFrom, SearchedTo); //
             User u = UserRepo.getLogged();
 
             return new Ticket(selectedScheduledRoute, SearchedDate, u.Username, seats, SearchedFrom, SearchedTo, price, departure);

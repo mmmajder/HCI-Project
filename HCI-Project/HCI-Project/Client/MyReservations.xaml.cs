@@ -41,7 +41,12 @@ namespace HCI_Project.Client
             try
             {
                 Ticket selectedTicket = getSelectedTicket();
-                if (selectedTicket == null) return;
+                if (selectedTicket == null)
+                {
+                    ticketNotChoosenLbl.Visibility = Visibility.Visible;
+                    return;
+                }
+                ticketNotChoosenLbl.Visibility = Visibility.Hidden;
 
                 TicketService.buyTicket(selectedTicket.Id);
                 loadData();
@@ -59,7 +64,12 @@ namespace HCI_Project.Client
             try
             {
                 Ticket selectedTicket = getSelectedTicket();
-                if (selectedTicket == null) return;
+                if (selectedTicket == null)
+                {
+                    ticketNotChoosenLbl.Visibility = Visibility.Visible;
+                    return;
+                }
+                ticketNotChoosenLbl.Visibility = Visibility.Hidden;
 
                 TicketService.cancelTicketUser(selectedTicket.Id);
                 loadData();

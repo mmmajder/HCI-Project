@@ -24,6 +24,10 @@ namespace HCI_Project.Client
     public partial class TimetableViewClientPage : Page
     {
         public static List<ScheduledRoute> Routes = new List<ScheduledRoute>();
+        private static DateTime SearchedDate;
+        private static string SearchedFrom;
+        private static string SearchedTo;
+
         public TimetableViewClientPage()
         {
             InitializeComponent();
@@ -64,6 +68,9 @@ namespace HCI_Project.Client
             if (selectedDate.HasValue && GetLocationValue(fromLocationCombobox) != null && GetLocationValue(fromLocationCombobox) != null)
             {
                 DateTime date = selectedDate.Value;
+                SearchedDate = date;
+                SearchedFrom = GetLocationValue(fromLocationCombobox);
+                SearchedTo = GetLocationValue(toLocationCombobox);
                 Routes = RouteService.GetScheduledRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
                 dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
             }
@@ -74,8 +81,8 @@ namespace HCI_Project.Client
             try
             {
                 int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
-                ScheduledRoute slectedScheduledRoute = Routes[i];
-                ScheduledRouteWindow.setSelectedScheduledRoute(slectedScheduledRoute);
+                ScheduledRoute selectedScheduledRoute = Routes[i];
+                ScheduledRouteWindow.setSelectedScheduledRoute(selectedScheduledRoute);
                 ScheduledRouteWindow scheduledRouteWindow = new ScheduledRouteWindow();
                 scheduledRouteWindow.Show();
                 //This is the code which will show the button click row data. Thank you.
@@ -84,6 +91,98 @@ namespace HCI_Project.Client
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void firstBuyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ScheduledRoute selectedScheduledRoute = getSelectedScheduledRoute();
+                if (selectedScheduledRoute == null) return;
+
+                Ticket ticket = createTicket(selectedScheduledRoute);
+                if (ticket == null) return;
+
+                TicketService.buyTicket(ticket);
+                MessageBoxResult result = MessageBox.Show("You have succesfully bought ticket");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void firstResBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ScheduledRoute selectedScheduledRoute = getSelectedScheduledRoute();
+                if (selectedScheduledRoute == null) return;
+
+                Ticket ticket = createTicket(selectedScheduledRoute);
+                if (ticket == null) return;
+
+                TicketService.reserveTicket(ticket);
+                MessageBox.Show("You have succesfully reserved ticket.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private Ticket createTicket(ScheduledRoute selectedScheduledRoute)
+        {
+            string seat = "1A"; //
+
+            DateTime departureTime = selectedScheduledRoute.getDepartureTime(SearchedFrom).Value;
+            DateTime departure = SearchedDate.AddHours(departureTime.Hour).AddMinutes(departureTime.Minute);
+
+            if (!BuyResValidations(departure, selectedScheduledRoute, seat))
+                return null;
+
+            List<string> seats = new List<string>(); //
+            seats.Add(seat); //
+            double price = RouteRepo.getRoute(selectedScheduledRoute.RouteId).getPrice(SearchedFrom, SearchedTo); //
+            User u = UserRepo.getLogged();
+
+            return new Ticket(selectedScheduledRoute, SearchedDate, u.Username, seats, SearchedFrom, SearchedTo, price, departure);
+        }
+
+        private bool BuyResValidations(DateTime departure, ScheduledRoute selectedScheduledRoute, string seat = "1A")
+        {
+            if (departure > DateTime.Now.AddDays(5))
+            {
+                MessageBox.Show("You can buy/reserve tickets no more than 5 days in advance.", "Buying error");
+            }
+            else if (departure < DateTime.Now)
+            {
+                MessageBox.Show("You can not buy/reserve tickets for the trains that have left already.");
+            }
+            else if (!TicketService.doesFreeSeatExists(SearchedDate, selectedScheduledRoute.id))
+            {
+                MessageBox.Show("You can buy/reserve tickets no more than 5 days in advance.");
+            }
+            else if (TicketService.isSeatTaken(SearchedDate, selectedScheduledRoute.id, seat))
+            {
+                MessageBox.Show("Chosen seat is already taken. Please choose another one.");
+            }
+            else
+                return true;
+
+            return false;
+        }
+
+        private ScheduledRoute getSelectedScheduledRoute()
+        {
+            int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
+            
+            if (i != -1)
+                return Routes[i];
+
+            MessageBox.Show("Please, choose the table row first.");
+
+            return null;
         }
     }
 }

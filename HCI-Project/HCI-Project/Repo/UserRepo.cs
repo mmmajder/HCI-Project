@@ -10,6 +10,8 @@ namespace HCI_Project.Repo
     public class UserRepo
     {
         private static List<User> Users = new List<User>();
+        private static User logged = null;
+
         public UserRepo()
         {
             Users.Add(new User(UserType.Client, "Petar", "Petrovic", "p", "p"));
@@ -34,10 +36,16 @@ namespace HCI_Project.Repo
             {
                 if (user.Username==username && user.Password==password)
                 {
+                    logged = user;
                     return user;
                 }
             }
             return null;
+        }
+
+        public static User getLogged()
+        {
+            return logged;
         }
     }
 }

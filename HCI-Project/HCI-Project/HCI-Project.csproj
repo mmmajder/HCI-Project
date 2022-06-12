@@ -176,6 +176,8 @@
     <Compile Include="MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Report.cs" />
+    <Compile Include="Model\StationPrice.cs" />
     <Compile Include="Popups\InputStationNamePopup.xaml.cs">
       <DependentUpon>InputStationNamePopup.xaml</DependentUpon>
     </Compile>

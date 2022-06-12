@@ -129,23 +129,23 @@ namespace HCI_Project.Model
             }
         }
 
-        public override string ToString()
-        {
-            string route = "";
-            int length = Stations.Count;
-            for (int i = 0; i < length; i++)
-            {
-                if (i == length - 1)
-                {
-                    route += Stations[i].Name;
-                }
-                else
-                {
-                    route += Stations[i].Name + "-";
-                }
-            }
-            return route;
+        //public override string ToString()
+        //{
+        //    string route = "";
+        //    int length = Stations.Count;
+        //    for (int i = 0; i < length; i++)
+        //    {
+        //        if (i == length - 1)
+        //        {
+        //            route += Stations[i].Name;
+        //        }
+        //        else
+        //        {
+        //            route += Stations[i].Name + "-";
+        //        }
+        //    }
+        //    return route;
             
-        }
+        //}
     }
 }

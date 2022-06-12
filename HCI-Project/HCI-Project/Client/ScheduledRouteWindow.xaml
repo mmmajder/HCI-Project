@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:local="clr-namespace:HCI_Project"
         mc:Ignorable="d"
-        Title="ScheduledRouteWindow" Height="450" Width="800">
+        Title="Scheduled Route " MinHeight="450" MinWidth="300">
     <Window.Resources>
         <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -25,15 +25,8 @@
             </Button.Content>
         </Button>
         
-            <DataGrid IsEnabled="True" Margin="0,40,0,0" CanUserAddRows="False"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DataGrid IsEnabled="True" Margin="0,40,0,0" CanUserAddRows="False"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserSortColumns="False" CanUserReorderColumns="False"> 
             <DataGrid.Columns>
-                <!--  <DataGridTemplateColumn Header="Station" Width="*" >
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox x:Name="comboBox" ItemsSource="{Binding ComboboxData}" SelectedValue="{Binding Station}" Foreground="Black" IsEditable="False"  Background="White"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
                 <DataGridTextColumn Header="Station" Width="*" Binding="{Binding Path='Station'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">
@@ -44,6 +37,16 @@
                             <Setter Property="BorderBrush" Value="White"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="ToolTip" Value="{Binding 'Station'}" />
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Arrival" Width="*" Binding="{Binding Path='Arrival'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
                     <DataGridTextColumn.HeaderStyle>
@@ -54,6 +57,16 @@
                             <Setter Property="Foreground" Value="White"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="ToolTip" Value="{Binding 'Arrival'}" />
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Depature" Width="*" Binding="{Binding Path='Depature'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
                     <DataGridTextColumn.HeaderStyle>
@@ -64,6 +77,16 @@
                             <Setter Property="Foreground" Value="White"/>
                         </Style>
                     </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="ToolTip" Value="{Binding 'Depature'}" />
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
             <!--    <DataGridTextColumn Header="Station" Binding="{Binding Station}" />
                 <DataGridTextColumn Header="Arrival" Binding="{Binding Arrival}"  />

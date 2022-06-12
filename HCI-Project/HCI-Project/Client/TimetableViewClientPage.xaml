@@ -8,7 +8,7 @@
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TimetableViewClientPage">
+      Title="Timetable View Client">
     <Page.Resources>
         <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -115,6 +115,9 @@
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                                 <Setter Property="VerticalContentAlignment" Value="Center" />
                                 <Setter Property="ToolTip" Value="{Binding 'From'}" />
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
                             </Style>
                         </DataGridTextColumn.CellStyle>
                         <DataGridTextColumn.HeaderStyle>
@@ -131,6 +134,16 @@
                         <DataGridTextColumn.Header>
                             <TextBlock>Depature<LineBreak/>Time</TextBlock>
                         </DataGridTextColumn.Header>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="ToolTip" Value="{Binding 'Depature'}" />
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -144,6 +157,16 @@
                         <DataGridTextColumn.Header>
                             <TextBlock>Arrival<LineBreak/>Date</TextBlock>
                         </DataGridTextColumn.Header>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="ToolTip" Value="{Binding 'To'}" />
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -157,6 +180,16 @@
                         <DataGridTextColumn.Header>
                             <TextBlock>Arrival<LineBreak/>Time</TextBlock>
                         </DataGridTextColumn.Header>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="ToolTip" Value="{Binding 'Arrival'}" />
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -175,18 +208,35 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="ToolTip" Value="{Binding 'Time'}" />
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
                     <DataGridTemplateColumn Header="View" Width="*">
                         <DataGridTemplateColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
                                 <Setter Property="Background" Value="#336699"/>
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTemplateColumn.HeaderStyle>
+                        
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="btnView" Content="View" Click="btnView_Click" Background="#cc1111" BorderBrush="#cc1111" VerticalAlignment="Center">
+                                <Button Name="btnView" Click="btnView_Click" Background="#cc1111" Height="25" Width="40" BorderBrush="#cc1111" VerticalAlignment="Center">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:FontAwesome  Icon="Info" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button.Content>
                                     <Button.ToolTip>
                                         <ToolTip   Placement="Bottom">
                                             <StackPanel Orientation="Horizontal">

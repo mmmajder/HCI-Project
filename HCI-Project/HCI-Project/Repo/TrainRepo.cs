@@ -15,15 +15,10 @@ namespace HCI_Project.Repo
         {
             List<Wagon> allWagons = WagonRepo.GetWagons();
 
-            List<Wagon> type1Wagons = new List<Wagon> { allWagons[0], allWagons[0], allWagons[0], allWagons[0] };
-            List<Wagon> type2Wagons = new List<Wagon> { allWagons[0], allWagons[0], allWagons[0], allWagons[0] };
+            List<Wagon> type1Wagons = new List<Wagon> { allWagons[0], allWagons[1], allWagons[1], allWagons[0] };
+            List<Wagon> type2Wagons = new List<Wagon> { allWagons[1], allWagons[0], allWagons[0], allWagons[1] };
             AddTrainType("Type 1", type1Wagons);
             AddTrainType("Type 2", type2Wagons);
-        }
-
-        internal static List<string> GetTrainTypes()
-        {
-            return TrainTypeMap.Keys.ToList();
         }
 
         public static void AddTrainType(string TrainTypeName, List<Wagon> wagons)
@@ -31,10 +26,23 @@ namespace HCI_Project.Repo
             TrainTypeMap.Add(TrainTypeName, wagons);
         }
 
+        public static List<Wagon> GetWagons(string TrainTypeName)
+        {
+            return TrainTypeMap[TrainTypeName];
+        }
+        public static void SetWagons(string TrainTypeName, List<Wagon> wagons)
+        {
+            TrainTypeMap[TrainTypeName] = wagons;
+        }
 
         public static List<string> GetTrainTypeNames()
         {
             return TrainTypeMap.Keys.ToList();
+        }
+
+        public static void RemoveTrainType(string TrainTypeName)
+        {
+            TrainTypeMap.Remove(TrainTypeName);
         }
     }
 }

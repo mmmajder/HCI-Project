@@ -106,7 +106,7 @@ namespace HCI_Project
             RouteRepo.RemoveRoute(routeForDelete);
 
             CloseConfirmPopup(sender, e);
-            Show_Click(sender, e);
+            RefreshData();
         }
 
         private Object GetComboboxValue(ComboBox myCombobox)
@@ -123,6 +123,7 @@ namespace HCI_Project
 
         private void Show_Click(object sender, RoutedEventArgs e)
         {
+            Main.Content = mapLinePage;
             object selectedRoute = GetComboboxValue(routesCombobox);
             if (selectedRoute != null)
             {

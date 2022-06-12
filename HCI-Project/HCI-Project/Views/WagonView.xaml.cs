@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HCI_Project
+namespace HCI_Project.Views
 {
     /// <summary>
-    /// Interaction logic for SeatsPickControl.xaml
+    /// Interaction logic for TodoView.xaml
     /// </summary>
-    public partial class SeatsPickControl : UserControl
+    public partial class WagonView : UserControl
     {
-        public SeatsPickControl()
+        public WagonView()
         {
             InitializeComponent();
         }

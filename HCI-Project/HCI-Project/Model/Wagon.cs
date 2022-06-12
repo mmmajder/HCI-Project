@@ -9,18 +9,31 @@ namespace HCI_Project.Model
     public class Wagon
     {
         public long Id { get; set; }
-        public List<WagonItem> Seats { get; set; }
+
+        public string Name { get; set; }
 
         public int RowCount { get; set; }
         public int ColCount { get; set; }
 
-        public Wagon(long id, int rowCount, int colCount, List<WagonItem> seats)
+        public Wagon(long id, string name, int rowCount, int colCount)
         {
             Id = id;
-            Seats = seats;
 
             RowCount = rowCount;
             ColCount = colCount;
+
+            Name = name;
+        }
+
+        public List<Seat> GetSeats()
+        {
+            int seatNum = RowCount * ColCount;
+            List<Seat> seats = new List<Seat>();
+            for (int i = 0; i < seatNum; i++)
+            {
+                seats.Add(new Seat(i + 1));
+            }
+            return seats;
         }
     }
 }

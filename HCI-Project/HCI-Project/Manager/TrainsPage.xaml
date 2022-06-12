@@ -1,0 +1,132 @@
+﻿<Page x:Class="HCI_Project.TrainsViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:HCI_Project"
+      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LinesViewPage">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.1*"/>
+            <ColumnDefinition Width="3.2*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" Margin="20,0,0,20" Background="#336699" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label  Margin="0 10 0 50" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Foreground="White" FontSize="25" Content="Train" />
+
+                <Label Content="Train Type:"  Margin ="10, 10, 0, 10" Grid.Row="1" HorizontalAlignment="Left"  Foreground="#FFFFFF" FontSize="18"/>
+                <ComboBox x:Name="trainTypesCombobox"  Margin ="10" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Foreground="Black" Background="White" FontSize="18" >
+                    <ComboBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Choose train type
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+
+                <Button x:Name="addTrain"  materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 50 -5 0" Grid.Row="3" Grid.Column="0" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="AddTrainType_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome Icon="plus" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0"  Text="ADD"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Add new train type
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button x:Name="editTrain" materialDesign:ButtonAssist.CornerRadius="10"  Margin ="10 50 -5 0" Grid.Row="3" Grid.Column="1"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditTrain_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome  Icon="PencilSquareOutline" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0" Text="EDIT"></TextBlock>
+                        </StackPanel> 
+                    </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Edit chosen train type
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button x:Name="removeTrain" materialDesign:ButtonAssist.CornerRadius="10"   Margin ="10 50 10 0" Grid.Row="3" Grid.Column="2" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="OpenConfirmPopupTrain">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome  Icon="Trash" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0" Text="DELETE"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Delete chosen train type
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
+                <Button x:Name="wagonsEdit" materialDesign:ButtonAssist.CornerRadius="10" Grid.ColumnSpan="3"  Margin ="10 300 10 0" Grid.Row="6" Grid.Column="0" BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditWagons_Click">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:FontAwesome  Icon="PencilSquareOutline" FontSize="20"/>
+                            <TextBlock Margin ="10 0 0 0" Text="Edit all wagons"></TextBlock>
+                        </StackPanel>
+                    </Button.Content>
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Edit all wagons for trains
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        
+
+        <Frame x:Name="TrainCrudFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden" Height="Auto" Width="Auto"/>
+
+    </Grid>
+</Page>

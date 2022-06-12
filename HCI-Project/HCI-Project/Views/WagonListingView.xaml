@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="HCI_Project.Views.TodoItemListingView"
+    x:Class="HCI_Project.Views.WagonListingView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,21 +14,21 @@
             
             x:Name="lvItems"
             AllowDrop="True"
-            DragLeave="TodoItemList_DragLeave"
-            DragOver="TodoItemList_DragOver"
-            ItemsSource="{Binding TodoItemViewModels}">
+            DragLeave="WagonList_DragLeave"
+            DragOver="WagonList_DragOver"
+            ItemsSource="{Binding WagonViewModels}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <EventSetter Event="MouseMove" Handler="TodoItem_MouseMove" />
-                    <EventSetter Event="DragOver" Handler="TodoItem_DragOver" />
+                    <EventSetter Event="MouseMove" Handler="Wagon_MouseMove" />
+                    <EventSetter Event="DragOver" Handler="Wagon_DragOver" />
+                    <EventSetter Event="MouseLeftButtonUp" Handler="Wagon_Drop" />
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate >
                 <DataTemplate>
                     <DockPanel>
-                        <Image Margin="10 5 0 0" Source="../images/pin-transparent.png" Height="30" Width="32" Stretch="Fill" ></Image>
-                        
-                        <TextBlock Margin ="15 10 0 10" Text="{Binding Description}" FontSize="14" FontWeight="Black"/>
+                        <Image Margin="10 5 0 0" Source="../images/transport-transparent.png" Height="30" Width="20" Stretch="Fill" ></Image>
+                        <TextBlock Margin ="15 10 0 10" Text="{Binding Description}" FontSize="15" FontWeight="Black"/>
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

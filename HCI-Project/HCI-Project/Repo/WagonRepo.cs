@@ -41,12 +41,29 @@ namespace HCI_Project.Repo
         {
             foreach(Wagon wagon in wagons)
             {
-                if (wagon.Id.Equals(selectedWagon.Name))
+                if (wagon.Name.Equals(selectedWagon.Name))
                 {
                     wagon.RowCount = selectedWagon.RowCount;
                     wagon.ColCount = selectedWagon.ColCount;
                 }
             }
+        }
+
+        internal static void AddWagon(Wagon wagon)
+        {
+            wagons.Add(wagon);
+        }
+
+        public static bool NameAlreadyExists(string name)
+        {
+            foreach (Wagon wagon in wagons)
+            {
+                if (wagon.Name.Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

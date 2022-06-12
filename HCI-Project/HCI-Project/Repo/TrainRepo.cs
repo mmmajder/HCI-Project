@@ -30,6 +30,10 @@ namespace HCI_Project.Repo
         {
             return TrainTypeMap[TrainTypeName];
         }
+        public static void SetWagons(string TrainTypeName, List<Wagon> wagons)
+        {
+            TrainTypeMap[TrainTypeName] = wagons;
+        }
 
         public static List<string> GetTrainTypeNames()
         {

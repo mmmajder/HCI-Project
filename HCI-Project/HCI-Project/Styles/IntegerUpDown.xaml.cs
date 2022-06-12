@@ -60,7 +60,11 @@ namespace HCI_Project.Styles
 
         public void DownValue()
         {
-            Value -= 1;
+            if(Value > 1)
+            {
+                Value -= 1;
+            } 
+            
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

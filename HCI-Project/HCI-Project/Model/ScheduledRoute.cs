@@ -42,12 +42,21 @@ namespace HCI_Project.Model
             if (Stations.Count > 1)
                 str += " - " + Stations[Stations.Count - 1].TimeRange.Depature.ToString("HH:mm");
 
+            str += getRepeatingDays();
+
+            return str;
+        }
+
+        public string getRepeatingDays()
+        {
+            string str = "";
+
             foreach (int i in RepeatigDays)
                 str += " " + getDay(i);
 
             return str;
         }
-
+        
         private string getDay(int day)
         {
             switch (day)

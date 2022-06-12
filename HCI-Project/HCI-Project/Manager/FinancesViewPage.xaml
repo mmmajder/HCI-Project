@@ -3,9 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HCI_Project"
+      xmlns:local="clr-namespace:HCI_Project" 
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      d:DataContext="{d:DesignInstance local:FinancesViewPage}"
       Title="FinancesViewPage">
 
     <Grid>
@@ -15,6 +17,9 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Background="#336699">
+            <TextBlock Text="Choose desired route and its schedule, or leave blank to get report for all sold tickets:" HorizontalAlignment="Center"
+                       Margin="10 10 10 0" TextAlignment="Center"
+                        Foreground="White" FontSize="14" TextWrapping="WrapWithOverflow"/>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
                 <Label Content="Route:" Foreground="#FFFFFF" FontSize="15"/>
@@ -22,6 +27,12 @@
                       Foreground="Black" IsEditable="False" FontSize="12" Background="White"
                           Margin="5 0 20 0" Width="150"/>
             </StackPanel>
+            <Button x:Name="ClearRouteBtn"
+                Content="CLEAR ROUTE"  FontSize="10" Height="20" 
+                Click="ClearRoute_Click" Visibility="Collapsed"
+                Margin="110 0 50 0" Padding="0" VerticalAlignment="Center"
+                Background="#cc1111" BorderBrush="#cc1111"/>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
                 <Label x:Name="scheduleLbl"  Content="Schedule:" Foreground="LightSlateGray" FontSize="15"/>
                 <ComboBox x:Name="scheduleCB" SelectedIndex="-1"  SelectionChanged="ScheduledRouteSelected_Click"
@@ -34,12 +45,16 @@
                 Margin="110 0 50 0" Padding="0" VerticalAlignment="Center"
                 Background="#cc1111" BorderBrush="#cc1111"/>
 
-            <Label Content="Route is running on days: " Foreground="White" FontSize="12"
-                   Margin="15 15 15 0"  HorizontalAlignment="Center" Visibility="Hidden"/>
-            <TextBlock Text="" 
-                       TextWrapping="WrapWithOverflow" Foreground="White" FontSize="12" 
+            <TextBlock x:Name="routeIsRunningTB" Text="Route is running on days: " Foreground="White" FontSize="14"
+                   Margin="15 15 15 0"  TextWrapping="WrapWithOverflow"
+                   HorizontalAlignment="Center" Visibility="Hidden"/>
+            <TextBlock Text="Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"  x:Name="varRouteIsRunningTB" Visibility="Hidden"
+                       TextWrapping="WrapWithOverflow" Foreground="White" FontSize="14" 
                        Margin="15 0 15 0" HorizontalAlignment="Center"/>
 
+            <TextBlock Text="Choose time period for report:" HorizontalAlignment="Center"
+                       Margin="0 10 0 -15"
+                       Foreground="White" FontSize="14" TextWrapping="WrapWithOverflow"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 25 0 0">
                 <Label x:Name="monthsLbl" Content="Month:" Foreground="White" FontSize="15"/>
                 <ComboBox x:Name="monthsCB" SelectedIndex="-1"  SelectionChanged="MonthSelected_Click"
@@ -55,6 +70,7 @@
                             Margin="5 0 5 0" FontSize="12" Width="150"/>
                 <RadioButton x:Name="DateRB" GroupName="reportType" Margin="-2 0 2 0" Checked="DateRadioBtn_Check"/>
             </StackPanel>
+            
             <Label x:Name="dateNotChosenErrorLbl" Content="Please, choose date." Foreground="#cc1111" FontSize="15"
                    Margin="15 0 15 0"  HorizontalAlignment="Center" Visibility="Collapsed"/>
             <Button x:Name="GetReportBtn" Click="GetReport_Click"
@@ -63,19 +79,27 @@
                 Background="#cc1111" BorderBrush="#cc1111"/>
         </StackPanel>
 
-        <Grid x:Name="reportGrid" Grid.Column="1" >
+        <Grid x:Name="reportGrid" Grid.Column="1" Visibility="Visible" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="6*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="showingReportsForTB" Text="Showing reports for: "  Foreground="#336699" FontSize="20" TextWrapping="WrapWithOverflow"/>
-                <TextBlock x:Name="varShowingReportsForTB" Text=""  Foreground="#336699" FontSize="20" TextWrapping="WrapWithOverflow"/>
-            </StackPanel>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+            <Viewbox MaxHeight="25" Grid.ColumnSpan="2" Stretch="Uniform" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                <StackPanel Margin="10 0 10 0" Orientation="Horizontal" Grid.ColumnSpan="2">
+                    <TextBlock x:Name="showingReportsForTB" Text="Showing reports for: "  Foreground="#336699" FontSize="18" TextWrapping="WrapWithOverflow"/>
+                    <TextBlock x:Name="varShowingReportsForTB" Text=""  Foreground="#336699" FontSize="18" TextWrapping="WrapWithOverflow"/>
+                </StackPanel>
+            </Viewbox>
             
-            <StackPanel  Grid.Row="1" >
+
+            <StackPanel  Margin="10 0 10 0" Grid.Row="1" >
                 <StackPanel Orientation="Horizontal">
                     <Label x:Name="incomeLbl" Content="Income: " Foreground="#336699" FontSize="20"/>
                     <Label x:Name="varIncomeLbl" Content="" Foreground="#336699"  FontSize="20"/>
@@ -89,6 +113,169 @@
                     <Label x:Name="varSeatsSoldLbl" Content="" Foreground="#336699"  FontSize="20"/>
                 </StackPanel>
             </StackPanel>
+
+            
+
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="GraphTitleText" Text="" Grid.ColumnSpan="3" Foreground="#336699" FontSize="15" TextWrapping="WrapWithOverflow"/>
+                <lvc:CartesianChart Grid.Row="1" Grid.ColumnSpan="3" Series="{Binding SeriesCollection}" LegendLocation="Right" >
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Income" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis Title="TimePeriodGroup" Labels="{Binding Labels}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                </lvc:CartesianChart>
+
+                <Button  x:Name="IncomeBtn" Click="IncomeBtn_Click" Grid.Column="0" Grid.Row="2"
+                Content="INCOME"  FontSize="12" Height="20" Margin="15 0 15 0"
+                 Padding="0" VerticalAlignment="Center"
+                Background="#cc1111" BorderBrush="#cc1111"/>
+
+                <Button x:Name="TicketsBtn" Click="TicketsBtn_Click" Grid.Column="1" Grid.Row="2"
+                Content="TICKETS"  FontSize="12" Height="20" Margin="15 0 15 0"
+                 Padding="0" VerticalAlignment="Center"
+                Background="#cc1111" BorderBrush="#cc1111"/>
+
+                <Button x:Name="SeatsBtn" Click="SeatsBtn_Click" Grid.Column="2" Grid.Row="2"
+                Content="SEATS"  FontSize="12" Height="20" Margin="15 0 15 0"
+                 Padding="0" VerticalAlignment="Center"
+                Background="#cc1111" BorderBrush="#cc1111"/>
+                
+                
+            </Grid>
+
+
+            <DataGrid  Grid.Row="2" Grid.ColumnSpan="2" CanUserReorderColumns="False" CanUserResizeColumns="True" 
+                                                        CanUserResizeRows="False" CanUserSortColumns="True"
+                        SelectionMode="Single" SelectionUnit="FullRow"
+                      x:Name="dgrMain"  AutoGenerateColumns="False"
+                      RowBackground="White" Background="#336699"
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False"
+                      >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Username" Width="2*" Binding="{Binding Path='Username'}" IsReadOnly="True">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Date" Width="2*" Binding="{Binding Path='DateStr'}" IsReadOnly="True">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Departure" Width="2*" 
+                                        Binding="{Binding Path='DepartureTimeStr'}" IsReadOnly="True">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="From" Width="2*" Binding="{Binding Path='From'}" IsReadOnly="True">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="To" Width="2*" Binding="{Binding Path='To'}" IsReadOnly="True">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Seats" Binding="{Binding Path='Seats'}" Width="2*" IsReadOnly="True">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Width="2*" Binding="{Binding Path='Price'}" IsReadOnly="True">
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
         </Grid>
         
     </Grid>

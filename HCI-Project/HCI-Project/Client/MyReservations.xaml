@@ -31,7 +31,8 @@
                 Margin="40 0 40 0" VerticalAlignment="Center"
                 Background="#cc1111" BorderBrush="#cc1111"/>
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <DataGrid SelectionMode="Single" SelectionUnit="FullRow"
+            <DataGrid SelectionMode="Single" SelectionUnit="FullRow" CanUserReorderColumns="False" CanUserResizeColumns="True" 
+                                                        CanUserResizeRows="False" CanUserSortColumns="True"
                       x:Name="dgrMain"  AutoGenerateColumns="False"
                       RowBackground="White" Background="#336699"
                       ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False"

@@ -72,7 +72,17 @@
                         </ToolTip>
                     </DatePicker.ToolTip>
                 </DatePicker>
-                <Button Margin="10 150 19 0" Grid.Row="1" BorderBrush="Transparent" Background="#cc1111" Content="SEARCH" Foreground="White" Click="Button_Click"></Button>
+                <Button Margin="10 150 19 0" Grid.Row="1" BorderBrush="Transparent" Background="#cc1111" Content="SEARCH" Foreground="White" Click="Button_Click">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Bottom">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Search scheduled routes
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
         </StackPanel>
         <Button materialDesign:ButtonAssist.CornerRadius="25" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
@@ -81,13 +91,32 @@
                     <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                    Help
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
         </Button>
-        <StackPanel x:Name="TablePanel" Grid.Column="1" Margin="20,0,20,20" Visibility="Hidden">
+        <StackPanel x:Name="TablePanel" Grid.Column="1" Margin="20,20,20,20" Visibility="Hidden">
             <TextBlock x:Name="FromLoc" FontSize="25" Foreground="#336699" />
             <TextBlock x:Name="ToLoc" FontSize="25" Foreground="#336699" />
             <DataGrid x:Name="dgrMain" Grid.ColumnSpan="6"  CanUserAddRows="False" AutoGenerateColumns="False" IsEnabled="True" Margin="0,10,0,0" RowBackground="White" Background="#336699" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Depature Date" Width="*" Binding="{Binding Path='From'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True">
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='From'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True">
+                        <DataGridTextColumn.Header>
+                            <TextBlock>Depature<LineBreak/>    Date</TextBlock>
+                        </DataGridTextColumn.Header>
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="ToolTip" Value="{Binding 'From'}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -98,7 +127,10 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Depature Time" Width="*" Binding="{Binding Path='Depature'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='Depature'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock>Depature<LineBreak/>Time</TextBlock>
+                        </DataGridTextColumn.Header>
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -108,7 +140,10 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Arrival Date" Width="*" Binding="{Binding Path='To'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='To'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock>Arrival<LineBreak/>Date</TextBlock>
+                        </DataGridTextColumn.Header>
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -118,7 +153,10 @@
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Arrival Time" Width="*" Binding="{Binding Path='Arrival'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='Arrival'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                        <DataGridTextColumn.Header>
+                            <TextBlock>Arrival<LineBreak/>Time</TextBlock>
+                        </DataGridTextColumn.Header>
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -148,7 +186,17 @@
                         </DataGridTemplateColumn.HeaderStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Name="btnView" Content="View" Click="btnView_Click" Background="#cc1111" BorderBrush="#cc1111" VerticalAlignment="Center"/>
+                                <Button Name="btnView" Content="View" Click="btnView_Click" Background="#cc1111" BorderBrush="#cc1111" VerticalAlignment="Center">
+                                    <Button.ToolTip>
+                                        <ToolTip   Placement="Bottom">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock MaxWidth="150" Foreground="White">
+                                    View scheduled route
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

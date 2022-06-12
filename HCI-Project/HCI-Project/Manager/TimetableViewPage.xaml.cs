@@ -80,7 +80,7 @@ namespace HCI_Project
             } 
             else
             {
-                MessageBox.Show("Please input values for start and end station");
+                MessageBox.Show("Please input valid values for start and end station");
             }
         }
 

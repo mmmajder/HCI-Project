@@ -7,6 +7,14 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:local="clr-namespace:HCI_Project"
         mc:Ignorable="d"
         Title="ScheduledRouteWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="Centering" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
     <Grid Margin="10">
         <Label Grid.Row="0" Content="Scheduled route" x:Name="TitleLbl" HorizontalAlignment="Center"  Foreground="#000" FontSize="18"/>
         <Button materialDesign:ButtonAssist.CornerRadius="25" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
@@ -17,7 +25,7 @@
             </Button.Content>
         </Button>
         
-        <DataGrid IsEnabled="True" Margin="0,40,0,0"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged">
+            <DataGrid IsEnabled="True" Margin="0,40,0,0" CanUserAddRows="False"  Name="dgRoute" AutoGenerateColumns="False" SelectionChanged="DgUsers_SelectionChanged" CellEditEnding="CellChanged" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <!--  <DataGridTemplateColumn Header="Station" Width="*" >
                     <DataGridTemplateColumn.CellTemplate>
@@ -26,9 +34,40 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>-->
-                <DataGridTextColumn Header="Station" Binding="{Binding Station}" />
+                <DataGridTextColumn Header="Station" Width="*" Binding="{Binding Path='Station'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="#336699"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Arrival" Width="*" Binding="{Binding Path='Arrival'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="#336699"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Depature" Width="*" Binding="{Binding Path='Depature'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="#336699"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                </DataGridTextColumn>
+            <!--    <DataGridTextColumn Header="Station" Binding="{Binding Station}" />
                 <DataGridTextColumn Header="Arrival" Binding="{Binding Arrival}"  />
-                <DataGridTextColumn Header="Depature" Binding="{Binding Depature}"/>
+                <DataGridTextColumn Header="Depature" Binding="{Binding Depature}"/>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

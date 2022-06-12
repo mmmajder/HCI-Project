@@ -102,8 +102,6 @@
             </Button.ToolTip>
             </Button>
             <StackPanel x:Name="TablePanel" Grid.Column="1" Margin="20,0,20,20" Visibility="Hidden" >
-         <!--   <TextBlock x:Name="FromLoc" FontSize="25" Foreground="#336699" />
-            <TextBlock x:Name="ToLoc" FontSize="25" Foreground="#336699" />-->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -132,10 +130,20 @@
                   ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
                   >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Binding="{Binding Path='From'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True">
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='From'}" IsReadOnly="True">
                         <DataGridTextColumn.Header>
                             <TextBlock>Depature<LineBreak/>    Date</TextBlock>
                         </DataGridTextColumn.Header>
+                        <DataGridTextColumn.HeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="#336699"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.HeaderStyle>
                         <DataGridTextColumn.CellStyle>
                             <Style TargetType="DataGridCell">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -144,19 +152,18 @@
                                 <Setter Property="Background" Value="White"/>
                                 <Setter Property="Foreground" Value="Black"/>
                                 <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
                             </Style>
                         </DataGridTextColumn.CellStyle>
-                        <DataGridTextColumn.HeaderStyle>
-                            <Style TargetType="DataGridColumnHeader">
-                                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                <Setter Property="VerticalContentAlignment" Value="Center" />
-                                <Setter Property="Background" Value="#336699"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="BorderBrush" Value="White"/>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
                             </Style>
-                        </DataGridTextColumn.HeaderStyle>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Binding="{Binding Path='Depature'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='Depature'}" IsReadOnly="True" >
                         <DataGridTextColumn.Header>
                             <TextBlock>Depature<LineBreak/>Time</TextBlock>
                         </DataGridTextColumn.Header>
@@ -178,8 +185,14 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Binding="{Binding Path='To'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='To'}" IsReadOnly="True" >
                         <DataGridTextColumn.Header>
                             <TextBlock>Arrival<LineBreak/>Date</TextBlock>
                         </DataGridTextColumn.Header>
@@ -201,8 +214,14 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Width="*" Binding="{Binding Path='Arrival'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True" >
+                    <DataGridTextColumn Width="*" Binding="{Binding Path='Arrival'}" IsReadOnly="True" >
                         <DataGridTextColumn.Header>
                             <TextBlock>Arrival<LineBreak/>Time</TextBlock>
                         </DataGridTextColumn.Header>
@@ -224,8 +243,14 @@
                                 <Setter Property="Foreground" Value="White"/>
                             </Style>
                         </DataGridTextColumn.HeaderStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Time" Width="*" Binding="{Binding Path='Time'}" ElementStyle="{StaticResource Centering}" IsReadOnly="True">
+                    <DataGridTextColumn Header="Time" Width="*" Binding="{Binding Path='Time'}" IsReadOnly="True">
                         <DataGridTextColumn.HeaderStyle>
                             <Style TargetType="DataGridColumnHeader">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -244,6 +269,12 @@
                                 <Setter Property="BorderBrush" Value="Transparent"/>
                             </Style>
                         </DataGridTextColumn.CellStyle>
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTemplateColumn Header="View" Width="*">
                         <DataGridTemplateColumn.HeaderStyle>

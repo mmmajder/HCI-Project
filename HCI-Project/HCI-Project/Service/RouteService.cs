@@ -61,7 +61,7 @@ namespace HCI_Project.Service
                             }
                         }
                         DateTime endDate = DateTimeUtils.calculateEndDate(endTime, date);
-                        routes.Add(new RouteTableDTO { From = date.ToString("dd.MM.yyyy"), Depature = startTime.ToString("HH:mm"), To = endDate.ToString("dd.MM.yyyy"), Arrival = endTime.ToString("HH:mm"), Time = (endTime - startTime).ToString() });
+                        routes.Add(new RouteTableDTO { From = date.ToString("dd.MM.yyyy."), Depature = startTime.ToString("HH:mm"), To = endDate.ToString("dd.MM.yyyy."), Arrival = endTime.ToString("HH:mm"), Time = (endTime - startTime).ToString() });
                     }
                 }
             }

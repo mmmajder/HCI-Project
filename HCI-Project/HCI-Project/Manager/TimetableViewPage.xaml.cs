@@ -4,6 +4,7 @@ using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,8 +34,10 @@ namespace HCI_Project
         public static ObservableCollection<RouteTableManagerDTO> TableData = new ObservableCollection<RouteTableManagerDTO>();
         public static string from;
         public static string to;
-        public TimetableViewPage()
+        private readonly ManagerWindow managerWindow;
+        public TimetableViewPage(ManagerWindow managerWindow)
         {
+            this.managerWindow = managerWindow;
             InitializeComponent();
             FillData();
             DataContext = this;
@@ -101,6 +104,43 @@ namespace HCI_Project
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void OpenConfirmPopup(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            Station cliecked_station = button.DataContext as Station;
+            int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
+            ScheduledRoute slectedScheduledRoute = Routes[i];
+
+            if (slectedScheduledRoute == null)
+            {
+                return;
+            }
+            managerWindow.popup.YesButton.Click += btnRemove_Click;
+            managerWindow.popup.YesButton.Click += CloseConfirmPopup;
+            managerWindow.popup.NoButton.Click += CloseConfirmPopup;
+            managerWindow.popup.confirmMessage.Text = "Are you sure you want to delete scheduled route?";
+
+            managerWindow.host.ShowDialog(managerWindow.popup);
+        }
+
+        private void CloseConfirmPopup(object sender, RoutedEventArgs e)
+        {
+            managerWindow.popup.YesButton.Click -= btnRemove_Click;
+            managerWindow.popup.NoButton.Click -= CloseConfirmPopup;
+        }
+
+        private void CloseCloseConfirmPopup(object sender, RoutedEventArgs e)
+        {
+            managerWindow.popup.YesButton.Click -= btnRemove_Click;
+            managerWindow.popup.NoButton.Click -= CloseCloseConfirmPopup;
+            managerWindow.popup.YesButton.Click -= CloseCloseConfirmPopup;
+            GoBack();
+        }
+
+        private void GoBack()
+        {
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)

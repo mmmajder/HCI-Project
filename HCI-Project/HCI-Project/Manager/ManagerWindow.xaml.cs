@@ -42,7 +42,7 @@ namespace HCI_Project
 
         private void TimetableBtn_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new TimetableViewPage();
+            Main.Content = new TimetableViewPage(this);
         }
 
         private void FinancesBtn_Click(object sender, RoutedEventArgs e)

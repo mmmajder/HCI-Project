@@ -41,6 +41,7 @@ namespace HCI_Project
 
         public List<Pushpin> AddPushPins(List<Station> stations)
         {
+            myMap.Children.Clear();
             List<Pushpin> pushpins = new List<Pushpin>();
             foreach (Station station in stations)
             {

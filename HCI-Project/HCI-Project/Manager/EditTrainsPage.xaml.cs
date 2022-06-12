@@ -75,7 +75,7 @@ namespace HCI_Project.Manager
 
             if (!IsValidInput(input))
             {
-                errorMessage.Text = "Invalid input  *can contain only letters numbers and '-'";
+                errorMessage.Text = "Train Type can only contain letters, numbers and dash";
                 errorMessage.Visibility = Visibility.Visible;
                 return false;
             }

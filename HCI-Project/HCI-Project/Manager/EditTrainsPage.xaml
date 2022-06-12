@@ -33,10 +33,29 @@
                     <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                            Help
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
         </Button>
 
         <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Margin="15"  x:Name="trainTypeLbl"/>
-        <TextBox  Grid.Row="0" Grid.Column="1"  Height="45" x:Name="trainName" VerticalAlignment="Center" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"  />
+        <TextBox  Grid.Row="0" Grid.Column="1"  Height="45" x:Name="trainName" VerticalAlignment="Center" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <TextBox.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                Input train type (only alphanumeric)
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
         <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden" x:Name="errorMessage"  HorizontalAlignment="Center" FontSize="20" Foreground="Red"/>
         
         <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="60 0 0 0" FontSize="24" Text="Train's Wagons" />
@@ -50,6 +69,15 @@
                     <TextBlock Margin ="10 0 0 0" Text="EDIT"></TextBlock>
                 </StackPanel>
             </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                    Edit all wagons for trains
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
         </Button>
 
         <views:WagonView Grid.Row="5" Grid.ColumnSpan="3" Margin="0, 10, 0, 0"/>
@@ -60,8 +88,28 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" HorizontalAlignment="Center" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel"  Foreground="White" Click="CancelChanges_Click"></Button>
-            <Button Grid.Column="1" HorizontalAlignment="Center"  Margin="10 0 0 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveChanges_Click"></Button>
+            <Button Grid.Column="0" HorizontalAlignment="Center" Margin="0 0 10 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Cancel"  Foreground="White" Click="CancelChanges_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                    Cancel all changes you made
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Center"  Margin="10 0 0 15" Height="40" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveChanges_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                    Save all changes you made
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
         </Grid>
     </Grid>
 </Page>

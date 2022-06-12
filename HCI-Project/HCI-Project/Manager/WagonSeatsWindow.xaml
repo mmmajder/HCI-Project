@@ -32,6 +32,15 @@
                         <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Button.Content>
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                            Help
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Margin="20,0,0,20" Background="#336699" >
@@ -57,6 +66,15 @@
                                 <TextBlock Margin ="10 0 0 0"  Text="ADD"></TextBlock>
                             </StackPanel>
                         </Button.Content>
+                        <Button.ToolTip>
+                            <ToolTip   Placement="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock MaxWidth="150" Foreground="White">
+                                        Add new wagon
+                                    </TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
 
                     <ListView x:Name="allWagonsList" FontSize="20" Background="#336699" Grid.Column="0"  Grid.ColumnSpan="3" Grid.Row="2" Margin="0,30,0,0"
@@ -80,6 +98,15 @@
                                                 <TextBlock Margin ="10 0 0 0" Text="DELETE"></TextBlock>
                                             </StackPanel>
                                         </Button.Content>
+                                        <Button.ToolTip>
+                                            <ToolTip   Placement="Right">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock MaxWidth="150" Foreground="White">
+                                                        Delete this wagon
+                                                    </TextBlock>
+                                                </StackPanel>
+                                            </ToolTip>
+                                        </Button.ToolTip>
                                     </Button>
                                 </Grid>
                             </DataTemplate>
@@ -105,7 +132,17 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" x:Name="wagonNameLbl"  Margin="15"/>
-                <TextBox  Grid.Row="0" Grid.Column="1"  Height="45" x:Name="wagonName" VerticalAlignment="Center" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}"  />
+                <TextBox  Grid.Row="0" Grid.Column="1"  Height="45" x:Name="wagonName" VerticalAlignment="Center" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                    <TextBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="250" Foreground="White">
+                                        Input wagon name (only alphanumeric)
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </TextBox.ToolTip>
+                </TextBox>
                 <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden" x:Name="errorMessage"  HorizontalAlignment="Center" FontSize="18" Foreground="Red"/>
 
                 <Label x:Name="sa" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  Margin="25, 0 ,0,15" VerticalAlignment="Bottom"   FontSize="20" Content="Columns:"/>
@@ -120,11 +157,41 @@
                     Value="{Binding RowCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     FontSize="20" Width="70" Height="50" Margin="50, 50 ,0,0" />
 
-                <Button Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Width="150" HorizontalAlignment="Center" Height="40" MaxWidth="300" Margin ="0 0 0 10"  BorderBrush="Transparent" Background="DarkBlue" Content="Preview seats"  Foreground="White" Click="PreviewSeats_Click"></Button>
+                <Button Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Width="150" HorizontalAlignment="Center" Height="40" MaxWidth="300" Margin ="0 0 0 10"  BorderBrush="Transparent" Background="DarkBlue" Content="Preview seats"  Foreground="White" Click="PreviewSeats_Click">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White">
+                                    Preview seats matrix
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </Grid>
 
-            <Button  Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Width="250" HorizontalAlignment="Center" Height="35" MaxWidth="300" Margin ="30 0 0 10"  BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveChanges_Click"></Button>
-            <Button Grid.Row="2" Grid.Column="2"  VerticalAlignment="Bottom" HorizontalAlignment="Right"  Margin="10 0 10 10" Height="35" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Close"  Foreground="White" Click="GoBack"></Button>
+            <Button  Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Width="250" HorizontalAlignment="Center" Height="35" MaxWidth="300" Margin ="30 0 0 10"  BorderBrush="Transparent" Background="#cc1111" Content="Save changes"  Foreground="White" Click="SaveChanges_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                Save all changes you made
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Grid.Row="2" Grid.Column="2"  VerticalAlignment="Bottom" HorizontalAlignment="Right"  Margin="10 0 10 10" Height="35" Width="150" MaxWidth="300"  BorderBrush="Transparent" Background="#cc1111" Content="Close"  Foreground="White" Click="GoBack">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White">
+                                Go back to train editing 
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
 
 
         </Grid>

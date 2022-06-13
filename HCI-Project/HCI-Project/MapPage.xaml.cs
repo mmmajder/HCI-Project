@@ -35,6 +35,10 @@ namespace HCI_Project
             myMap.Center = new Location(45.267136, 19.833549); // Novi Sad
             myMap.ZoomLevel = 11;
         }
+        public void SetCenter(Location location)
+        {
+            myMap.Center = location;   
+        }
 
         private readonly Random rnd = new Random();
         private List<MapPolyline> drawnPolylines = new List<MapPolyline>();
@@ -61,7 +65,8 @@ namespace HCI_Project
         {
             DraggablePin pin = new DraggablePin(myMap, name)
             {
-                Location = myMap.Center
+                Location = myMap.Center,
+                Content = name
             };
 
             myMap.Children.Add(pin);
@@ -117,20 +122,6 @@ namespace HCI_Project
             {
                 myMap.Children.Remove(polyline);
             }
-        }
-
-        private Brush PickBrush()
-        {
-            Type brushesType = typeof(Brushes);
-
-            PropertyInfo[] properties = brushesType.GetProperties();
-
-            int random = rnd.Next(properties.Length);
-            Brush result = (Brush)properties[random].GetValue(null, null);
-
-            return result;
-        }
-
-        
+        }        
     }
 }

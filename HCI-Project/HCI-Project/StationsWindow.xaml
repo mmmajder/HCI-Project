@@ -55,7 +55,7 @@
 
                     <ListView x:Name="stations" FontSize="20" Background="#336699" Grid.Column="0"  Grid.ColumnSpan="2" Grid.Row="2" Margin="-50 30 0 0"
                            MaxHeight="270" Height="270" VerticalContentAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True"
-                            ItemsSource="{Binding AllStations}" HorizontalContentAlignment="Stretch">
+                            ItemsSource="{Binding AllStations}" HorizontalContentAlignment="Stretch" SelectionChanged="ShowSelectedStation_Click">
                         <ListView.ItemTemplate  >
                             <DataTemplate >
                                 <Grid>

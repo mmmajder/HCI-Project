@@ -20,7 +20,6 @@
             </Grid.ColumnDefinitions>-->
             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0 0 10 0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Name="Home" FontSize="15" FontWeight="Bold" Foreground="White" Background="#336699" BorderThickness="0" Margin="2" Content="HOME" Click="HomeViewSelected"/>
-                <Button Name="TrainsBtn" FontSize="15" FontWeight="Bold" Background="#336699" Foreground="White" BorderThickness="0" Margin="2" Content="TRAINS" Click="TrainsViewSelected"/>
                 <Button Name="LinesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LINES" Click="LinesViewSelected"/>
                 <Button Name="TimetableBtn" FontSize="15" FontWeight="Bold" Margin="2" Foreground="White" BorderThickness="0" Content="TIMETABLE"  Background="#336699" Click="TimetableBtn_Click"/>
                 <Button Name="MyTicketsBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="MY TICKETS" Click="MyTicketsBtn_Click" />

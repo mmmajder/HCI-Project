@@ -27,6 +27,10 @@ namespace HCI_Project
         {
             InitializeComponent();
             this.managerWindow = managerWindow;
+            if (managerWindow != null)
+            {
+                editStation.Visibility = Visibility.Visible;
+            }
             this.refreshData = refreshData;
         }
 

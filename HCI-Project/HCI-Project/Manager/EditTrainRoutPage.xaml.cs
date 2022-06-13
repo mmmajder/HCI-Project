@@ -1,5 +1,6 @@
 ﻿using DragDropDemo.ViewModels;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -29,6 +30,7 @@ namespace HCI_Project.Manager
         private readonly MapLinePage mapLinePage;
         private ManagerWindow managerWindow;
         private LinesViewPage linesPage;
+        private List<string> trainTypes = TrainRepo.GetTrainTypeNames();
 
         public Route route { get; set; }
 
@@ -52,28 +54,57 @@ namespace HCI_Project.Manager
             {
                 routeNameLbl.Text = "New Route";
             }
-
+            ComboBoxInit();
         }
+        private void ComboBoxInit()
+        {
+            trainTypesCombobox.ItemsSource = trainTypes;
+            trainTypesCombobox.IsTextSearchEnabled = true;
+            trainTypesCombobox.IsEditable = true;
+            trainTypesCombobox.IsTextSearchCaseSensitive = false;
+            if (route != null)
+            {
+                trainTypesCombobox.SelectedItem = route.TrainType;
+            }
+        }
+
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
 
             List<Station> newRouteStations = new List<Station>();
             TodoViewModel model = (TodoViewModel)this.DataContext;
             TodoItemListingViewModel InProgressTodoItemListingViewModel = model.InProgressTodoItemListingViewModel;
+
+            errorTrainType.Visibility = Visibility.Hidden;
+            errorStations.Visibility = Visibility.Hidden;
+
             foreach (TodoItemViewModel a in InProgressTodoItemListingViewModel.TodoItemViewModels)
             {
                 newRouteStations.Add(a.Station);
             }
 
+            string trainType = GetTrainType();
+            if(!ValidateInputs(trainType, newRouteStations))
+            {
+                return;
+            }
+
+
             if (route != null)
             {
                 route.Stations = newRouteStations;
+                route.TrainType = trainType;
+
+                MyMessageBox popup = new MyMessageBox("Successfully edited train route", this, true);
+                popup.ShowDialog();
             }
             else
             {
-                string trainType = "";
-                Route route = new Route(500, newRouteStations, new List<ScheduledRoute>(), trainType);
+                int id = RouteRepo.GetRoutes().Count + 1;
+                Route route = new Route(id, newRouteStations, new List<ScheduledRoute>(), trainType);
                 RouteRepo.AddRoute(route);
+                MyMessageBox popup = new MyMessageBox("Successfully added new train route", this, true);
+                popup.ShowDialog();
             }
             main.Content = mapLinePage;
             linesPage.RefreshCombobox();
@@ -90,8 +121,6 @@ namespace HCI_Project.Manager
             StationsWindow sw = new StationsWindow(managerWindow, linesPage, RefreshData);
             sw.Visibility = Visibility.Visible;
             managerWindow.Main.Content = sw;
-
-
         }
 
         public void RefreshData()
@@ -101,7 +130,6 @@ namespace HCI_Project.Manager
             model.CompletedTodoItemListingViewModel = allStations;
 
             DataContext = new TodoViewModel(model.InProgressTodoItemListingViewModel, allStations);
-            //            this.DataContext = model;
 
             linesPage.RefreshCombobox();
         }
@@ -116,6 +144,45 @@ namespace HCI_Project.Manager
             {
                 HelpProvider.ShowHelp("AddTrainRoute");
             }
+        }
+
+        private Object GetComboboxValue(ComboBox myCombobox)
+        {
+            if (myCombobox.SelectedIndex == -1)
+            {
+                return null;
+            }
+            int locationIndex = myCombobox.SelectedIndex;
+            var selectedItem = myCombobox.Items[locationIndex];
+            return selectedItem;
+        }
+
+
+        private bool ValidateInputs(string trainType, List<Station> newRouteStations)
+        {
+            bool valid = true;
+            if (trainType == null)
+            {
+                errorTrainType.Visibility = Visibility.Visible;
+                valid = false;
+            }
+            if (newRouteStations.Count < 2)
+            {
+                errorStations.Visibility = Visibility.Visible;
+                valid = false;
+            }
+            return valid;
+        }
+
+        private string GetTrainType()
+        {
+            object trainTypeClicked = GetComboboxValue(trainTypesCombobox);
+
+            if (trainTypeClicked == null)
+            {
+                return null;
+            }
+            return trainTypeClicked.ToString();
         }
     }
 

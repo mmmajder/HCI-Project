@@ -199,8 +199,8 @@
     <Compile Include="Popups\InputStationNamePopup.xaml.cs">
       <DependentUpon>InputStationNamePopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Popups\MessageBox.xaml.cs">
-      <DependentUpon>MessageBox.xaml</DependentUpon>
+    <Compile Include="Popups\MyMessageBox.xaml.cs">
+      <DependentUpon>MyMessageBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\Coordinate.cs" />
@@ -365,7 +365,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Popups\MessageBox.xaml">
+    <Page Include="Popups\MyMessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

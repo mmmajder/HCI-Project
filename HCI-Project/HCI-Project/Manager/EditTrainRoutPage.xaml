@@ -11,24 +11,24 @@
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
       xmlns:popups="clr-namespace:HCI_Project.Popups"
        xmlns:help="clr-namespace:HCI_Project.Help"
-      Title="EditRouteWindow" MaxHeight="600" MaxWidth="800">
+      Title="EditRouteWindow" MaxHeight="600" MaxWidth="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="9*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.6*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center"   materialDesign:ButtonAssist.CornerRadius="25"  BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+        <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"   materialDesign:ButtonAssist.CornerRadius="25"  BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -48,11 +48,12 @@
         <TextBlock Grid.ColumnSpan="3" x:Name="routeNameLbl" Grid.Row="0" FontSize="25" HorizontalAlignment="Center"></TextBlock>
         <TextBlock Grid.ColumnSpan="3" x:Name="routeName" Margin="0 0 0 15"  Grid.Row="1" FontSize="25" HorizontalAlignment="Center"></TextBlock>
 
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="60 0 0 0" FontSize="24" Text="Route stations" />
-        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" FontSize="24" Text="All Stations" />
+        <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" FontSize="24" Text="Train type on route" />
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" Margin="60 0 0 0" FontSize="24" Text="Route stations" />
+        <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" FontSize="24" Text="All Stations" Margin="0 0 0 0"/>
+        
 
-
-        <Button  Grid.Row="3" Grid.Column="2" Margin ="0 0 10 0"   materialDesign:ButtonAssist.CornerRadius="10"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditStations_Click">
+        <Button  Grid.Row="3" Grid.Column="2" Margin ="0 0 10 0"  HorizontalAlignment="Right"  materialDesign:ButtonAssist.CornerRadius="10"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditStations_Click">
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <fa:FontAwesome  Icon="PencilSquareOutline" FontSize="20"/>
@@ -70,7 +71,22 @@
             </Button.ToolTip>
         </Button>
 
-        <views:TodoView Grid.Row="4" Grid.ColumnSpan="3"/>
+        <ComboBox x:Name="trainTypesCombobox"  Margin ="10" Grid.Row="4" Grid.Column="0" Foreground="Black" VerticalAlignment="Top" Background="White" FontSize="18" >
+            <ComboBox.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                Choose train type
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </ComboBox.ToolTip>
+        </ComboBox>
+
+        <TextBlock Visibility="Hidden" Text="Please choose train type" Margin ="-10" Grid.Row="4" HorizontalAlignment="Center" Grid.Column="0" x:Name="errorTrainType"  Foreground="#cc1111"/>
+
+        <TextBlock Visibility="Hidden" Text="Please choose at least two stations from the list" Margin ="-10" Grid.Row="4" HorizontalAlignment="Center" Grid.Column="1" x:Name="errorStations"  Foreground="#cc1111"/>
+        <views:TodoView Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
 
         <Grid  Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>

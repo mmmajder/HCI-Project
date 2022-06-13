@@ -42,7 +42,7 @@ namespace HCI_Project
         private void AddStation_Click(object sender, RoutedEventArgs e)
         {
             InputStationNamePopup inputPopup = new InputStationNamePopup("Please input the name of new station.", "*Then you will be able to set it's location", this);
-            inputPopup.Show();
+            inputPopup.ShowDialog();
         }
 
         public void AddPushpin(string name)
@@ -57,6 +57,7 @@ namespace HCI_Project
             {
                 StationRepo.RemoveStation(stationForDelete);
             }
+
             stations.ItemsSource = null;
             stations.ItemsSource = AllStations;
 
@@ -71,6 +72,9 @@ namespace HCI_Project
             {
                 StationRepo.AddStation(new Station(pin.StationName, false, pin.Location));
             }
+
+            MyMessageBox popup = new MyMessageBox("Successfully created new station", this, true);
+            popup.ShowDialog();
 
             stations.ItemsSource = null;
             stations.ItemsSource = AllStations;
@@ -176,6 +180,21 @@ namespace HCI_Project
         private void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("Stations");
+        }
+
+        private void ShowSelectedStation_Click(object sender, SelectionChangedEventArgs e)
+        {
+            object selectedItem = stations.SelectedItem;
+            if(selectedItem != null)
+            {
+                Station selectedStation = (Station)selectedItem;
+                if (!(bool)showAll.IsChecked)
+                {
+                    mapPage.myMap.Children.Clear();
+                    mapPage.AddPushPins(new List<Station> { selectedStation });
+                }
+                mapPage.SetCenter(selectedStation.Position);
+            }
         }
     }
 }

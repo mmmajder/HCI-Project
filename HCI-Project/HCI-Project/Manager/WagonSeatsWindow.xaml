@@ -143,7 +143,7 @@
                         </ToolTip>
                     </TextBox.ToolTip>
                 </TextBox>
-                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden" x:Name="errorMessage"  HorizontalAlignment="Center" FontSize="18" Foreground="Red"/>
+                <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden" x:Name="errorMessage"  HorizontalAlignment="Center" Foreground="Red"/>
 
                 <Label x:Name="sa" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left"  Margin="25, 0 ,0,15" VerticalAlignment="Bottom"   FontSize="20" Content="Columns:"/>
                 <styles:IntegerUpDown x:Name="ColumnCountPicker" Grid.Column="0" Grid.Row="2"

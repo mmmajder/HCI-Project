@@ -1,5 +1,6 @@
 ﻿using DragDropDemo.ViewModels;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -72,35 +73,61 @@ namespace HCI_Project.Manager
         {
             string input = trainName.Text;
             errorMessage.Visibility = Visibility.Hidden;
-
-            if (!IsValidInput(input))
-            {
-                errorMessage.Text = "Train Type can only contain letters, numbers and dash";
-                errorMessage.Visibility = Visibility.Visible;
-                return false;
-            }
+            errorMessageWagons.Visibility = Visibility.Hidden;
+            MyMessageBox popup;
 
             if (trainType == input)
             {
                 TrainRepo.SetWagons(trainType, newTrainWagons);
+                popup = new MyMessageBox("Successfully edited train", this, true);
+                popup.ShowDialog();
+                return true;
             }
 
-            else 
+            if (!checkInput(input, newTrainWagons))
             {
-                if (TrainRepo.GetTrainTypeNames().Contains(input))
-                {
-                    errorMessage.Text = "This train type already exists!";
-                    errorMessage.Visibility = Visibility.Visible;
-                    return false;
-                }
-
-                TrainRepo.AddTrainType(trainName.Text, newTrainWagons);
-                if (trainType != null)
-                {
-                    TrainRepo.RemoveTrainType(trainType);
-                }
+                return false;
             }
+
+            TrainRepo.AddTrainType(trainName.Text, newTrainWagons);
+
+            if (trainType != null)
+            {
+                TrainRepo.RemoveTrainType(trainType);
+                popup = new MyMessageBox("Successfully edited train", this, true);
+                popup.ShowDialog();
+                return true;
+            }
+
+            popup = new MyMessageBox("Successfully created new train", this, true);
+            popup.ShowDialog();
             return true;
+        }
+
+        private bool checkInput(string input, List<Wagon> newTrainWagons)
+        {
+            bool valid = true;
+            if (!IsValidInput(input))
+            {
+                errorMessage.Text = "Train Type can only contain letters, numbers and dash";
+                errorMessage.Visibility = Visibility.Visible;
+                valid = false;
+            }
+
+            if (newTrainWagons.Count < 1)
+            {
+                errorMessageWagons.Visibility = Visibility.Visible;
+                valid = false;
+            }
+
+            if (TrainRepo.GetTrainTypeNames().Contains(input))
+            {
+                errorMessage.Text = "This train type already exists!";
+                errorMessage.Visibility = Visibility.Visible;
+                valid = false;
+            }
+
+            return valid;
         }
 
         private bool IsValidInput(string input)

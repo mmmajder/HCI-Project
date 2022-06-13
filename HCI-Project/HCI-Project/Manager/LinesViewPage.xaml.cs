@@ -31,7 +31,11 @@ namespace HCI_Project
             InitializeComponent();
             this.managerWindow = managerWindow;
             RefreshData();
-            SetControlsVisible();
+            if(managerWindow != null)
+            {
+                SetControlsVisible();
+            }
+           
         }
 
         private void ComboBoxInit()
@@ -147,8 +151,7 @@ namespace HCI_Project
 
         private void SetControlsVisible()
         {
-            bool isManagerLogged = true;
-            if (isManagerLogged)
+            if (managerWindow!=null)
             {
                 routesLbl.Visibility = Visibility.Visible;
                 routesCombobox.Visibility = Visibility.Visible;

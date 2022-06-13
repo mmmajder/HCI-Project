@@ -29,6 +29,7 @@ namespace HCI_Project.Popups
             inputMessage.Text = message;
             footNoteMessage.Text = footNote;
             this.parentWindow = parentWindow;
+            this.parentWindow.IsEnabled = false;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 

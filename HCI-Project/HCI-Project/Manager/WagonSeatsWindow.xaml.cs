@@ -41,8 +41,6 @@ namespace HCI_Project
             this.managerWindow = managerWindow;
             this.previousPage = previousPage;
             this.refreshData = refreshData;
-
-
         }
 
         private void AddWagon_Click(object sender, RoutedEventArgs e)
@@ -112,12 +110,18 @@ namespace HCI_Project
                 selectedWagon.ColCount = inputColCount;
 
                 WagonRepo.SaveChanges(selectedWagon);
+
+                MyMessageBox popup = new MyMessageBox("Successfully edited this wagon", this, true);
+                popup.ShowDialog();
             }
             else
             {
                 int id = WagonRepo.GetWagons().Count + 1;
                 Wagon wagon = new Wagon(id, inputName, inputRowCount, inputColCount);
                 if (!SaveNew(wagon)) { return; }
+
+                MyMessageBox popup = new MyMessageBox("Successfully added new wagon", this, true);
+                popup.ShowDialog();
             }
 
             allWagonsList.ItemsSource = null;

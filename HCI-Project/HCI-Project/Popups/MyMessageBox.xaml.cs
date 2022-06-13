@@ -12,25 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SyncfusionWpfApp1.gui
+namespace HCI_Project.Popups
 {
     /// <summary>
     /// Interaction logic for MessageBox.xaml
     /// </summary>
-    public partial class MessageBox : Window
+    public partial class MyMessageBox : Window
     {
-        public Window parentWindow { get; set; }
-        public MessageBox(String message, Window parentWindow)
+        public Page parentWindow { get; set; }
+        public MyMessageBox(string message, Page parentWindow, bool isSuccess)
         {
             InitializeComponent();
             txtMessage.Text = message;
+            if (!isSuccess)
+            {
+                faIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.Exclamation;
+                Color color = (Color)ColorConverter.ConvertFromString("#cc1111");
+                faIcon.Foreground = new SolidColorBrush(color);
+            }
             if (parentWindow != null)
             {
                 this.parentWindow = parentWindow;
                 parentWindow.IsEnabled = false;
-                
-                Canvas.SetLeft(this, parentWindow.Left + parentWindow.Width / 2.8);
-                Canvas.SetTop(this, parentWindow.Top + parentWindow.Height / 2.3);
+
+                this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
             else
             {
@@ -38,15 +43,15 @@ namespace SyncfusionWpfApp1.gui
             }
            
         }
-
         private void Ok_clicked(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
-            if(parentWindow != null)
+            if (parentWindow != null)
             {
                 parentWindow.IsEnabled = true;
             }
-          
+
         }
+
     }
 }

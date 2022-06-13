@@ -129,6 +129,11 @@ namespace HCI_Project.Model
             }
         }
 
+        public void updatePrice(string stationName, double newPrice)
+        {
+            PriceCatalog[stationName] = newPrice;
+        }
+
         //public override string ToString()
         //{
         //    string route = "";

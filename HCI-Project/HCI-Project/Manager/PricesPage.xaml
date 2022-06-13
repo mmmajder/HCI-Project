@@ -73,6 +73,14 @@
             </DataGrid>
             
             <StackPanel Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button  x:Name="UndoBtn" Content="UNDO"  FontSize="8" Height="20" Margin="5 5 5 5"
+                            Padding="5" VerticalAlignment="Center"  
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="UndoBtn_Click"/>
+                    <Button  x:Name="RedoBtn" Content="REDO"  FontSize="8" Height="20" Margin="5 5 5 5"
+                            Padding="5" VerticalAlignment="Center" 
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="RedoBtn_Click"/>
+                </StackPanel>
                 <TextBlock Text="Change price for station:" HorizontalAlignment="Center"
                        Margin="10 40 10 0" TextAlignment="Center"
                         Foreground="#336699" FontSize="16" TextWrapping="WrapWithOverflow"/>

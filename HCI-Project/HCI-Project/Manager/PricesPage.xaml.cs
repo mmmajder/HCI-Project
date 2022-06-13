@@ -26,10 +26,15 @@ namespace HCI_Project.Manager
         Route SelectedRoute;
         Station SelectedStation;
 
+        Stack<PriceUndoRedo> UndoStack;
+        Stack<PriceUndoRedo> RedoStack;
+
         public PricesPage()
         {
             InitializeComponent();
             fillRoutesData();
+            UndoStack = new Stack<PriceUndoRedo>();
+            RedoStack = new Stack<PriceUndoRedo>();
         }
 
         private void fillRoutesData()
@@ -118,11 +123,63 @@ namespace HCI_Project.Manager
             double newPrice;
             if (double.TryParse(priceTB.Text, out newPrice))
             {
-                SelectedRoute.PriceCatalog[stationCB.SelectedItem.ToString()] = newPrice;
-                MessageBox.Show("You have successfully changed the Price to next station to " + newPrice + " for Station " + stationCB.SelectedItem.ToString());
-                fillPricesDataGrid();
+                string stationName = stationCB.SelectedItem.ToString();
+                PriceUndoRedo priceMemo = new PriceUndoRedo(SelectedRoute.Id, stationName, SelectedRoute.getPrice(stationName), newPrice);
+                UndoStack.Push(priceMemo);
+                ChangePrice(SelectedRoute, stationName, newPrice);
+                RedoStack.Clear();
+                manageUndoRedoBtnsVisibility();
             }
-                
+        }
+
+        private void ChangePrice(Route route, string stationName, double price)
+        {
+            route.updatePrice(stationName, price);
+            MessageBox.Show("Updated the Price for Station " + stationName + ". New price is " + price + ". On route: " + route);
+            fillPricesDataGrid();
+        }
+
+        private void doUndo()
+        {
+            PriceUndoRedo priceMemo = UndoStack.Pop();
+            Route route = RouteRepo.getRoute(priceMemo.RouteId);
+            ChangePrice(route, priceMemo.StationName, priceMemo.OldPrice);
+            RedoStack.Push(priceMemo);
+        }
+
+        private void doRedo()
+        {
+            PriceUndoRedo priceMemo = RedoStack.Pop();
+            Route route = RouteRepo.getRoute(priceMemo.RouteId);
+            ChangePrice(route, priceMemo.StationName, priceMemo.NewPrice);
+            UndoStack.Push(priceMemo);
+        }
+
+        private void UndoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (UndoStack.Count > 0)
+                doUndo();
+            manageUndoRedoBtnsVisibility();
+        }
+
+        private void RedoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (RedoStack.Count > 0)
+                doRedo();
+            manageUndoRedoBtnsVisibility();
+        }
+
+        private void manageUndoRedoBtnsVisibility()
+        {
+            if (UndoStack.Count == 0)
+                UndoBtn.Visibility = Visibility.Hidden;
+            else
+                UndoBtn.Visibility = Visibility.Visible;
+
+            if (RedoStack.Count == 0)
+                RedoBtn.Visibility = Visibility.Hidden;
+            else
+                RedoBtn.Visibility = Visibility.Visible;
         }
     }
 }

@@ -57,5 +57,13 @@ namespace HCI_Project
             this.Close();
 
         }
+
+        private void Demo_Click(object sender, RoutedEventArgs e)
+        {
+            DemoClient window = new DemoClient();
+            window.Show();
+        }
+
+        
     }
 }

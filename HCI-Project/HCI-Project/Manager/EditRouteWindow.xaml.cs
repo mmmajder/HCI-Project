@@ -106,20 +106,6 @@ namespace HCI_Project.Manager
                 Sun.IsChecked = true;
         }
 
-        /*public void setTimeRange(string depature, string arrival)
-        {
-            DepatureTime.Value = DateTimeUtils.getDateTime(depature);
-            ArrivalTime.Value = DateTimeUtils.getDateTime(arrival);
-            //to = DateTimeUtils.getDateTime(arrival);
-
-            //ArrivalTime.SetValue(new TimeSpan(04, 45, 00));
-            //  DepatureTime.SetValue(DateTimeUtils.getDateTime(depature));
-
-            //        StartTime =;
-
-        }*/
-
-
         private void DgUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int i = dgRoute.Items.IndexOf(dgRoute.SelectedItem);

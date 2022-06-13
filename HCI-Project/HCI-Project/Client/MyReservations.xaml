@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project.Client"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:fa="http://schemas.fontawesome.io/icons/" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MyReservations">
@@ -15,24 +17,41 @@
             <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="100" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
+        <Button materialDesign:ButtonAssist.CornerRadius="25" Grid.Column="2"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                    Help
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
 
-        <Button Grid.Column="1" 
+        <Button Grid.Column="1" Grid.Row="1"
                 Content="BUY TICKET" Click="BuyBtn_Click"
                 Margin="40 0 40 0" VerticalAlignment="Center"
                 Background="#cc1111" BorderBrush="#cc1111"/>
-        <Button Grid.Column="2" 
+        <Button Grid.Column="2" Grid.Row="1"
                 Content="CANCEL TICKET" Click="CancelBtn_Click"
                 Margin="40 0 40 0" VerticalAlignment="Center"
                 Background="#cc1111" BorderBrush="#cc1111"/>
-
+        
         <Label x:Name="ticketNotChoosenLbl" Grid.Column="1" Grid.ColumnSpan="2" Content="You need to choose a ticket first." Foreground="#cc1111" FontSize="15"
                    Margin="15 10 15 0"  HorizontalAlignment="Center" Visibility="Hidden" VerticalAlignment="Bottom"/>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
             <DataGrid SelectionMode="Single" SelectionUnit="FullRow" CanUserReorderColumns="False" CanUserResizeColumns="True" 
                                                         CanUserResizeRows="False" CanUserSortColumns="True"
                       x:Name="dgrMain"  AutoGenerateColumns="False"

@@ -44,8 +44,13 @@ namespace HCI_Project.Manager
 
             if (route != null)
             {
+                routeNameLbl.Text = "Route Name:";
                 routeName.Text = route.ToString();
                 this.route = route;
+            }
+            else
+            {
+                routeNameLbl.Text = "New Route";
             }
 
         }

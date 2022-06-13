@@ -32,7 +32,7 @@ namespace HCI_Project
 
         private void TrainsViewSelected(object sender, RoutedEventArgs e)
         {
-            Main.Content = new TrainsViewPage();
+            Main.Content = new TrainsViewPage(this);
         }
 
         private void HomeViewSelected(object sender, RoutedEventArgs e)

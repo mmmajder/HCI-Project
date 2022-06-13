@@ -28,7 +28,16 @@
                         <TextBlock Margin ="10 0 0 0" Text="EDIT STATIONS"></TextBlock>
                     </StackPanel>
                 </Button.Content>
-            </Button>
+            <Button.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="250" Foreground="White">
+                            Edit all stations for easy line edit
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
 
         <Button Grid.Row="0" Grid.Column="2" Margin="0, 0, 20, 0" HorizontalAlignment="Right"  VerticalAlignment="Center"  materialDesign:ButtonAssist.CornerRadius="25"  BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
             <Button.Content>
@@ -36,6 +45,15 @@
                     <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                             Help
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
         </Button>
 
 

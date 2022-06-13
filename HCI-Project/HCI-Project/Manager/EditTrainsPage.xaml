@@ -1,23 +1,22 @@
-﻿<Page x:Class="HCI_Project.Manager.EditTrainRoutPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HCI_Project.Manager"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:views="clr-namespace:HCI_Project.Views" 
-      xmlns:fa="http://schemas.fontawesome.io/icons/" 
-      xmlns:popups="clr-namespace:HCI_Project.Popups"
-       xmlns:help="clr-namespace:HCI_Project.Help"
-      Title="EditRouteWindow" MaxHeight="600" MaxWidth="800">
+﻿<Page x:Class="HCI_Project.Manager.EditTrainsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCI_Project.Manager" 
+        xmlns:styles="clr-namespace:HCI_Project.Styles"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:views="clr-namespace:HCI_Project.Views"
+        mc:Ignorable="d"
+        Title="EditTrainsPage" d:DesignHeight="650" d:DesignWidth="850" Margin="20">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="9*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -44,15 +43,26 @@
                 </ToolTip>
             </Button.ToolTip>
         </Button>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="24" Margin="15"  x:Name="trainTypeLbl"/>
+        <TextBox  Grid.Row="0" Grid.Column="1"  Height="45" x:Name="trainName" VerticalAlignment="Center" FontSize="18" BorderThickness="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <TextBox.ToolTip>
+                <ToolTip   Placement="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                Input train type (only alphanumeric)
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Hidden" x:Name="errorMessage"  HorizontalAlignment="Center" FontSize="20" Foreground="Red"/>
         
-        <TextBlock Grid.ColumnSpan="3" x:Name="routeNameLbl" Grid.Row="0" FontSize="25" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Grid.ColumnSpan="3" x:Name="routeName" Margin="0 0 0 15"  Grid.Row="1" FontSize="25" HorizontalAlignment="Center"></TextBlock>
-
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="60 0 0 0" FontSize="24" Text="Route stations" />
-        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" FontSize="24" Text="All Stations" />
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="60 0 0 0" FontSize="24" Text="Train's Wagons" />
+        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" FontSize="24" Text="All Wagons"/>
 
 
-        <Button  Grid.Row="3" Grid.Column="2" Margin ="0 0 10 0"   materialDesign:ButtonAssist.CornerRadius="10"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditStations_Click">
+        <Button  Grid.Row="4" Grid.Column="2" Margin ="0 10 15 10"   materialDesign:ButtonAssist.CornerRadius="10"  BorderBrush="Transparent" Background="DarkBlue" Foreground="White" Click="EditStations_Click">
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <fa:FontAwesome  Icon="PencilSquareOutline" FontSize="20"/>
@@ -62,17 +72,17 @@
             <Button.ToolTip>
                 <ToolTip   Placement="Right">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock MaxWidth="250" Foreground="White">
-                            Edit all stations for easy route edit
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                    Edit all wagons for trains
                         </TextBlock>
                     </StackPanel>
                 </ToolTip>
             </Button.ToolTip>
         </Button>
 
-        <views:TodoView Grid.Row="4" Grid.ColumnSpan="3"/>
+        <views:WagonView Grid.Row="5" Grid.ColumnSpan="3" Margin="0, 10, 0, 0"/>
 
-        <Grid  Grid.Row="5" Grid.Column="1">
+        <Grid  Grid.Row="6" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -83,7 +93,7 @@
                     <ToolTip   Placement="Right">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock MaxWidth="150" Foreground="White">
-                            Cancel all changes you made
+                                    Cancel all changes you made
                             </TextBlock>
                         </StackPanel>
                     </ToolTip>
@@ -94,13 +104,12 @@
                     <ToolTip   Placement="Right">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock MaxWidth="150" Foreground="White">
-                                Save all changes you made
+                                    Save all changes you made
                             </TextBlock>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
         </Grid>
-
     </Grid>
 </Page>

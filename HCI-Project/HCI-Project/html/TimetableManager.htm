@@ -1,6 +1,28 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
+    <style>
+        h1 {
+            text-align: center
+        }
+        .column1 {
+          float: left;
+          width: 70%;
+          padding: 5px;
+        }
+        .column2 {
+          float: left;
+          width: 30%;
+          padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+    </style>
     <title>Timetable</title>
 </head>
 <body>
@@ -8,12 +30,29 @@
     <p>
         First, you should choose start and end station for desired scheduled route and click SEARCH.
     </p>
+    <img src="htmImages/TimetableFromTo.jpg" />
     <p>
         After that table with scheduled routes will be displayed for desired route.
         Table consists of depature time, arrival time, days of the week the train goes on selected route in that time and button for editting scheduled route.
         If you click on the Edit button, new window with more details about the scheduled route is opened.
-        Above of the table are Add and remove buttons. By clicking on the Add button, new Window for adding new scheduled route is opened. 
-        By clicking on the Remove button, selecte row in table is deleted.
+        Above of the table are Add and remove buttons. By clicking on the Add button, new window for adding new scheduled route is opened.
     </p>
+    <img src="htmImages/TimetableTableSmall.jpg"  />
+    <!--  <div class="row">
+          <div class="column1">
+
+          </div>
+          <div class="column2">
+              <img src="htmImages/DeleteScheduledRoute.jpg" />
+          </div>
+          <div class="column">
+              <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+          </div>
+    </div>-->
+    <p>
+        To delete a scheduled route you need to click on the row of scheduled route you want to delete. After that click Remove. Confimation pop up is displayed and if you want to delete scheduled route click ok.
+    </p>
+    <img src="htmImages/DeleteScheduledRoute.jpg" />
+
 </body>
 </html>

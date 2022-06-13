@@ -158,11 +158,11 @@ namespace HCI_Project.Manager
             {
                 if (ColumnIndex == 1)
                 {
-                    SelectedScheduledStation.TimeRange.Arrival = DateTime.Parse(editedCellValue);
+                    SelectedScheduledStation.TimeRange.Arrival = dayOfTrip(new DateTime(1, 1, 1) + DateTime.Parse(editedCellValue).TimeOfDay);
                 }
                 if (ColumnIndex == 2)
                 {
-                    SelectedScheduledStation.TimeRange.Depature = DateTime.Parse(editedCellValue);
+                    SelectedScheduledStation.TimeRange.Depature = dayOfTrip(new DateTime(1, 1, 1) + DateTime.Parse(editedCellValue).TimeOfDay);
                 }
             }
             catch (Exception)
@@ -171,7 +171,23 @@ namespace HCI_Project.Manager
             }
 
         }
-        
+
+        private DateTime dayOfTrip(DateTime dateTime)
+        {
+            int i = dgRoute.Items.IndexOf(dgRoute.SelectedItem);
+            if (i > 0)
+            {
+                DateTime previousDate = EditedValue.Stations[i - 1].TimeRange.Depature;
+
+                if (previousDate.TimeOfDay > dateTime.TimeOfDay)
+                {
+                    return new DateTime(previousDate.Year, previousDate.Month, previousDate.Day + 1) + dateTime.TimeOfDay;
+                }
+                return new DateTime(previousDate.Year, previousDate.Month, previousDate.Day) + dateTime.TimeOfDay;
+            }
+            return dateTime;
+        }
+
         private void addDayOfWeek(int i)
         {
             if (!SelectedScheduledRoute.RepeatigDays.Contains(i))

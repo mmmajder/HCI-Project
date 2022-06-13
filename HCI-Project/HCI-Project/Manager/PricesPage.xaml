@@ -8,6 +8,15 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PricesPage">
 
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:PricesPage.UndoCommand}" 
+                        Executed="Undo_Executed" CanExecute="Undo_CanExecute"/>
+        <CommandBinding Command="{x:Static local:PricesPage.RedoCommand}" 
+                        Executed="Redo_Executed" CanExecute="Redo_CanExecute"/>
+        <CommandBinding Command="{x:Static local:PricesPage.SaveChangeCommand}" 
+                        Executed="SaveChange_Executed" CanExecute="SaveChange_CanExecute"/>
+    </Page.CommandBindings>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -75,11 +84,15 @@
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button  x:Name="UndoBtn" Content="UNDO"  FontSize="8" Height="20" Margin="5 5 5 5"
-                            Padding="5" VerticalAlignment="Center"  
-                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="UndoBtn_Click"/>
-                    <Button  x:Name="RedoBtn" Content="REDO"  FontSize="8" Height="20" Margin="5 5 5 5"
                             Padding="5" VerticalAlignment="Center" 
-                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="RedoBtn_Click"/>
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="UndoBtn_Click">
+                        
+                    </Button>
+                    <Button  x:Name="RedoBtn" Content="REDO"  FontSize="8" Height="20" Margin="5 5 5 5"
+                            Padding="5" VerticalAlignment="Center"
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="RedoBtn_Click">
+                        
+                    </Button>
                 </StackPanel>
                 <TextBlock Text="Change price for station:" HorizontalAlignment="Center"
                        Margin="10 40 10 0" TextAlignment="Center"

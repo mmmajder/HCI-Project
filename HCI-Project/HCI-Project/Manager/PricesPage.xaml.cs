@@ -29,12 +29,21 @@ namespace HCI_Project.Manager
         Stack<PriceUndoRedo> UndoStack;
         Stack<PriceUndoRedo> RedoStack;
 
+        public static RoutedUICommand UndoCommand = new RoutedUICommand("UndoCommand", "UndoCommand",typeof(PricesPage));
+        public static RoutedUICommand RedoCommand = new RoutedUICommand("RedoCommand", "RedoCommand", typeof(PricesPage));
+        public static RoutedUICommand SaveChangeCommand = new RoutedUICommand("SaveChangeCommand", "SaveChangeCommand", typeof(PricesPage));
+
+
         public PricesPage()
         {
             InitializeComponent();
             fillRoutesData();
             UndoStack = new Stack<PriceUndoRedo>();
             RedoStack = new Stack<PriceUndoRedo>();
+
+            UndoCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
+            RedoCommand.InputGestures.Add(new KeyGesture(Key.Y, ModifierKeys.Control));
+            SaveChangeCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
         }
 
         private void fillRoutesData()
@@ -107,11 +116,18 @@ namespace HCI_Project.Manager
                 return;
             }
 
+
+
             priceErrorLbl.Visibility = Visibility.Collapsed;
             ChangePriceBtn.Visibility = Visibility.Visible;
         }
 
         private void ChangePriceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePriceCompleteAction();
+        }
+
+        private void ChangePriceCompleteAction()
         {
             if (stationCB.SelectedItem == null)
             {
@@ -124,11 +140,17 @@ namespace HCI_Project.Manager
             if (double.TryParse(priceTB.Text, out newPrice))
             {
                 string stationName = stationCB.SelectedItem.ToString();
-                PriceUndoRedo priceMemo = new PriceUndoRedo(SelectedRoute.Id, stationName, SelectedRoute.getPrice(stationName), newPrice);
-                UndoStack.Push(priceMemo);
-                ChangePrice(SelectedRoute, stationName, newPrice);
-                RedoStack.Clear();
-                manageUndoRedoBtnsVisibility();
+                double oldPrice = SelectedRoute.getPrice(stationName);
+                if (newPrice != oldPrice)
+                {
+                    PriceUndoRedo priceMemo = new PriceUndoRedo(SelectedRoute.Id, stationName, SelectedRoute.getPrice(stationName), newPrice);
+                    UndoStack.Push(priceMemo);
+                    ChangePrice(SelectedRoute, stationName, newPrice);
+                    RedoStack.Clear();
+                    manageUndoRedoBtnsVisibility();
+                }
+                else
+                    MessageBox.Show("The price for station " + stationName + " is already " + newPrice + ".");
             }
         }
 
@@ -180,6 +202,41 @@ namespace HCI_Project.Manager
                 RedoBtn.Visibility = Visibility.Hidden;
             else
                 RedoBtn.Visibility = Visibility.Visible;
+        }
+
+        private void Undo_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (UndoStack.Count > 0)
+                doUndo();
+            manageUndoRedoBtnsVisibility();
+        }
+
+        private void Redo_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (RedoStack.Count > 0)
+                doRedo();
+            manageUndoRedoBtnsVisibility();
+        }
+
+        private void SaveChange_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (pricesPreviewer.Visibility == Visibility.Visible)
+                ChangePriceCompleteAction();
+        }
+
+        private void Undo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Redo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void SaveChange_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
     }
 }

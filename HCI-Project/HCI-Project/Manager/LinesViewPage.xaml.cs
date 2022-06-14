@@ -3,6 +3,7 @@ using HCI_Project.Manager;
 using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Maps.MapControl.WPF;
 using System;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace HCI_Project
 {
@@ -206,6 +208,16 @@ namespace HCI_Project
             RefreshCombobox();
             mapLinePage = new MapLinePage(managerWindow, RefreshData);
             Main.Content = mapLinePage;
+        }
+
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("LinesView");
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

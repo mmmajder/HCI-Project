@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HCI_Project.DTO;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.util;
 using HelpSistem;
@@ -105,20 +106,6 @@ namespace HCI_Project.Manager
             if (SelectedScheduledRoute.RepeatigDays.Contains(7))
                 Sun.IsChecked = true;
         }
-
-        /*public void setTimeRange(string depature, string arrival)
-        {
-            DepatureTime.Value = DateTimeUtils.getDateTime(depature);
-            ArrivalTime.Value = DateTimeUtils.getDateTime(arrival);
-            //to = DateTimeUtils.getDateTime(arrival);
-
-            //ArrivalTime.SetValue(new TimeSpan(04, 45, 00));
-            //  DepatureTime.SetValue(DateTimeUtils.getDateTime(depature));
-
-            //        StartTime =;
-
-        }*/
-
 
         private void DgUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -274,18 +261,25 @@ namespace HCI_Project.Manager
             {
                 SelectedScheduledRoute = EditedValue;
                 EditItem(this, SelectedScheduledRoute);
-                MessageBox.Show("You have successfully editted scheduled route!");
+                MyMessageBox popup = new MyMessageBox("You have successfully editted scheduled route!", this, true);
+                popup.ShowDialog();
                 this.Close();
             }
             catch
             {
-                MessageBox.Show("Please fill all necessary fields!");
+                MyMessageBox popup = new MyMessageBox("Please fill all necessary fields!", this, false);
+                popup.ShowDialog();
             }
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("EditScheduledRouteManager");
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
     public class DrAmtValidationRule : ValidationRule

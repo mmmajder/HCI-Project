@@ -1,5 +1,6 @@
 ﻿using HCI_Project.Model;
 using HCI_Project.Repo;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -237,6 +238,15 @@ namespace HCI_Project.Manager
         private void SaveChange_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("PricesPage");
         }
     }
 }

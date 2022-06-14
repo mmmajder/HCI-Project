@@ -240,6 +240,11 @@ namespace HCI_Project
             return input != "" && re.IsMatch(input);
         }
 
+        public void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
 
     }
 }

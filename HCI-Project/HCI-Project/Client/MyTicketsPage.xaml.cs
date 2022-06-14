@@ -1,6 +1,7 @@
 ﻿using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,6 +115,15 @@ namespace HCI_Project.Client
             MessageBox.Show("Please, choose the table row first.");
 
             return null;
+        }
+
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("MyTickets");
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

@@ -13,6 +13,10 @@
        d:DesignHeight="450" d:DesignWidth="800"
       Height="Auto" Width="Auto"
        >
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:WagonSeatsWindow.SaveWagonSeatsCommand}"  Executed="SaveWagonSeats_Executed" CanExecute="SaveWagonSeats_CanExecute"/>
+        <CommandBinding Command="{x:Static local:WagonSeatsWindow.CloseWagonSeatsCommand}"  Executed="CloseWagonSeats_Executed" CanExecute="CloseWagonSeats_CanExecute"/>
+    </Page.CommandBindings>
     <Border BorderThickness="2" BorderBrush="Black" CornerRadius="20" Background="#E8F0F2"  d:DesignHeight="450" d:DesignWidth="800">
         <Grid>
             <Grid.RowDefinitions>

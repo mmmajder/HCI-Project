@@ -32,7 +32,8 @@ namespace HCI_Project
         private SeatsView seatsView;
 
         private bool isNew;
-
+        public static RoutedUICommand SaveWagonSeatsCommand = new RoutedUICommand("SaveWagonSeatsCommand", "SaveWagonSeatsCommand", typeof(WagonSeatsWindow));
+        public static RoutedUICommand CloseWagonSeatsCommand = new RoutedUICommand("CloseWagonSeatsCommand", "CloseWagonSeatsCommand", typeof(WagonSeatsWindow));
         public WagonSeatsWindow(ManagerWindow managerWindow, object previousPage, Action refreshData)
         {
             InitializeComponent();
@@ -41,6 +42,9 @@ namespace HCI_Project
             this.managerWindow = managerWindow;
             this.previousPage = previousPage;
             this.refreshData = refreshData;
+
+            SaveWagonSeatsCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            CloseWagonSeatsCommand.InputGestures.Add(new KeyGesture(Key.Escape));
         }
 
         private void AddWagon_Click(object sender, RoutedEventArgs e)
@@ -247,6 +251,26 @@ namespace HCI_Project
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
             
+        }
+        private void SaveWagonSeats_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveChanges_Click(sender, e);
+        }
+
+        private void SaveWagonSeats_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+
+        private void CloseWagonSeats_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            GoBack(sender, e);
+        }
+
+        private void CloseWagonSeats_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
 

@@ -34,6 +34,9 @@ namespace HCI_Project.Manager
 
         public Route route { get; set; }
 
+        
+        public static RoutedUICommand SaveTrainRouteCommand = new RoutedUICommand("SaveTrainRouteCommand", "SaveTrainRouteCommand", typeof(EditTrainRoutPage));
+
         public EditTrainRoutPage(Route route, Frame main, MapLinePage mapLinePage, ManagerWindow managerWindow, LinesViewPage linesPage)
         {
             InitializeComponent();
@@ -55,6 +58,7 @@ namespace HCI_Project.Manager
                 routeNameLbl.Text = "New Route";
             }
             ComboBoxInit();
+            SaveTrainRouteCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
         }
         private void ComboBoxInit()
         {
@@ -189,6 +193,18 @@ namespace HCI_Project.Manager
         {
             
         }
+
+        private void SaveTrainRoute_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveChanges_Click(sender, e);
+        }
+
+        private void SaveTrainRoute_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        
     }
 
 }

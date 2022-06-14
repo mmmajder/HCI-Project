@@ -31,6 +31,8 @@ namespace HCI_Project.Manager
         private TrainsViewPage trainsViewPage;
         private string trainType;
 
+        
+        public static RoutedUICommand SaveEditTrainsCommand = new RoutedUICommand("SaveEditTrainsCommand", "SaveEditTrainsCommand", typeof(EditTrainsPage));
 
         public EditTrainsPage(string trainType, Frame trainCrudFrame, ManagerWindow managerWindow, TrainsViewPage trainsViewPage)
         {
@@ -49,6 +51,8 @@ namespace HCI_Project.Manager
             {
                 trainTypeLbl.Text = "New Train Type";
             }
+
+            SaveEditTrainsCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
         }
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
@@ -180,5 +184,17 @@ namespace HCI_Project.Manager
         {
             
         }
+
+        private void SaveEditTrains_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //if (pricesPreviewer.Visibility == Visibility.Visible)
+            SaveChanges_Click(sender, e);
+        }
+
+        private void SaveEditTrains_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
     }
 }

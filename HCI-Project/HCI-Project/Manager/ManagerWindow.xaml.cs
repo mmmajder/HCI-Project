@@ -64,19 +64,19 @@ namespace HCI_Project
             DemoClient window;
             if (Main.Content is PricesPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/Prices.wmv"));
                 window.Show();
 
             }
             if (Main.Content is LinesViewPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/Maps.wmv"));
                 window.Show();
 
             }
             if (Main.Content is TrainsViewPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/Trains.wmv"));
                 window.Show();
 
             }
@@ -89,7 +89,7 @@ namespace HCI_Project
 
             if (Main.Content is FinancesViewPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/Reports.wmv"));
                 window.Show();
             }
         }

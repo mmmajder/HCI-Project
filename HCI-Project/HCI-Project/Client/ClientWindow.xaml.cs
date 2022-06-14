@@ -59,19 +59,19 @@ namespace HCI_Project
             DemoClient window;
             if (Main.Content is MyReservations)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/Reservations.wmv"));
                 window.Show();
 
             }
             if (Main.Content is MyTicketsPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/BoughtTickets.wmv"));
                 window.Show();
 
             }
             if (Main.Content is ScheduledRouteWindow)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/ClientPreviewRoutes.wmv"));
                 window.Show();
 
             }
@@ -82,7 +82,12 @@ namespace HCI_Project
                 window.Show();
 
             }
+            if (Main.Content is LinesViewPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/ClientPreviewRoutes.wmv"));
+                window.Show();
 
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -108,6 +113,11 @@ namespace HCI_Project
                 if (Main.Content is TimetableViewClientPage)
                 {
                     TimetableViewClientPage pricesPage = new TimetableViewClientPage();
+                    pricesPage.Help_Click(sender, e);
+                }
+                if (Main.Content is LinesViewPage)
+                {
+                    LinesViewPage pricesPage = new LinesViewPage(null);
                     pricesPage.Help_Click(sender, e);
                 }
             }

@@ -20,10 +20,12 @@ namespace HCI_Project
     /// </summary>
     public partial class DemoClient : Window
     {
-        public DemoClient()
+        public Uri MediaSource { get; set; }
+        public DemoClient(Uri path)
         {
             InitializeComponent();
-
+            // MediaSource.Ite = path;
+            mePlayer.Source = path;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;

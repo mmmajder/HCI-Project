@@ -480,7 +480,14 @@
   <ItemGroup>
     <Content Include="html\AddScheduledRoute.htm" />
     <Content Include="html\EditScheduledRouteManager.htm" />
+    <Content Include="html\FinancesView.htm" />
+    <Content Include="html\LinesView.htm" />
+    <Content Include="html\MapLineClient.htm" />
+    <Content Include="html\MyReservations.htm" />
+    <Content Include="html\MyTickets.htm" />
+    <Content Include="html\PricesPage.htm" />
     <Content Include="html\ScheduledRoutePreviewClient.htm" />
+    <Content Include="html\TrainsPage.htm" />
     <Content Include="html\Wagons.htm" />
     <Content Include="html\AddTrain.htm" />
     <Content Include="html\EditTrain.htm" />

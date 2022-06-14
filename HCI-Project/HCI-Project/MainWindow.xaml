@@ -16,7 +16,8 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="CanResize"
         MinHeight="700" 
-        MinWidth="400">
+        MinWidth="400"
+        Icon="images/soko.ico">
     <Grid>
         <Image Source="/images/Bridge.jpg" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Center" VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth4">

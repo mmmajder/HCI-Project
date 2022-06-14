@@ -1,11 +1,91 @@
-﻿<!DOCTYPE html>
-
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .column1 {
+            float: left;
+            width: 70%;
+            padding: 5px;
+        }
+
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>Trains</title>
 </head>
 <body>
+    <h1>Trains</h1>
+    <p>
+        You have following options: add new train type, edit existing train type, delete existing train.
+    </p>
+
+    <p>
+        First, You can choose to edit train type by clicking on one option from given train types, and than choose modification you would like to make.<br />
+        Or you can add completely new train.
+    </p>
+
+    <img src="htmImages/trainType/chooseTrain.png" height="350" width="400" alt="Show stations" />
+    <img src="htmImages/trainType/crud.png" height="150" width="400" alt="Show stations" />
+
+
+
+    <h3>Add/Edit Train</h3>
+
+    <p>
+        You can input wanted name of train, and it must be unique.
+    </p>
+        <img src="htmImages/trainType/inputName.png" height="150" width="600" />
+    <p>
+        To add new wagon on the train, select one wagon from right list(All Wagons) and drag it over and dorp to the left list (Train's wagons).<br />
+        You can also change the order of already added wagons in Train's wagon list.
+        To remove wagon from the train, select one wagon from left list(Train's wagons) and drag it over and dorp to the right list (All Wagons).<br />
+        Train must contain at least 1 wagon, for it to be considered route.
+    </p>
+    <span>
+        <img src="htmImages/trainType/addWagon.png" height="250" width="600" />
+        <img src="htmImages/trainType/removeWagon.png" height="250" width="600" />
+    </span>
+
+    <h3>Save/Cancel changes</h3>
+    <p>
+        If you changed your mind and no longer want to edit this train, click on "Cancel" button.<br />
+        If you are happy with your inputs, click "Save changes" button to complete changes.
+    </p>
+    <span>
+        <img src="htmImages/trainType/buttons.png" height="100" width="400" />
+    </span>
+    <img src="htmImages/trainType/succes.png" height="150" width="400" />
+
+
+    <h3>Edit Wagons</h3>
+    <p>
+        Additionally, you have an option to edit wagons by clicking "Edit wagons" button.
+        This will take you to another page with detailed instructions.<br />
+    </p>
+    <img src="htmImages/trainType/editWagons.png" height="100" width="350" />
+
+
 
 </body>
 </html>
+
+
+
+
+
+

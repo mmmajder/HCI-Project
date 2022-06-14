@@ -1,9 +1,83 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
-	<head>
-		<title>EditTrainRoute</title>
-	</head>
-	<body>
-		<h1>EditTrainRoute</h1>
-	</body>
+<head>
+	<style>
+		h1 {
+			text-align: center
+		}
+
+		.column1 {
+			float: left;
+			width: 70%;
+			padding: 5px;
+		}
+
+		.column2 {
+			float: left;
+			width: 30%;
+			padding: 5px;
+		}
+
+		/* Clearfix (clear floats) */
+		.row::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+	</style>
+	<title>Edit Train Route</title>
+</head>
+<body>
+	<h1>Edit Train Route</h1>
+	<p>
+		First, you have following attributes to edit: train type and stations which will define the route.
+	</p>
+
+	<h3>Train type</h3>
+	<p>
+		You can choose to change current train type with one of the options from given train types. <br />Chosen train will be going through this route
+	</p>
+
+	<img src="htmImages/editTrainRoute/trainType.png" height="350" width="400" alt="Show stations" />
+
+
+	<h3>Route station</h3>
+	<p>
+		To add new station on the route, select one stations from right list(All Stations) and drag it over and dorp to the left list (Route station).<br />
+		You can also change the order of already added stations in Route station list.
+		To remove station from the route, select one stations from left list(Route stations) and drag it over and dorp to the right list (All Stations).<br />
+		Route must contain at least 2 stations, for it to be considered route.
+	</p>
+	<span>
+		<img src="htmImages/editTrainRoute/addStation.png" height="250" width="600" />
+		<img src="htmImages/editTrainRoute/removeStation.png" height="250" width="600" />
+	</span>
+
+	<h3>Save/Cancel changes</h3>
+	<p>
+		If you changed your mind and no longer want to edit this route, click on "Cancel" button.<br />
+		If you are happy with your inputs, click "Save changes" button to complete changes.
+	</p>
+	<span>
+		<img src="htmImages/editTrainRoute/buttons.png" height="100" width="400" />
+	</span>
+	<img src="htmImages/editTrainRoute/succes.png" height="150" width="400" />
+
+
+	<h3>Edit Station</h3>
+	<p>
+		Additionally, you have an option to edit stations by clicking "Edit stations" button.
+		This will take you to another page with detailed instructions.<br />
+	</p>
+	<img src="htmImages/editTrainRoute/editStations.png" height="100" width="600" />
+
+
+
+</body>
 </html>
+
+
+
+
+
+

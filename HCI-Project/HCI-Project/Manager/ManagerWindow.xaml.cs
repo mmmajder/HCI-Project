@@ -58,11 +58,42 @@ namespace HCI_Project
             this.Close();
 
         }
+
         private void Demo_Click(object sender, RoutedEventArgs e)
         {
-            DemoClient window = new DemoClient();
-            window.Show();
+            DemoClient window;
+            if (Main.Content is PricesPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window.Show();
+
+            }
+            if (Main.Content is LinesViewPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window.Show();
+
+            }
+            if (Main.Content is TrainsViewPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/ProbaProbica.mp4"));
+                window.Show();
+
+            }
+
+            if (Main.Content is TimetableViewPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/ManagerTimetable.mp4"));
+                window.Show();
+            }
+
+            if (Main.Content is FinancesViewPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window.Show();
+            }
         }
+
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

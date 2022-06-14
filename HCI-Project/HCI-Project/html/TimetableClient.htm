@@ -1,9 +1,45 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>Timetable client</title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .column1 {
+            float: left;
+            width: 70%;
+            padding: 5px;
+        }
+
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>Timetable</title>
 </head>
 <body>
-    <h1>Timetable client</h1>
+    <h1>Timetable</h1>
+    <p>This window lets you browse for routes that connect your desired destinations.</p>
+    <p>First, you need to choose your 'From' station.</p>
+    <img src="../images/tt_from.png" />
+    <p>Then, choose your 'To' station.</p>
+    <img src="../images/tt_to.png" />
+    <p>At last, choose your travel date.</p>
+    <img src="../images/tt_date.png" />
+    <p>When you have set the above parameters press the bottom button.</p>
+    <img src="../images/tt_btnpng.png" />
+    <p>If there are routes conecting this two stations, you will see a window similar to this.</p>
+    <img src="../images/tt_selecteD_full.png" />
+    <p>Select one of the table rows, and upon pressing the Buy or Reserve button you will be able to Select Seats for your ticket.</p>
 </body>
 </html>

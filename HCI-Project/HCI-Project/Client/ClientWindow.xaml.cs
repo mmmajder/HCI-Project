@@ -120,6 +120,12 @@ namespace HCI_Project
                     LinesViewPage pricesPage = new LinesViewPage(null);
                     pricesPage.Help_Click(sender, e);
                 }
+
+                if (Main.Content is SeatSelectionPage)
+                {
+                    SeatSelectionPage pricesPage = new SeatSelectionPage();
+                    pricesPage.Help_Click(sender, e);
+                }
             }
         }
 

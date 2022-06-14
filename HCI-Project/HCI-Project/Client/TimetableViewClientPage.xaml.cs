@@ -1,5 +1,6 @@
 ﻿using HCI_Project.DTO;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -78,11 +79,13 @@ namespace HCI_Project.Client
                 dgrMain.ItemsSource = data;
                 if (data.Count==0)
                 {
-                    MessageBox.Show("There are no scheduled routes betweeen these stations on selected date!");
+                    MyMessageBox popup = new MyMessageBox("There are no scheduled routes!", this, false);
+                    popup.ShowDialog();
                 }
             } else
             {
-                MessageBox.Show("Please input valid values for start and end station and date");
+                MyMessageBox popup = new MyMessageBox("Please input valid values for stations and date!", this, false);
+                popup.ShowDialog();
             }
         }
 
@@ -195,9 +198,14 @@ namespace HCI_Project.Client
             return null;
         }
        
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("TimetableClient");
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

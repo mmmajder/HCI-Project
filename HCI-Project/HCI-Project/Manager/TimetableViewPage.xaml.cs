@@ -1,6 +1,7 @@
 ﻿using HCI_Project.DTO;
 using HCI_Project.Manager;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -80,10 +81,16 @@ namespace HCI_Project
                 //dgrMain.ItemsSource = RouteService.GetRoutes(GetLocationValue(fromLocationCombobox), GetLocationValue(toLocationCombobox), date);
                 TableData = RouteService.GetRoutesTableData(Routes, from, to);
                 dgrMain.ItemsSource = TableData;
+                if (TableData.Count==0)
+                {
+                    MyMessageBox popup = new MyMessageBox("There are no scheduled routes!", this, false);
+                    popup.ShowDialog();
+                }
             } 
             else
             {
-                MessageBox.Show("Please input valid values for start and end station");
+                MyMessageBox popup = new MyMessageBox("Please input valid values for start and end station!", this, false);
+                popup.ShowDialog();
             }
         }
 
@@ -102,27 +109,37 @@ namespace HCI_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+
+                MyMessageBox popup = new MyMessageBox(ex.Message.ToString(), this, false);
+                popup.ShowDialog();
             }
         }
 
         private void OpenConfirmPopup(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            Station cliecked_station = button.DataContext as Station;
-            int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
-            ScheduledRoute slectedScheduledRoute = Routes[i];
-
-            if (slectedScheduledRoute == null)
+            try
             {
-                return;
-            }
-            managerWindow.popup.YesButton.Click += btnRemove_Click;
-            managerWindow.popup.YesButton.Click += CloseConfirmPopup;
-            managerWindow.popup.NoButton.Click += CloseConfirmPopup;
-            managerWindow.popup.confirmMessage.Text = "Are you sure you want to delete scheduled route?";
+                Button button = sender as Button;
+                Station cliecked_station = button.DataContext as Station;
+                int i = dgrMain.Items.IndexOf(dgrMain.SelectedItem);
+                ScheduledRoute slectedScheduledRoute = Routes[i];
 
-            managerWindow.host.ShowDialog(managerWindow.popup);
+                if (slectedScheduledRoute == null)
+                {
+                    return;
+                }
+                managerWindow.popup.YesButton.Click += btnRemove_Click;
+                managerWindow.popup.YesButton.Click += CloseConfirmPopup;
+                managerWindow.popup.NoButton.Click += CloseConfirmPopup;
+                managerWindow.popup.confirmMessage.Text = "Are you sure you want to delete scheduled route?";
+
+                managerWindow.host.ShowDialog(managerWindow.popup);
+            }
+            catch
+            {
+                MyMessageBox popup = new MyMessageBox("Select row to delete it", this, false);
+                popup.ShowDialog();
+            }
         }
 
         private void CloseConfirmPopup(object sender, RoutedEventArgs e)
@@ -136,11 +153,6 @@ namespace HCI_Project
             managerWindow.popup.YesButton.Click -= btnRemove_Click;
             managerWindow.popup.NoButton.Click -= CloseCloseConfirmPopup;
             managerWindow.popup.YesButton.Click -= CloseCloseConfirmPopup;
-            GoBack();
-        }
-
-        private void GoBack()
-        {
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -157,7 +169,7 @@ namespace HCI_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Select row to delete it");
+
             }
         }
 
@@ -195,9 +207,13 @@ namespace HCI_Project
             Routes.Add(itemToAdd);
             dgrMain.ItemsSource = TableData;
         }
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("TimetableManager");
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

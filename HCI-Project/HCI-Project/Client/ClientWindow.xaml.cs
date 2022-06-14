@@ -64,6 +64,33 @@ namespace HCI_Project
             window.Show();
         }
 
-        
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F1)
+            {
+                if (Main.Content is MyReservations)
+                {
+                    MyReservations pricesPage = new MyReservations();
+                    pricesPage.Help_Click(sender, e);
+                }
+                if (Main.Content is MyTicketsPage)
+                {
+                    MyTicketsPage linesViewPage = new MyTicketsPage();
+                    linesViewPage.Help_Click(sender, e);
+                }
+                if (Main.Content is ScheduledRouteWindow)
+                {
+                    ScheduledRouteWindow trains = new ScheduledRouteWindow();
+                    trains.Help_Click(sender, e);
+                }
+
+                if (Main.Content is TimetableViewClientPage)
+                {
+                    TimetableViewClientPage pricesPage = new TimetableViewClientPage();
+                    pricesPage.Help_Click(sender, e);
+                }
+            }
+        }
+
     }
 }

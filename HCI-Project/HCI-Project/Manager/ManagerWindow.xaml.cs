@@ -67,5 +67,38 @@ namespace HCI_Project
             DemoClient window = new DemoClient();
             window.Show();
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F1)
+            {
+                if (Main.Content is PricesPage)
+                {
+                    PricesPage pricesPage = new PricesPage();
+                    pricesPage.Help_Click(sender, e);
+                }
+                if (Main.Content is LinesViewPage)
+                {
+                    LinesViewPage linesViewPage = new LinesViewPage(this);
+                    linesViewPage.Help_Click(sender, e);
+                }
+                if (Main.Content is TrainsViewPage)
+                {
+                    TrainsViewPage trains = new TrainsViewPage(this);
+                    trains.Help_Click(sender, e);
+                }
+
+                if (Main.Content is TimetableViewPage)
+                {
+                    TimetableViewPage pricesPage = new TimetableViewPage(this);
+                    pricesPage.Help_Click(sender, e);
+                }
+                if (Main.Content is FinancesViewPage)
+                {
+                    FinancesViewPage linesViewPage = new FinancesViewPage();
+                    linesViewPage.Help_Click(sender, e);
+                }
+            }
+        }
     }
 }

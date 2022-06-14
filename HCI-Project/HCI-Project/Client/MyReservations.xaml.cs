@@ -94,9 +94,13 @@ namespace HCI_Project.Client
 
             return null;
         }
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("MyReservations");
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project.Client"
+        KeyDown="Window_KeyDown"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
       mc:Ignorable="d" 
@@ -72,7 +73,7 @@
                         </ToolTip>
                     </DatePicker.ToolTip>
                 </DatePicker>
-                <Button Margin="10 150 19 0" Grid.Row="1" BorderBrush="Transparent" Background="#cc1111" Content="SEARCH" Foreground="White" Click="Button_Click">
+                <Button Margin="10 150 19 0" Grid.Row="1" BorderBrush="Transparent" Background="#cc1111" Content="SEARCH" IsDefault="True" Foreground="White" Click="Button_Click">
                     <Button.ToolTip>
                         <ToolTip   Placement="Bottom">
                             <StackPanel Orientation="Horizontal">

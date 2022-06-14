@@ -134,7 +134,7 @@ namespace HCI_Project.Manager
             linesPage.RefreshCombobox();
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             if (route != null)
             {
@@ -183,6 +183,11 @@ namespace HCI_Project.Manager
                 return null;
             }
             return trainTypeClicked.ToString();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using HCI_Project.Model;
 using HCI_Project.Repo;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,6 +124,15 @@ namespace HCI_Project.Manager
                 fillPricesDataGrid();
             }
                 
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("PricesPage");
         }
     }
 }

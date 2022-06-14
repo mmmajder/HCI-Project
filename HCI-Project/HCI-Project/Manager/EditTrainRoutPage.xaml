@@ -10,6 +10,7 @@
       xmlns:views="clr-namespace:HCI_Project.Views" 
       xmlns:fa="http://schemas.fontawesome.io/icons/" 
       xmlns:popups="clr-namespace:HCI_Project.Popups"
+        KeyDown="Window_KeyDown"
        xmlns:help="clr-namespace:HCI_Project.Help"
       Title="EditRouteWindow" MaxHeight="600" MaxWidth="1000">
     <Grid>

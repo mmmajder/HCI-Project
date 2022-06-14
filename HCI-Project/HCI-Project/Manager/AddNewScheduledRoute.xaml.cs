@@ -1,5 +1,6 @@
 ﻿using HCI_Project.DTO;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -36,6 +37,8 @@ namespace HCI_Project.Manager
         private static ScheduledStation selctedScheduledStation;
         private static Route selectedRoute;
 
+        public static RoutedUICommand HelpCommand = new RoutedUICommand("HelpCommand", "HelpCommand", typeof(AddNewScheduledRoute));
+
         public event AddItemHandler AddItem;
 
         public AddNewScheduledRoute(string from, string to)
@@ -47,6 +50,11 @@ namespace HCI_Project.Manager
             selectedDays = new List<int>();
             editedScheduledStations = new List<ScheduledStation>();
             //FillTable();
+            HelpCommand.InputGestures.Add(new KeyGesture(Key.F1, ModifierKeys.Control));
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
         }
 
         private void FillTable(Route selectedRoute)
@@ -56,7 +64,7 @@ namespace HCI_Project.Manager
 
             foreach (Station station in selectedRoute.Stations)
             {
-                tableData.Add(new EditRouteRowDTO { Station = station.Name, ArrivalTime = "", DepatureTime = "" });
+                tableData.Add(new EditRouteRowDTO { Station = station.Name, ArrivalTime = "00:00", DepatureTime = "00:00" });
                 editedScheduledStations.Add(new ScheduledStation(station, new TimeRange()));
             }
             dgScheduledRoute.ItemsSource = tableData;
@@ -66,6 +74,16 @@ namespace HCI_Project.Manager
         {
             availableRoutes = RouteService.findRoutesOnPath(fromLoc, toLoc);
             routeCombobox.ItemsSource = RouteService.findRoutePaths(fromLoc, toLoc);
+        }
+
+        private void Help_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("AddScheduledRoute");
+        }
+
+        private void Help_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
         private void table_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -225,19 +243,22 @@ namespace HCI_Project.Manager
             try
             {
                 ScheduledRoute scheduledRoute = new ScheduledRoute(ScheduledRouteRepo.GetNewScheduledRouteId(), editedScheduledStations, selectedRoute.Id, selectedDays, new List<DateTime>());
+                ScheduledRouteRepo.AddScheduledRoute(scheduledRoute);
                 selectedRoute.ScheduledRoutes.Add(scheduledRoute);
                 AddItem(this, scheduledRoute);
-                MessageBox.Show("You have successfully added scheduled route!");
+                MyMessageBox popup = new MyMessageBox("You have successfully added scheduled route!", this, true);
+                popup.ShowDialog();
                 this.Close();
             }
             catch
             {
-                MessageBox.Show("Please fill all necessary fields!");
+                MyMessageBox popup = new MyMessageBox("Please fill all necessary fields!", this, false);
+                popup.ShowDialog();
             }
 
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("AddScheduledRoute");
         }

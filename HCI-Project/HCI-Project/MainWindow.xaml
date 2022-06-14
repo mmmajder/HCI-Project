@@ -33,7 +33,7 @@
 
                     <TextBlock Foreground="Red" Padding="0 10 0 0" Visibility="Hidden" FontSize="17" x:Name="WrongInput" FontWeight="SemiBold" HorizontalAlignment="Center" Text="Wrong username or password"></TextBlock>
 
-                    <Button  Margin="0,40,0,40" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="LOG IN" Click="doLogin"></Button>
+                    <Button  Margin="0,40,0,40" x:Name="loginBtn" Style="{StaticResource MaterialDesignFlatMidBgButton}" IsDefault="True" materialDesign:ShadowAssist.ShadowDepth="Depth0" Height="53" Width="300" materialDesign:ButtonAssist.CornerRadius="10" FontSize="18" Content="LOG IN" Click="doLogin"></Button>
 
                 </StackPanel>
             </materialDesign:DialogHost>

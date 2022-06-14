@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Project"
         mc:Ignorable="d"
+        KeyDown="Window_KeyDown"
         Title="ClientWindow" Height="450" Width="800"
         MinHeight="700" 
         MinWidth="750">

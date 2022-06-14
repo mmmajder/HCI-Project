@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<style>
+		h1 {
+			text-align: center
+		}
+
+		.column1 {
+			float: left;
+			width: 70%;
+			padding: 5px;
+		}
+
+		.column2 {
+			float: left;
+			width: 30%;
+			padding: 5px;
+		}
+
+		/* Clearfix (clear floats) */
+		.row::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+	</style>
+	<title>Train Routes Map</title>
+</head>
+<body>
+	<h1>Train Routes Map</h1>
+	<p>
+		On this page you can search stations, routes and show selected route on the map<br />
+	</p>
+
+	<h3>Show train route on map</h3>
+	<p>
+		First, you have to choose starting (From) and ending (To) station <br />
+		by clicking on combobx and selecting wanted station<br />
+	</p>
+	<img src="htmImages/trainRoutesMap/fromTo.png" height="350" width="400" alt="Show stations" />
+	<p>
+		Then, in combobox labeled "Routes: " will show up all existing routes from start to end location. <br />
+		You have to choose specific route you would like to see shown on the map.
+	</p>
+	<img src="htmImages/trainRoutesMap/availableRoutes.png" height="350" width="400" alt="Show stations" />
+
+	<p>
+		After filling out all input fields, you can click "Show route" button.<br />
+		And map on the right will show up all passing stations with drawn selected route.
+	</p>
+	<span>
+		<img src="htmImages/trainRoutesMap/ShowRoute.png" height="250" width="600" />
+		<img src="htmImages/trainRoutesMap/routePreview.png" height="250" width="600" />
+	</span>
+</body>
+</html>

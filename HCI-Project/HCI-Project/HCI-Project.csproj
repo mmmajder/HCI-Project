@@ -457,6 +457,7 @@
   <ItemGroup>
     <Content Include="html\AddScheduledRoute.htm" />
     <Content Include="html\EditScheduledRouteManager.htm" />
+    <Content Include="html\MapLineClient.htm" />
     <Content Include="html\ScheduledRoutePreviewClient.htm" />
     <Content Include="html\Wagons.htm" />
     <Content Include="html\AddTrain.htm" />

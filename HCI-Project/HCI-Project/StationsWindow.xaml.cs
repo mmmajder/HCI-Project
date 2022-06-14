@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace HCI_Project
 {
@@ -29,6 +30,8 @@ namespace HCI_Project
 
         private Station stationForDelete;
 
+        public static RoutedUICommand SaveChangeCommand = new RoutedUICommand("SaveChangeCommand", "SaveChangeCommand", typeof(StationsWindow));
+
         public StationsWindow(ManagerWindow managerWindow, object previousPage, Action refreshData)
         {
             InitializeComponent();
@@ -37,6 +40,8 @@ namespace HCI_Project
             this.managerWindow = managerWindow;
             this.previousPage = previousPage;
             this.refreshData = refreshData;
+
+            SaveChangeCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
         }
 
         private void AddStation_Click(object sender, RoutedEventArgs e)
@@ -67,7 +72,10 @@ namespace HCI_Project
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            
+            if(newPins.Count <= 0)
+            {
+                return;
+            }
             foreach(DraggablePin pin in newPins)
             {
                 StationRepo.AddStation(new Station(pin.StationName, false, pin.Location));
@@ -195,6 +203,16 @@ namespace HCI_Project
                 }
                 mapPage.SetCenter(selectedStation.Position);
             }
+        }
+
+        private void SaveChange_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            SaveChanges_Click(sender, e);
+        }
+
+        private void SaveChange_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
     }
 }

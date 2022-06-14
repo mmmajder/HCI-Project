@@ -11,6 +11,10 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LinesViewPage">
 
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:LinesViewPage.ShowRouteCommand}" 
+                        Executed="ShowRoute_Executed" CanExecute="ShowRoute_CanExecute"/>
+    </Page.CommandBindings>
 
     <Grid>
         <Grid.ColumnDefinitions>

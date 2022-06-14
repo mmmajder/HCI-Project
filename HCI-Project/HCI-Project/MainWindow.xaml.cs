@@ -29,7 +29,7 @@ namespace HCI_Project
         {
             new UserRepo();
             InitializeComponent();
-            InitializeData();
+            InitializeData(); 
             DataContext = this;
         }
 

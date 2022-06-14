@@ -22,7 +22,7 @@
         <Image Source="/images/Bridge.jpg" Stretch="Fill" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <materialDesign:Card UniformCornerRadius="15" Background="{DynamicResource MaterialDesignPaper}" HorizontalAlignment="Center" VerticalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth4">
             <materialDesign:DialogHost CloseOnClickAway="True" x:Name="DialogHost">
-                <StackPanel Margin="100,10,100,20">
+                <StackPanel Margin="100,10,100,20"> 
                     <Image Margin="0,60,0,5" Source="images/soko.png" Height="100"></Image>
                     <TextBlock Margin="0,25,0,5" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Text="Welcome Back!" />
 

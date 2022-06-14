@@ -1,6 +1,7 @@
 ﻿using HCI_Project.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,12 +24,21 @@ namespace HCI_Project.Views
     {
         public int ColumnCount;
         public int RowCount;
+        public List<int> TakenSeats;
+        public bool IsClient;
+        public int WagonInd;
+        private ObservableCollection<string> SelectedSeats;
 
-        public SeatsView(int RowCount, int ColumnCount)
+        public SeatsView(int RowCount, int ColumnCount, List<int> takenSeats=null, bool isClient=false, ObservableCollection<string> selectedSeats = null, int wagonInd = 0)
         {
             InitializeComponent();
             this.ColumnCount = RowCount;
             this.RowCount = ColumnCount;
+            TakenSeats = takenSeats;
+            SelectedSeats = selectedSeats;
+            IsClient = isClient;
+            WagonInd = wagonInd;
+
             DrawSeats();
 
             GridHelpers.SetColumnCount(gridMain, ColumnCount);
@@ -37,9 +47,33 @@ namespace HCI_Project.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            string seatNumber = (string)b.Content;
-            Console.WriteLine(seatNumber);
+            if (IsClient)
+            {
+                Button b = (Button)sender;
+                if (!TakenSeats.Contains(int.Parse((string)b.Content)))
+                {
+                    string seatStr = WagonInd + "_" + b.Content;
+                    if (!b.Background.Equals(Brushes.GreenYellow)) //not yet selected
+                    {
+                        b.Background = Brushes.GreenYellow;
+                        SelectedSeats.Add(seatStr);
+                    }
+                    else // already selected
+                    {
+                        b.Background = Brushes.DeepSkyBlue;
+                        List<string> newSelectedSeats = new List<string>();
+
+                        foreach (string seat in SelectedSeats)
+                            if (!seat.Equals(seatStr))
+                                newSelectedSeats.Add(seat);
+
+                        SelectedSeats.Clear();
+                        foreach (string seat in newSelectedSeats)
+                            SelectedSeats.Add(seat);
+                    }
+                    
+                }
+            }
         }
 
         private void DrawSeats()
@@ -56,6 +90,12 @@ namespace HCI_Project.Views
                     MyControl1.Name = "Button" + count.ToString();
                     MyControl1.Click += Button_Click;
                     MyControl1.Margin = new Thickness(5);
+                    MyControl1.Background = Brushes.DeepSkyBlue;
+
+                    if (IsClient && TakenSeats.Contains(count))
+                        MyControl1.Background = new SolidColorBrush(Color.FromArgb(0xCC, 0x11, 0x11, 0));
+                    else if (IsClient && SelectedSeats.Contains(WagonInd + "_" + MyControl1.Content))
+                        MyControl1.Background = Brushes.GreenYellow;
 
                     Grid.SetColumn(MyControl1, j);
                     Grid.SetRow(MyControl1, i);

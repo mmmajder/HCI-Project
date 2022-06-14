@@ -56,8 +56,33 @@ namespace HCI_Project
 
         private void Demo_Click(object sender, RoutedEventArgs e)
         {
-            // DemoClient window = new DemoClient();
-            // window.Show();
+            DemoClient window;
+            if (Main.Content is MyReservations)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window.Show();
+
+            }
+            if (Main.Content is MyTicketsPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window.Show();
+
+            }
+            if (Main.Content is ScheduledRouteWindow)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window.Show();
+
+            }
+
+            if (Main.Content is TimetableViewClientPage)
+            {
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/BuyTickets.wmv"));
+                window.Show();
+
+            }
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

@@ -3,6 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:fa="http://schemas.fontawesome.io/icons/" 
       xmlns:local="clr-namespace:HCI_Project.Client"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -97,7 +99,24 @@
             </DataGrid>
 
         </Grid>
-        
+
+        <Button Grid.Column="1" materialDesign:ButtonAssist.CornerRadius="25"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                    Help
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="11*"/>

@@ -3,9 +3,46 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .column1 {
+            float: left;
+            width: 70%;
+            padding: 5px;
+        }
+
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>MyReservations</title>
 </head>
 <body>
-
+    <h1>My Reservations</h1>
+    <p>This window shows all your future reserved tickets.</p>
+    <p>In the Top part of the Window, you see three buttons.</p>
+    <img src="../images/myres_btns.png" />
+    <p>For any of the three to work you need first to select a reserved ticket from the ticket table in the bottom half of the window.</p>
+    <img src="../images/my_tickets_selected_row.png" />
+    <p>In case you press a button without selecting the row you will see an error.</p>
+    <img src="../images/error_row.png" />
+    <p>Cancel Ticket when pressed cancels the reservation.</p>
+    <p>Buy Ticket when pressed confirms the selected reservation and buys the ticket.</p>
+    <p>Preview Ticket opens a detailed preview of the selected reservation. Which is shown below.</p>
+    <img src="../images/myres_ticket_preview.png" />
+    <p>Pressing the Close button takes you back to My reservations window, while pressing the Cancel ticket, cancels the ticket.</p>
+    <p>Pressing the Buy button confirms the reservation and buys the ticket.</p>
 </body>
 </html>

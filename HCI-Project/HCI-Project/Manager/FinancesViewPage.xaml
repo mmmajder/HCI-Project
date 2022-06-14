@@ -7,6 +7,8 @@
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
         KeyDown="Window_KeyDown"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:fa="http://schemas.fontawesome.io/icons/" 
       d:DesignHeight="450" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance local:FinancesViewPage}"
       Title="FinancesViewPage">
@@ -16,6 +18,23 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="1" materialDesign:ButtonAssist.CornerRadius="25"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" BorderBrush="Transparent" Background="SlateGray" Foreground="White" Click="Help_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <fa:FontAwesome  Icon="QuestionCircleOutline" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button.Content>
+            <Button.ToolTip>
+                <ToolTip   Placement="Bottom">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock MaxWidth="150" Foreground="White">
+                                    Help
+                        </TextBlock>
+                    </StackPanel>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
 
         <StackPanel Background="#336699">
             <TextBlock Text="Choose desired route and its schedule, or leave blank to get report for all sold tickets:" HorizontalAlignment="Center"

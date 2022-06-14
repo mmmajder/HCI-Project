@@ -1,6 +1,7 @@
 ﻿using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Views;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -208,6 +209,11 @@ namespace HCI_Project.Client
             seatsContainter.Children.Clear();
             seatsContainter.Children.Add(seatsView);
             seatsContainter.Visibility = Visibility.Visible;
+        }
+
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("Seatsss");
         }
     }
 }

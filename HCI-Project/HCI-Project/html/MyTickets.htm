@@ -3,9 +3,45 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .column1 {
+            float: left;
+            width: 70%;
+            padding: 5px;
+        }
+
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>MyTickets</title>
 </head>
 <body>
-
+    <h1>My Tickets</h1>
+    <p>This window shows all your bought tickets that are valid.</p>
+    <p>Which means, all tickets which departure is in the future.</p>
+    <p>In the Top part of the Window you see two buttons.</p>
+    <img src="../images/my_tickets_btns.png" />
+    <p>Both to work you need first to select a Ticket from the Ticket table in the bottom half of the window.</p>
+    <img src="../images/my_tickets_selected_row.png" />
+    <p>In case you press a button without selecting the row you will see an error.</p>
+    <img src="../images/error_row.png" />
+    <p>Cancel Ticket when pressed cancels the ticket if departure is not sooner than 1 day.</p>
+    <p>Preview Ticket opens detailed preview of the selected ticket. Which is shown below.</p>
+    <img src="../images/my_tickets_ticketpreview.png" />
+    <p>Pressing the Close button takes you back to My tickets window, while pressing the Cancel ticket, cancels the ticket.</p>
 </body>
 </html>

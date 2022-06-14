@@ -3,9 +3,50 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .column1 {
+            float: left;
+            width: 70%;
+            padding: 5px;
+        }
+
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>Prices</title>
 </head>
 <body>
-
+    <h1>Prices</h1>
+    <p>This window enables you to change ticket prices.</p>
+    <p>First, you have to choose one of the possible Routes, as shown below.</p>
+    <img src="../images/prices_routes.png" />
+    <p>Upon selecting the route you will see a table that shows its connected stations and their representative price to the next destination.</p>
+    <img src="../images/prices_open.png" />
+    <p>By clicking on one of the table rows you actually select the station and you can change its price.</p>
+    <img src="../images/prices_select_table.png" />
+    <p>You can also choose a station from the Station Combobox on the right.</p>
+    <img src="../images/prices_station_choce.png" />
+    <p>After you have typed in the new price, just click the Change price button.</p>
+    <p>If everything is alright, you will see the message of success.</p>
+    <img src="../images/prices_success.png" />
+    <p>We can now see that the prices are updated.</p>
+    <img src="../images/prices_changed_price.png" />
+    <p>In the top right corner, you can also see that Undo button has appeared.</p>
+    <p>Redo button also exists and they are used to Undo and Redo changes made to prices.</p>
+    <img src="../images/prices_undo_redo.png" />
 </body>
 </html>

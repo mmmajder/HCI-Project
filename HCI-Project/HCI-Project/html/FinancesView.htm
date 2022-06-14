@@ -3,9 +3,48 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .column1 {
+            float: left;
+            width: 70%;
+            padding: 5px;
+        }
+
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>Reports</title>
 </head>
 <body>
-
+    <h1>Reports</h1>
+    <p>Reports window shows reported for specified Route and its schedule.</p>
+    <p>First, you can choose Route.</p>
+    <img src="../images/reports_routes.png" />
+    <p>Also, you can leave both of these fields blank, and then a report for all routes and schedules will be generated.</p>
+    <p>To remove the selected route, press the Clear button.</p>
+    <p>The same goes for selecting and clearing the schedule.</p>
+    <img src="../images/routes_schedule.png" />
+    <p>Then you can choose if you want to choose a time period as a month, or as a specified date.</p>
+    <img src="../images/reports_month.png" />
+    <img src="../images/reports_date.png" />
+    <p>When you have specified all the attributes, press the Get Report button.</p>
+    <p>If you have chosen Months you will see the Report for the Month period, with sections as seen below.</p>
+    <img src="../images/reports_full_month.png" />
+    <p>If you had chosen a specific Date, the only difference will be that the Graph will be showing a comparison with dates of each month, up to four months ago.</p>
+    <img src="../images/reports_full_date.png" />
 </body>
 </html>

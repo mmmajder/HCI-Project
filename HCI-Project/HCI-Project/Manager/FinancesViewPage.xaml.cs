@@ -268,7 +268,7 @@ namespace HCI_Project
             if (chartType == 1)
                 GraphTitleText.Text = "Progression for " + monthsCB.SelectedItem;
             else
-                GraphTitleText.Text = "Three months comparison";
+                GraphTitleText.Text = "Four months comparison";
         }
 
         // chartssssssssssss vvvv

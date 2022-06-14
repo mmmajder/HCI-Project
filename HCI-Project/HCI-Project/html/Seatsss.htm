@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <style>
+        h1 {
+            text-align: center
+        }
+
+        .column1 {
+            float: left;
+            width: 70%;
+            padding: 5px;
+        }
+
+        .column2 {
+            float: left;
+            width: 30%;
+            padding: 5px;
+        }
+
+        /* Clearfix (clear floats) */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+    <title>MyReservations</title>
+    <title>SeatsSelection</title>
+</head>
+<body>
+    <h1>Seats Selection</h1>
+    <p>This window lets you select seats you want to buy/reserve with the ticket.</p>
+    <p>You first need to choose a wagon.</p>
+    <img src="../images/seats_wagon.png" />
+    <p>Then seats preview similar to this will be shown.</p>
+    <img src="../images/seats_seats.png" />
+    <p>Seats Legend:</p>
+    <p>Available:</p>
+    <img src="../images/seats_blue.png" />
+    <p>Already taken:</p>
+    <img src="../images/seats_black.png" />
+    <p>Selected by you:</p>
+    <img src="../images/seats_green.png".png" />
+    <p>After you have selected seats they will be shown in the table on the bottom left part of the window.</p>
+    <img src="../images/seats_table.png" />
+</body>
+</html>

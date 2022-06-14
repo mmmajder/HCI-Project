@@ -43,7 +43,14 @@ namespace HCI_Project
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-             HelpProvider.ShowHelp("MapLine");
+            if (managerWindow != null)
+            {
+                HelpProvider.ShowHelp("MapLine");
+            }
+            else
+            {
+                HelpProvider.ShowHelp("MapLineClient");
+            }
         }
     }
 }

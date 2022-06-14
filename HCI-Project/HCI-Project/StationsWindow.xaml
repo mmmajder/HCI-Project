@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:HCI_Project" xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Margin="10">
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:StationsWindow.SaveChangeCommand}" 
+                        Executed="SaveChange_Executed" CanExecute="SaveChange_CanExecute"/>
+    </Page.CommandBindings>
+    
     <Border BorderThickness="2" BorderBrush="Black" CornerRadius="20" Background="#E8F0F2">
         <Grid>
             <Grid.RowDefinitions>

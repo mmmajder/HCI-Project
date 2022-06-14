@@ -9,6 +9,10 @@
         WindowStyle="None" ResizeMode="NoResize"
         Title="Message" Height="250" Width="450"
         AllowsTransparency="True" Background="Transparent">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:InputStationNamePopup.SaveChangeCommand}" 
+                        Executed="SaveChange_Executed" CanExecute="SaveChange_CanExecute"/>
+    </Window.CommandBindings>
     <Border BorderThickness="2" BorderBrush="Black" CornerRadius="10" Background="#E8F0F2">
         <Grid>
             <Grid.RowDefinitions>

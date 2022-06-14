@@ -27,6 +27,8 @@ namespace HCI_Project
 
         private Route routeForDelete;
 
+        public static RoutedUICommand ShowRouteCommand = new RoutedUICommand("ShowRouteCommand", "ShowRouteCommand", typeof(LinesViewPage));
+
         public LinesViewPage(ManagerWindow managerWindow)
         {
             
@@ -37,7 +39,8 @@ namespace HCI_Project
             {
                 SetControlsVisible();
             }
-           
+
+            ShowRouteCommand.InputGestures.Add(new KeyGesture(Key.Enter));
         }
 
         private void ComboBoxInit()
@@ -129,10 +132,10 @@ namespace HCI_Project
 
         private void Show_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = mapLinePage;
             object selectedRoute = GetComboboxValue(routesCombobox);
             if (selectedRoute != null)
             {
+                Main.Content = mapLinePage;
                 Route route = (Route)selectedRoute;
                 mapLinePage.mapPage.AddPushPins(route.Stations);
                 mapLinePage.mapPage.DrawMapPolygon(new List<Route> { route});
@@ -208,6 +211,18 @@ namespace HCI_Project
             RefreshCombobox();
             mapLinePage = new MapLinePage(managerWindow, RefreshData);
             Main.Content = mapLinePage;
+        }
+
+
+        private void ShowRoute_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            //if (pricesPreviewer.Visibility == Visibility.Visible)
+            Show_Click(sender, e);
+        }
+
+        private void ShowRoute_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
         public void Help_Click(object sender, RoutedEventArgs e)

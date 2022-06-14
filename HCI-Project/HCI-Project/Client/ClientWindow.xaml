@@ -20,6 +20,7 @@
                 <Button Name="TimetableBtn" FontSize="15" FontWeight="Bold" Margin="2" Foreground="White" BorderThickness="0" Content="TIMETABLE"  Background="#336699" Click="TimetableBtn_Click"/>
                 <Button Name="MyTicketsBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="MY TICKETS" Click="MyTicketsBtn_Click" />
                 <Button Name="MyReservationsBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="MY RESERVATIONS" Click="MyReservationsBtn_Click" />
+                <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="DEMO" Click="Demo_Click"/>
                 <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LOG OUT" Click="Logout_Click"/>
             </StackPanel>
         </Grid>

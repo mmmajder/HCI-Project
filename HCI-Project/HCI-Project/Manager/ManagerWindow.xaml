@@ -25,6 +25,7 @@
                 <Button Name="TimetableBtn" FontSize="15" FontWeight="Bold" Margin="2" Foreground="White" BorderThickness="0" Content="TIMETABLE"  Background="#336699" Click="TimetableBtn_Click"/>
                 <Button Name="FinancesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="REPORTS" Click="FinancesBtn_Click" />
                 <Button Name="PricesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="PRICES" Click="PricesBtn_Click" />
+                <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="DEMO" Click="Demo_Click"/>
                 <Button FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LOG OUT" Click="Logout_Click"/>
             </StackPanel>
         </Grid>

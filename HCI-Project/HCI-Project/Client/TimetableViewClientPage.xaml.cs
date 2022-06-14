@@ -114,6 +114,8 @@ namespace HCI_Project.Client
                 if (selectedScheduledRoute == null) return;
 
                 Ticket t = createTicketPriorToSeatSelection(selectedScheduledRoute);
+                if (t == null) return;
+
                 openSeatSelectionPage(t);
                 //Ticket ticket = createTicket(selectedScheduledRoute);
                 //if (ticket == null) return;
@@ -141,7 +143,10 @@ namespace HCI_Project.Client
                 ScheduledRoute selectedScheduledRoute = getSelectedScheduledRoute();
                 if (selectedScheduledRoute == null) return;
 
+
                 Ticket t = createTicketPriorToSeatSelection(selectedScheduledRoute);
+                if (t == null) return;
+
                 openSeatSelectionPage(t, true);
 
                 //Ticket ticket = createTicket(selectedScheduledRoute);
@@ -192,15 +197,18 @@ namespace HCI_Project.Client
         {
             if (departure > DateTime.Now.AddDays(5))
             {
-                MessageBox.Show("You can buy/reserve tickets no more than 5 days in advance.", "Buying error");
+                MyMessageBox popup = new MyMessageBox("You can buy / reserve tickets no more than 5 days in advance.", this, false);
+                popup.ShowDialog();
             }
             else if (departure < DateTime.Now)
             {
-                MessageBox.Show("You can not buy/reserve tickets for the trains that have left already.");
+                MyMessageBox popup = new MyMessageBox("You can not buy/reserve tickets for the trains that have left already.", this, false);
+                popup.ShowDialog();
             }
             else if (!TicketService.doesFreeSeatExists(SearchedDate, selectedScheduledRoute.id))
             {
-                MessageBox.Show("You can buy/reserve tickets no more than 5 days in advance.");
+                MyMessageBox popup = new MyMessageBox("You can buy/reserve tickets no more than 5 days in advance.", this, false);
+                popup.ShowDialog();
             }
             else if (TicketService.isSeatTaken(SearchedDate, selectedScheduledRoute.id, seat))
             {

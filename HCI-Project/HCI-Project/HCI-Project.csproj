@@ -497,6 +497,11 @@
     <Content Include="html\EditTrainRoute.htm" />
     <Content Include="html\TimetableClient.htm" />
     <Content Include="html\TimetableManager.htm" />
+    <Resource Include="images\tt_btnpng.png" />
+    <Resource Include="images\tt_date.png" />
+    <Resource Include="images\tt_from.png" />
+    <Resource Include="images\tt_selecteD_full.png" />
+    <Resource Include="images\tt_to.png" />
     <Resource Include="images\AddScheduledRouteConfirm.jpg" />
     <Resource Include="images\AddScheduledRouteEnd.jpg" />
     <Resource Include="images\AddScheduledRouteFillData.jpg" />

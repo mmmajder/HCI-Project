@@ -227,7 +227,7 @@ namespace HCI_Project
 
         public void Help_Click(object sender, RoutedEventArgs e)
         {
-            HelpProvider.ShowHelp("LinesView");
+            HelpProvider.ShowHelp("MapLine");
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

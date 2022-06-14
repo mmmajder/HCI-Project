@@ -45,6 +45,11 @@ namespace HCI_Project.Client
             ctor();
         }
 
+        public SeatSelectionPage()
+        {
+           
+        }
+
         public void ctor()
         {
             SelectedSeats = new ObservableCollection<string>();

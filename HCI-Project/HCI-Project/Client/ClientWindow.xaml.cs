@@ -110,6 +110,18 @@ namespace HCI_Project
                     TimetableViewClientPage pricesPage = new TimetableViewClientPage();
                     pricesPage.Help_Click(sender, e);
                 }
+
+                if (Main.Content is LinesViewPage)
+                {
+                    LinesViewPage pricesPage = new LinesViewPage(null);
+                    pricesPage.Help_Click(sender, e);
+                }
+
+                if (Main.Content is SeatSelectionPage)
+                {
+                    SeatSelectionPage pricesPage = new SeatSelectionPage();
+                    pricesPage.Help_Click(sender, e);
+                }
             }
         }
 

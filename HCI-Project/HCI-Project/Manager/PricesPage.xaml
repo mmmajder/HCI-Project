@@ -30,7 +30,17 @@
 
             <ComboBox x:Name="routeCB" SelectedIndex="-1"  SelectionChanged="RouteSelected_Click"
                     Foreground="Black" IsEditable="False" FontSize="12" Background="White"
-                        Margin="25 10 25 0" />
+                        Margin="25 10 25 0" >
+                <ComboBox.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Choose route
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </ComboBox.ToolTip>
+            </ComboBox>
         </StackPanel>
 
         <Grid Grid.Column="1" x:Name="pricesPreviewer" Visibility="Hidden">
@@ -86,12 +96,29 @@
                     <Button  x:Name="UndoBtn" Content="UNDO"  FontSize="8" Height="20" Margin="5 5 5 5"
                             Padding="5" VerticalAlignment="Center" 
                             Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="UndoBtn_Click">
-                        
+                        <Button.ToolTip>
+                            <ToolTip   Placement="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Undos made changes.
+                                    </TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
+
                     <Button  x:Name="RedoBtn" Content="REDO"  FontSize="8" Height="20" Margin="5 5 5 5"
                             Padding="5" VerticalAlignment="Center"
                             Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="RedoBtn_Click">
-                        
+                        <Button.ToolTip>
+                            <ToolTip   Placement="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Redos made changes.
+                                    </TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
                 </StackPanel>
                 <TextBlock Text="Change price for station:" HorizontalAlignment="Center"
@@ -116,11 +143,18 @@
                 <Button  x:Name="ChangePriceBtn" Grid.Column="0" Grid.Row="2"
                 Content="CONFIRM CHANGE"  FontSize="12" Height="20" Margin="50 20 50 0"
                  Padding="0" VerticalAlignment="Center"
-                Background="#cc1111" BorderBrush="#cc1111" Click="ChangePriceBtn_Click"/>
+                Background="#cc1111" BorderBrush="#cc1111" Click="ChangePriceBtn_Click">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Confirms price change.
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </StackPanel>
-            
         </Grid>
-
-
     </Grid>
 </Page>

@@ -26,7 +26,17 @@
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
                 <Button  x:Name="closeBtn" Content="CLOSE"  FontSize="15" Height="30" Margin="5 0 5 0"
                    Padding="15 0 15 0" HorizontalContentAlignment="Right" 
-                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Visible" Click="GoBack"/>
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Visible" Click="GoBack">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Takes you to previous page.
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </StackPanel>
             
         </Grid>
@@ -106,13 +116,43 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button  x:Name="cancelBtn" Content="CANCEL TICKET"  FontSize="15" Height="30" Margin="5 0 5 0"
                    Padding="15 0 15 0" VerticalAlignment="Center" 
-                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Cancel_Click"/>
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Cancel_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Cancels the ticket
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
             <Button  x:Name="confirmBtn" Content="CONFIRM TICKET"  FontSize="15" Height="30" Margin="5 0 5 0"
                    Padding="15 0 15 0" VerticalAlignment="Center" 
-                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Confirm_Click"/>
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Confirm_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Confirms ticket buying/reserving.
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
             <Button  x:Name="buyBtn" Content="BUY TICKET"  FontSize="15" Height="30" Margin="5 0 5 0"
                    Padding="15 0 15 0" VerticalAlignment="Center" 
-                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Buy_Click"/>
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Buy_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Confirms ticket buying.
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

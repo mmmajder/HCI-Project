@@ -35,7 +35,18 @@
                         Foreground="White" FontSize="16" TextWrapping="WrapWithOverflow"/>
                     <ComboBox x:Name="wagonCB" SelectedIndex="-1"  SelectionChanged="wagonCB_SelectionChanged"
                     Foreground="Black" IsEditable="False" FontSize="14" Background="White"
-                        Margin="10 15 0 10 " MinWidth="40"/>
+                        Margin="10 15 0 10 " MinWidth="40"
+                    >
+                        <ComboBox.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                        Choose a wagon where you want to book seats
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                    </ComboBox>
                 </StackPanel>
             </StackPanel>
             
@@ -98,11 +109,31 @@
             <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button  x:Name="GoBackBtn" Content="CANCEL"  FontSize="15" Height="30" Margin="5 0 5 0"
                     Padding="15 0 15 0" VerticalAlignment="Center" 
-                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Visible" Click="GoBack"/>
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Visible" Click="GoBack">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                       Closes seat selection window and returns to previos page.
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
                 <Button  x:Name="AcceptSelectionBtn" Content="ACCEPT SELECTION"  FontSize="15" Height="30" Margin="5 0 5 0"
                    Padding="15 0 15 0" VerticalAlignment="Center" 
-                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Visible" Click="AcceptSelection_Click"/>
-                
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Visible" Click="AcceptSelection_Click">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Shows the final preview of the ticket
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+
                 <Label x:Name="stationErrorLbl" Content="Choose seats first." Foreground="#cc1111" FontSize="18"
                    Padding="15 0 15 0" Margin="15 20 15 0"  HorizontalAlignment="Center" Visibility="Collapsed"/>
             </StackPanel>

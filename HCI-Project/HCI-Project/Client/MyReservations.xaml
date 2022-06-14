@@ -17,15 +17,45 @@
             <Button 
                 Content="CANCEL TICKET" Click="CancelBtn_Click"
                 Margin="40 0 40 0" VerticalAlignment="Center"
-                Background="#cc1111" BorderBrush="#cc1111"/>
+                Background="#cc1111" BorderBrush="#cc1111">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Cancels selected ticket.
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
             <Button 
                 Content="BUY TICKET" Click="BuyBtn_Click"
                 Margin="40 0 40 0" VerticalAlignment="Center"
-                Background="#cc1111" BorderBrush="#cc1111"/>
+                Background="#cc1111" BorderBrush="#cc1111">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Buys selected reserved ticket.
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
             <Button 
                 Content="PREVIEW TICKET" Click="PreviewBtn_Click"
                 Margin="40 0 40 0" VerticalAlignment="Center"
-                Background="#cc1111" BorderBrush="#cc1111"/>
+                Background="#cc1111" BorderBrush="#cc1111">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Shows detailed preview of selected ticket.
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
         </StackPanel>
 
         <Label x:Name="ticketNotChoosenLbl" Grid.Column="1" Grid.ColumnSpan="2" Content="You need to choose a ticket first." Foreground="#cc1111" FontSize="15"

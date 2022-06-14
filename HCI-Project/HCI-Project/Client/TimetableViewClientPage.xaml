@@ -116,10 +116,30 @@
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
                         <Button x:Name="firstBuyBtn" Content="BUY" Click="firstBuyBtn_Click"
                                 BorderBrush="Transparent" Background="#cc1111" Foreground="White"
-                            />
+                            >
+                            <Button.ToolTip>
+                                <ToolTip   Placement="Right">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                        Opens Buying preview for seat selection if the table row is selected.
+                                        </TextBlock>
+                                    </StackPanel>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
                         <Button x:Name="firstReserveBtn" Content="RESERVE"  Click="firstResBtn_Click"
                                 BorderBrush="Transparent" Background="#cc1111" Foreground="White"
-                            />
+                            >
+                            <Button.ToolTip>
+                                <ToolTip   Placement="Right">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                        Opens Resrvation preview for seat selection if the table row is selected.
+                                        </TextBlock>
+                                    </StackPanel>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
                     </StackPanel>
                     <Label x:Name="BuyResErrorLabel" HorizontalAlignment="Center" Content="" Foreground="#cc1111" />
                 </StackPanel>

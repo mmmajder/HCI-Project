@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -56,7 +57,8 @@ namespace HCI_Project.Client
 
                 if (selectedTicket.Departure < DateTime.Now.AddDays(1))
                 {
-                    MessageBox.Show("It is not possible to cancel the ticket less than 1 day prior to departure time.");
+                    MyMessageBox popupp = new MyMessageBox("It is not possible to cancel the ticket less than 1 day prior to departure time.", this, false);
+                    popupp.ShowDialog();
                     return;
                 }
 
@@ -64,7 +66,8 @@ namespace HCI_Project.Client
                 //TicketService.cancelTicketUser(selectedTicket.Id);
                 loadData();
 
-                MessageBox.Show("You have canceled your ticket. We will refund your money in the shortest possible time.");
+                MyMessageBox popup = new MyMessageBox("You have canceled your ticket.", this, true);
+                popup.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -112,7 +115,8 @@ namespace HCI_Project.Client
             if (i != -1)
                 return Tickets[i];
 
-            MessageBox.Show("Please, choose the table row first.");
+            MyMessageBox popup = new MyMessageBox("Please, choose the table row first.", this, false);
+            popup.ShowDialog();
 
             return null;
         }

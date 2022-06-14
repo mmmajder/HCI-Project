@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -91,7 +92,8 @@ namespace HCI_Project.Client
                 //TicketService.buyTicket(selectedTicket.Id);
                 loadData();
 
-                MessageBox.Show("Thank you for buying the ticket you have previously bought. You can see all your bought tickets in \"MY TICKETS\" tab.");
+                MyMessageBox popup = new MyMessageBox("Thank you for buying the ticket you have previously reserved.", this, true);
+                popup.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -115,7 +117,8 @@ namespace HCI_Project.Client
                 selectedTicket.TicketStatus = TicketStatus.UserCanceled;
                 loadData();
 
-                MessageBox.Show("You have canceled reservation for your ticket.");
+                MyMessageBox popup = new MyMessageBox("You have canceled reservation for your ticket.", this, true);
+                popup.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -130,7 +133,8 @@ namespace HCI_Project.Client
             if (i != -1)
                 return Tickets[i];
 
-            MessageBox.Show("Please, choose the table row first.");
+            MyMessageBox popup = new MyMessageBox("Please, choose the table row first.", this, false);
+            popup.ShowDialog();
 
             return null;
         }

@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using System;
@@ -68,19 +69,22 @@ namespace HCI_Project.Client
             {
                 Ticket.TicketStatus = TicketStatus.UserCanceled;
                 //TicketService.cancelTicketUser(Ticket.Id);
-                MessageBox.Show("You have canceled reservation for your ticket.");
+                MyMessageBox popup = new MyMessageBox("You have canceled reservation for your ticket.", this, true);
+                popup.ShowDialog();
                 GoBack();
             } 
             else if (Ticket.TicketStatus == TicketStatus.Payed)
             {
                 if (Ticket.Departure < DateTime.Now.AddDays(1))
                 {
-                    MessageBox.Show("It is not possible to cancel the ticket less than 1 day prior to departure time.");
+                    MyMessageBox popupp = new MyMessageBox("It is not possible to cancel the ticket less than 1 day prior to departure time.", this, false);
+                    popupp.ShowDialog();
                     return;
                 }
                 Ticket.TicketStatus = TicketStatus.UserCanceled;
                 //TicketService.cancelTicketUser(Ticket.Id);
-                MessageBox.Show("You have canceled your ticket. We will refund your money in the shortest possible time.");
+                MyMessageBox popup = new MyMessageBox("You have canceled your ticket.", this, true);
+                popup.ShowDialog();
                 GoBack();
             }
 
@@ -93,13 +97,15 @@ namespace HCI_Project.Client
             if (IsReservation)
             {
                 TicketService.reserveTicket(Ticket);
-                MessageBox.Show("You have succesfully reserved ticket.");
+                MyMessageBox popup = new MyMessageBox("You have succesfully reserved ticket.", this, true);
+                popup.ShowDialog();
                 getCurrentClientWindow().Main.Content = new MyReservations();
             }
             else
             {
                 TicketService.buyTicket(Ticket);
-                MessageBox.Show("Thank you for buying the ticket you have previously bought. You can see all your bought tickets in \"MY TICKETS\" tab.");
+                MyMessageBox popup = new MyMessageBox("Thank you for buying the ticket.", this, true);
+                popup.ShowDialog();
                 getCurrentClientWindow().Main.Content = new MyTicketsPage();
             }
         }
@@ -110,7 +116,8 @@ namespace HCI_Project.Client
             {
                 Ticket.TicketStatus = TicketStatus.Payed;
                 //TicketService.buyTicket(Ticket.Id);
-                MessageBox.Show("Thank you for buying the ticket you have previously bought. You can see all your bought tickets in \"MY TICKETS\" tab.");
+                MyMessageBox popup = new MyMessageBox("Thank you for buying the ticket you have previously reserved.", this, true);
+                popup.ShowDialog();
                 GoBack();
             }
         }

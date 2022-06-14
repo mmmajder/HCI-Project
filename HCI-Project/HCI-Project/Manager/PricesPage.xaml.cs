@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HelpSistem;
 using System;
@@ -151,14 +152,18 @@ namespace HCI_Project.Manager
                     manageUndoRedoBtnsVisibility();
                 }
                 else
-                    MessageBox.Show("The price for station " + stationName + " is already " + newPrice + ".");
+                {
+                    MyMessageBox popup = new MyMessageBox("The price for station " + stationName + " is already " + newPrice + ".", this, false);
+                    popup.ShowDialog();
+                }
             }
         }
 
         private void ChangePrice(Route route, string stationName, double price)
         {
             route.updatePrice(stationName, price);
-            MessageBox.Show("Updated the Price for Station " + stationName + ". New price is " + price + ". On route: " + route);
+            MyMessageBox popup = new MyMessageBox("Updated the Price for Station " + stationName + ". New price is " + price + ".", this, true);
+            popup.ShowDialog();
             fillPricesDataGrid();
         }
 

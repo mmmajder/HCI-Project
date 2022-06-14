@@ -1,4 +1,5 @@
 ﻿using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -170,7 +171,8 @@ namespace HCI_Project
         {
             if ( MonthRB.IsChecked == false && DateRB.IsChecked == false)
             {
-                MessageBox.Show("To get a report you need first to choose Month or Date.");
+                MyMessageBox popup = new MyMessageBox("To get a report you need first to choose Month or Date.", this, false);
+                popup.ShowDialog();
                 return;
             }
             if (DateRB.IsChecked == true && datePicker.SelectedDate == null)

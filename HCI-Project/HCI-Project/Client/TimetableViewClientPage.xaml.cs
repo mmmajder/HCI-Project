@@ -219,7 +219,8 @@ namespace HCI_Project.Client
             if (i != -1)
                 return Routes[i];
 
-            MessageBox.Show("Please, choose the table row first.");
+            MyMessageBox popup = new MyMessageBox("Please, choose the table row first.", this, false);
+            popup.ShowDialog();
 
             return null;
         }

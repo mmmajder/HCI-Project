@@ -148,6 +148,9 @@
     <Compile Include="Commands\WagonRemovedCommand.cs" />
     <Compile Include="Commands\WagonReceivedCommand.cs" />
     <Compile Include="Commands\WagonInsertedCommand.cs" />
+    <Compile Include="demos\DemoClient.xaml.cs">
+      <DependentUpon>DemoClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DTO\EditRouteRowDTO.cs" />
     <Compile Include="Commands\TodoItemInsertedCommand.cs" />
     <Compile Include="Commands\TodoItemReceivedCommand.cs" />
@@ -301,6 +304,10 @@
     <Compile Include="Views\TodoView.xaml.cs">
       <DependentUpon>TodoView.xaml</DependentUpon>
     </Compile>
+    <Page Include="demos\DemoClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Help\HelpViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -47,5 +47,14 @@ namespace HCI_Project.Repo
         {
             return logged;
         }
+
+        public static User getUser(string username)
+        {
+            foreach (User u in Users)
+                if (u.Username.Equals(username))
+                    return u;
+
+            return null;
+        }
     }
 }

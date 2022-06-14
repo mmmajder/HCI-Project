@@ -72,7 +72,11 @@ namespace HCI_Project.Model
                 }
                 else
                     if (s.Name.Equals(fromName))
+                    {
                         hasComeToFrom = true;
+                        price += getPrice(s.Name);
+                    }
+                        
 
             return price;
         }

@@ -19,6 +19,8 @@ namespace HCI_Project.Model
         public DateTime Departure { get; set; }
         public string DepartureTimeStr { get; set; }
         public string DateStr { get; set; }
+        public DateTime Date { get; set; }
+        public int SeatsLength { get; set; }
 
         public Ticket(ScheduledRoute scheduledroute, DateTime date, String username, List<string> seats, string from, string to, double price, DateTime departure)
         {
@@ -31,6 +33,22 @@ namespace HCI_Project.Model
             Departure = departure;
             DepartureTimeStr = Departure.ToString("HH:mm");
             DateStr = Departure.ToString("dd.MM.yyyy.");
+            Date = date;
+            SeatsLength = seats.Count;
         }
+
+        public Ticket(ScheduledRoute scheduledroute, DateTime date, String username, string from, string to, DateTime departure)
+        {
+            ScheduledRoute = scheduledroute;
+            Username = username;
+            From = from;
+            To = to;
+            Departure = departure;
+            DepartureTimeStr = Departure.ToString("HH:mm");
+            DateStr = Departure.ToString("dd.MM.yyyy.");
+            Date = date;
+        }
+
+
     }
 }

@@ -136,6 +136,12 @@
     <Compile Include="Client\MyTicketsPage.xaml.cs">
       <DependentUpon>MyTicketsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Client\SeatSelectionPage.xaml.cs">
+      <DependentUpon>SeatSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Client\TicketPreviewPage.xaml.cs">
+      <DependentUpon>TicketPreviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Client\TimetableViewClientPage.xaml.cs">
       <DependentUpon>TimetableViewClientPage.xaml</DependentUpon>
     </Compile>
@@ -197,6 +203,7 @@
     <Compile Include="Model\PriceUndoRedo.cs" />
     <Compile Include="Model\Report.cs" />
     <Compile Include="Model\StationPrice.cs" />
+    <Compile Include="Model\WagonSeat.cs" />
     <Compile Include="Popups\InputStationNamePopup.xaml.cs">
       <DependentUpon>InputStationNamePopup.xaml</DependentUpon>
     </Compile>
@@ -256,6 +263,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Client\MyTicketsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Client\SeatSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Client\TicketPreviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

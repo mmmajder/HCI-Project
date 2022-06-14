@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:HCI_Project.Client"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TicketPreviewPage">
+      Title="TicketPreviewPage"
+      KeyDown="Page_KeyDown">
 
     <Grid>
         <Grid.RowDefinitions>

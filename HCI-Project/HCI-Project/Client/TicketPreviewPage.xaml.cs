@@ -163,5 +163,13 @@ namespace HCI_Project.Client
 
             dgrMain.ItemsSource = wagonSeats;
         }
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                GoBack();
+            }
+        }
     }
 }

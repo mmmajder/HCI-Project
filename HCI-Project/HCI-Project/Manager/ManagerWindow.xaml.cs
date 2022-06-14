@@ -35,11 +35,6 @@ namespace HCI_Project
             Main.Content = new TrainsViewPage(this);
         }
 
-        private void HomeViewSelected(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new HomeViewPage(); 
-        }
-
         private void TimetableBtn_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new TimetableViewPage(this);

@@ -6,6 +6,7 @@
         mc:Ignorable="d"
         WindowStyle="None" ResizeMode="NoResize"
         Title="Message" Height="150" Width="350"
+        Icon="../images/soko.ico"
         AllowsTransparency="True" Background="Transparent">
     <Border BorderThickness="2" BorderBrush="Black" 
     CornerRadius="20" Background="#E8F0F2">

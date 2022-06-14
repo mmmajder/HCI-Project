@@ -7,7 +7,12 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/" 
         xmlns:local="clr-namespace:HCI_Project.Manager"
         mc:Ignorable="d"
+        KeyDown="Window_KeyDown"
         Title="Add new scheduled route" MinHeight="470" MinWidth="420">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:AddNewScheduledRoute.HelpCommand}" 
+                        Executed="Help_Executed" CanExecute="Help_CanExecute"/>
+    </Window.CommandBindings>
     <Window.Resources>
         <Style x:Key="CenterGridHeaderStyle" TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>

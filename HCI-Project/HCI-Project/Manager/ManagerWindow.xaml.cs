@@ -23,6 +23,7 @@ namespace HCI_Project
         public ManagerWindow()
         {
             InitializeComponent();
+            Main.Content = new TimetableViewPage(this);
         }
 
         private void LinesViewSelected(object sender, RoutedEventArgs e)
@@ -33,11 +34,6 @@ namespace HCI_Project
         private void TrainsViewSelected(object sender, RoutedEventArgs e)
         {
             Main.Content = new TrainsViewPage(this);
-        }
-
-        private void HomeViewSelected(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new HomeViewPage(); 
         }
 
         private void TimetableBtn_Click(object sender, RoutedEventArgs e)
@@ -61,6 +57,44 @@ namespace HCI_Project
             window.Show();
             this.Close();
 
+        }
+        private void Demo_Click(object sender, RoutedEventArgs e)
+        {
+            DemoClient window = new DemoClient();
+            window.Show();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F1)
+            {
+                if (Main.Content is PricesPage)
+                {
+                    PricesPage pricesPage = new PricesPage();
+                    pricesPage.Help_Click(sender, e);
+                }
+                if (Main.Content is LinesViewPage)
+                {
+                    LinesViewPage linesViewPage = new LinesViewPage(this);
+                    linesViewPage.Help_Click(sender, e);
+                }
+                if (Main.Content is TrainsViewPage)
+                {
+                    TrainsViewPage trains = new TrainsViewPage(this);
+                    trains.Help_Click(sender, e);
+                }
+
+                if (Main.Content is TimetableViewPage)
+                {
+                    TimetableViewPage pricesPage = new TimetableViewPage(this);
+                    pricesPage.Help_Click(sender, e);
+                }
+                if (Main.Content is FinancesViewPage)
+                {
+                    FinancesViewPage linesViewPage = new FinancesViewPage();
+                    linesViewPage.Help_Click(sender, e);
+                }
+            }
         }
     }
 }

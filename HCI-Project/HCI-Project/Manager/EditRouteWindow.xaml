@@ -7,6 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="HCI_Project.Manager.EditRouteWindow"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         xmlns:fa="http://schemas.fontawesome.io/icons/" 
+        KeyDown="Window_KeyDown"
         mc:Ignorable="d"
         Title="Edit scheduled route" MinHeight="450" MinWidth="500">
     <Window.Resources>

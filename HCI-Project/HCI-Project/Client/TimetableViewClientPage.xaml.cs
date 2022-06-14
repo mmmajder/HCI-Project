@@ -1,5 +1,6 @@
 ﻿using HCI_Project.DTO;
 using HCI_Project.Model;
+using HCI_Project.Popups;
 using HCI_Project.Repo;
 using HCI_Project.Service;
 using HelpSistem;
@@ -78,11 +79,13 @@ namespace HCI_Project.Client
                 dgrMain.ItemsSource = data;
                 if (data.Count==0)
                 {
-                    MessageBox.Show("There are no scheduled routes betweeen these stations on selected date!");
+                    MyMessageBox popup = new MyMessageBox("There are no scheduled routes!", this, false);
+                    popup.ShowDialog();
                 }
             } else
             {
-                MessageBox.Show("Please input valid values for start and end station and date");
+                MyMessageBox popup = new MyMessageBox("Please input valid values for stations and date!", this, false);
+                popup.ShowDialog();
             }
         }
 
@@ -110,16 +113,25 @@ namespace HCI_Project.Client
                 ScheduledRoute selectedScheduledRoute = getSelectedScheduledRoute();
                 if (selectedScheduledRoute == null) return;
 
-                Ticket ticket = createTicket(selectedScheduledRoute);
-                if (ticket == null) return;
+                Ticket t = createTicketPriorToSeatSelection(selectedScheduledRoute);
+                openSeatSelectionPage(t);
+                //Ticket ticket = createTicket(selectedScheduledRoute);
+                //if (ticket == null) return;
 
-                TicketService.buyTicket(ticket);
-                MessageBoxResult result = MessageBox.Show("You have succesfully bought ticket");
+                //TicketService.buyTicket(ticket);
+                //MessageBoxResult result = MessageBox.Show("You have succesfully bought ticket");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void openSeatSelectionPage(Ticket ticket, bool isReservation = false)
+        {
+            SeatSelectionPage sp = new SeatSelectionPage(getCurrentClientWindow().Main.Content, ticket, isReservation);
+            sp.Visibility = Visibility.Visible;
+            getCurrentClientWindow().Main.Content = sp;
         }
 
         private void firstResBtn_Click(object sender, RoutedEventArgs e)
@@ -129,11 +141,14 @@ namespace HCI_Project.Client
                 ScheduledRoute selectedScheduledRoute = getSelectedScheduledRoute();
                 if (selectedScheduledRoute == null) return;
 
-                Ticket ticket = createTicket(selectedScheduledRoute);
-                if (ticket == null) return;
+                Ticket t = createTicketPriorToSeatSelection(selectedScheduledRoute);
+                openSeatSelectionPage(t, true);
 
-                TicketService.reserveTicket(ticket);
-                MessageBox.Show("You have succesfully reserved ticket.");
+                //Ticket ticket = createTicket(selectedScheduledRoute);
+                //if (ticket == null) return;
+
+                //TicketService.reserveTicket(ticket);
+                //MessageBox.Show("You have succesfully reserved ticket.");
             }
             catch (Exception ex)
             {
@@ -141,23 +156,37 @@ namespace HCI_Project.Client
             }
         }
 
-        private Ticket createTicket(ScheduledRoute selectedScheduledRoute)
+        private Ticket createTicketPriorToSeatSelection(ScheduledRoute selectedScheduledRoute)
         {
-            string seat = "1A"; //
-
             DateTime departureTime = selectedScheduledRoute.getDepartureTime(SearchedFrom).Value;
             DateTime departure = SearchedDate.AddHours(departureTime.Hour).AddMinutes(departureTime.Minute);
+            string seat = "1000"; //nebitno
 
             if (!BuyResValidations(departure, selectedScheduledRoute, seat))
                 return null;
 
-            List<string> seats = new List<string>(); //
-            seats.Add(seat); //
-            double price = RouteRepo.getRoute(selectedScheduledRoute.RouteId).getPrice(SearchedFrom, SearchedTo); //
             User u = UserRepo.getLogged();
 
-            return new Ticket(selectedScheduledRoute, SearchedDate, u.Username, seats, SearchedFrom, SearchedTo, price, departure);
+            return new Ticket(selectedScheduledRoute, SearchedDate, u.Username, SearchedFrom, SearchedTo, departure);
         }
+
+        //private Ticket createTicket(ScheduledRoute selectedScheduledRoute)
+        //{
+        //    string seat = "2_16"; //
+
+        //    DateTime departureTime = selectedScheduledRoute.getDepartureTime(SearchedFrom).Value;
+        //    DateTime departure = SearchedDate.AddHours(departureTime.Hour).AddMinutes(departureTime.Minute);
+
+        //    if (!BuyResValidations(departure, selectedScheduledRoute, seat))
+        //        return null;
+
+        //    List<string> seats = new List<string>(); //
+        //    seats.Add(seat); //
+        //    double price = RouteRepo.getRoute(selectedScheduledRoute.RouteId).getPrice(SearchedFrom, SearchedTo); //
+        //    User u = UserRepo.getLogged();
+
+        //    return new Ticket(selectedScheduledRoute, SearchedDate, u.Username, seats, SearchedFrom, SearchedTo, price, departure);
+        //}
 
         private bool BuyResValidations(DateTime departure, ScheduledRoute selectedScheduledRoute, string seat = "1A")
         {
@@ -195,9 +224,18 @@ namespace HCI_Project.Client
             return null;
         }
        
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("TimetableClient");
+        }
+
+        private ClientWindow getCurrentClientWindow()
+        {
+            return Application.Current.Windows.OfType<ClientWindow>().SingleOrDefault(x => x.IsActive);
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

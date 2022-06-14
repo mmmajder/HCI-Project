@@ -1,6 +1,7 @@
 ﻿using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,44 @@ namespace HCI_Project.Client
             dgrMain.ItemsSource = Tickets;
         }
 
+        public void RefreshData()
+        {
+            loadData();
+        }
+
+        private void PreviewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Ticket selectedTicket = getSelectedTicket();
+                if (selectedTicket == null)
+                {
+                    ticketNotChoosenLbl.Visibility = Visibility.Visible;
+                    return;
+                }
+                ticketNotChoosenLbl.Visibility = Visibility.Hidden;
+
+                openTicketPreview(selectedTicket);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void openTicketPreview(Ticket ticket)
+        {
+            TicketPreviewPage preview = new TicketPreviewPage(getCurrentClientWindow().Main.Content, ticket, true, false, RefreshData);
+            preview.Visibility = Visibility.Visible;
+            getCurrentClientWindow().Main.Content = preview;
+        }
+
+        private ClientWindow getCurrentClientWindow()
+        {
+            return Application.Current.Windows.OfType<ClientWindow>().SingleOrDefault(x => x.IsActive);
+        }
+
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -48,7 +87,8 @@ namespace HCI_Project.Client
                 }
                 ticketNotChoosenLbl.Visibility = Visibility.Hidden;
 
-                TicketService.buyTicket(selectedTicket.Id);
+                selectedTicket.TicketStatus = TicketStatus.Payed;
+                //TicketService.buyTicket(selectedTicket.Id);
                 loadData();
 
                 MessageBox.Show("Thank you for buying the ticket you have previously bought. You can see all your bought tickets in \"MY TICKETS\" tab.");
@@ -71,7 +111,8 @@ namespace HCI_Project.Client
                 }
                 ticketNotChoosenLbl.Visibility = Visibility.Hidden;
 
-                TicketService.cancelTicketUser(selectedTicket.Id);
+                //TicketService.cancelTicketUser(selectedTicket.Id);
+                selectedTicket.TicketStatus = TicketStatus.UserCanceled;
                 loadData();
 
                 MessageBox.Show("You have canceled reservation for your ticket.");
@@ -92,6 +133,14 @@ namespace HCI_Project.Client
             MessageBox.Show("Please, choose the table row first.");
 
             return null;
+        }
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("MyReservations");
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

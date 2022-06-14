@@ -72,7 +72,11 @@ namespace HCI_Project.Model
                 }
                 else
                     if (s.Name.Equals(fromName))
+                    {
                         hasComeToFrom = true;
+                        price += getPrice(s.Name);
+                    }
+                        
 
             return price;
         }
@@ -127,6 +131,11 @@ namespace HCI_Project.Model
                 case 7: return "Sun";
                 default: return "";
             }
+        }
+
+        public void updatePrice(string stationName, double newPrice)
+        {
+            PriceCatalog[stationName] = newPrice;
         }
 
         //public override string ToString()

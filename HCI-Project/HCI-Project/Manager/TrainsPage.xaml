@@ -9,6 +9,8 @@
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+        KeyDown="Window_KeyDown"
+      
       Title="LinesViewPage">
 
 

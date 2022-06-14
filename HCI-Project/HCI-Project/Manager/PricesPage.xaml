@@ -4,9 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Project.Manager"
+        KeyDown="Window_KeyDown"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PricesPage">
+
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:PricesPage.UndoCommand}" 
+                        Executed="Undo_Executed" CanExecute="Undo_CanExecute"/>
+        <CommandBinding Command="{x:Static local:PricesPage.RedoCommand}" 
+                        Executed="Redo_Executed" CanExecute="Redo_CanExecute"/>
+        <CommandBinding Command="{x:Static local:PricesPage.SaveChangeCommand}" 
+                        Executed="SaveChange_Executed" CanExecute="SaveChange_CanExecute"/>
+    </Page.CommandBindings>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,7 +31,17 @@
 
             <ComboBox x:Name="routeCB" SelectedIndex="-1"  SelectionChanged="RouteSelected_Click"
                     Foreground="Black" IsEditable="False" FontSize="12" Background="White"
-                        Margin="25 10 25 0" />
+                        Margin="25 10 25 0" >
+                <ComboBox.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Choose route
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </ComboBox.ToolTip>
+            </ComboBox>
         </StackPanel>
 
         <Grid Grid.Column="1" x:Name="pricesPreviewer" Visibility="Hidden">
@@ -73,6 +93,35 @@
             </DataGrid>
             
             <StackPanel Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button  x:Name="UndoBtn" Content="UNDO"  FontSize="8" Height="20" Margin="5 5 5 5"
+                            Padding="5" VerticalAlignment="Center" 
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="UndoBtn_Click">
+                        <Button.ToolTip>
+                            <ToolTip   Placement="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Undos made changes.
+                                    </TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+
+                    <Button  x:Name="RedoBtn" Content="REDO"  FontSize="8" Height="20" Margin="5 5 5 5"
+                            Padding="5" VerticalAlignment="Center"
+                            Background="#cc1111" BorderBrush="#cc1111" Visibility="Hidden" Click="RedoBtn_Click">
+                        <Button.ToolTip>
+                            <ToolTip   Placement="Right">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Redos made changes.
+                                    </TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </StackPanel>
                 <TextBlock Text="Change price for station:" HorizontalAlignment="Center"
                        Margin="10 40 10 0" TextAlignment="Center"
                         Foreground="#336699" FontSize="16" TextWrapping="WrapWithOverflow"/>
@@ -95,11 +144,18 @@
                 <Button  x:Name="ChangePriceBtn" Grid.Column="0" Grid.Row="2"
                 Content="CONFIRM CHANGE"  FontSize="12" Height="20" Margin="50 20 50 0"
                  Padding="0" VerticalAlignment="Center"
-                Background="#cc1111" BorderBrush="#cc1111" Click="ChangePriceBtn_Click"/>
+                Background="#cc1111" BorderBrush="#cc1111" Click="ChangePriceBtn_Click">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Confirms price change.
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
             </StackPanel>
-            
         </Grid>
-
-
     </Grid>
 </Page>

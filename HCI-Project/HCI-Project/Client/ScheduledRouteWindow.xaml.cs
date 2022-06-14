@@ -96,9 +96,14 @@ namespace HCI_Project
             }
             
         }
-        private void Help_Click(object sender, RoutedEventArgs e)
+        public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("ScheduledRoutePreviewClient");
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

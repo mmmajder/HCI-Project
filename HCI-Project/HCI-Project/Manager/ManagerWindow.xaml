@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HCI_Project" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:popups="clr-namespace:HCI_Project.Popups"
         mc:Ignorable="d"
+        KeyDown="Window_KeyDown"
         Title="ManagerWindow" Height="450" Width="800"
         MinHeight="700" 
         MinWidth="750">
@@ -19,7 +20,6 @@
                 <ColumnDefinition Width="8*" /> images/startScreenImage.jpg
             </Grid.ColumnDefinitions>-->
             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0 0 10 0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Name="Home" FontSize="15" FontWeight="Bold" Foreground="White" Background="#336699" BorderThickness="0" Margin="2" Content="HOME" Click="HomeViewSelected"/>
                 <Button Name="TrainsBtn" FontSize="15" FontWeight="Bold" Background="#336699" Foreground="White" BorderThickness="0" Margin="2" Content="TRAINS" Click="TrainsViewSelected"/>
                 <Button Name="LinesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LINES" Click="LinesViewSelected"/>
                 <Button Name="TimetableBtn" FontSize="15" FontWeight="Bold" Margin="2" Foreground="White" BorderThickness="0" Content="TIMETABLE"  Background="#336699" Click="TimetableBtn_Click"/>

@@ -33,7 +33,7 @@ namespace HCI_Project.Repo
 
         public static long GetNewScheduledRouteId()
         {
-            return ScheduledRoutes.Count();
+            return ScheduledRoutes.Count()+1;
         }
 
         public static ScheduledRoute FindById(long id)

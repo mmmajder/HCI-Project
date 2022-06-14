@@ -1,6 +1,7 @@
 ﻿using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -406,6 +407,15 @@ namespace HCI_Project
         private void SeatsBtn_Click(object sender, RoutedEventArgs e)
         {
             setSeatsGraph();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("FinancesView");
         }
     }
 }

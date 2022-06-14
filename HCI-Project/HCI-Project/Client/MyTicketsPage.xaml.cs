@@ -1,6 +1,7 @@
 ﻿using HCI_Project.Model;
 using HCI_Project.Repo;
 using HCI_Project.Service;
+using HelpSistem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace HCI_Project.Client
             dgrMain.ItemsSource = Tickets;
         }
 
+        public void RefreshData()
+        {
+            loadData();
+        }
+
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -54,7 +60,8 @@ namespace HCI_Project.Client
                     return;
                 }
 
-                TicketService.cancelTicketUser(selectedTicket.Id);
+                selectedTicket.TicketStatus = TicketStatus.UserCanceled;
+                //TicketService.cancelTicketUser(selectedTicket.Id);
                 loadData();
 
                 MessageBox.Show("You have canceled your ticket. We will refund your money in the shortest possible time.");
@@ -63,6 +70,39 @@ namespace HCI_Project.Client
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void PreviewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Ticket selectedTicket = getSelectedTicket();
+                if (selectedTicket == null)
+                {
+                    ticketNotChoosenLbl.Visibility = Visibility.Visible;
+                    return;
+                }
+                ticketNotChoosenLbl.Visibility = Visibility.Hidden;
+
+                openTicketPreview(selectedTicket);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void openTicketPreview(Ticket ticket)
+        {
+            TicketPreviewPage preview = new TicketPreviewPage(getCurrentClientWindow().Main.Content, ticket, true, false, RefreshData);
+            preview.Visibility = Visibility.Visible;
+            getCurrentClientWindow().Main.Content = preview;
+        }
+
+        private ClientWindow getCurrentClientWindow()
+        {
+            return Application.Current.Windows.OfType<ClientWindow>().SingleOrDefault(x => x.IsActive);
         }
 
         private Ticket getSelectedTicket()
@@ -75,6 +115,15 @@ namespace HCI_Project.Client
             MessageBox.Show("Please, choose the table row first.");
 
             return null;
+        }
+
+        public void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("MyTickets");
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

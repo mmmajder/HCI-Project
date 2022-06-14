@@ -20,6 +20,7 @@ namespace HCI_Project.Popups
     public partial class MyMessageBox : Window
     {
         public Page parentWindow { get; set; }
+        public Window parentWindowReal { get; set; }
         public MyMessageBox(string message, Page parentWindow, bool isSuccess)
         {
             InitializeComponent();
@@ -42,6 +43,19 @@ namespace HCI_Project.Popups
                 this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             }
            
+        }
+
+        public MyMessageBox(string message, Window parentWindow, bool isSuccess)
+        {
+            InitializeComponent();
+            txtMessage.Text = message;
+            if (!isSuccess)
+            {
+                faIcon.Icon = FontAwesome.WPF.FontAwesomeIcon.Exclamation;
+                Color color = (Color)ColorConverter.ConvertFromString("#cc1111");
+                faIcon.Foreground = new SolidColorBrush(color);
+            }
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void Ok_clicked(object sender, RoutedEventArgs e)
         {

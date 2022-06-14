@@ -1,0 +1,159 @@
+﻿<Page x:Class="HCI_Project.Client.TicketPreviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Project.Client"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TicketPreviewPage"
+      KeyDown="Page_KeyDown">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="ticketPreviewTB" Text="Ticket preview"  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                <Button  x:Name="closeBtn" Content="CLOSE"  FontSize="15" Height="30" Margin="5 0 5 0"
+                   Padding="15 0 15 0" HorizontalContentAlignment="Right" 
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Visible" Click="GoBack">
+                    <Button.ToolTip>
+                        <ToolTip   Placement="Right">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Takes you to previous page.
+                                </TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                </Button>
+            </StackPanel>
+            
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="dateTB" Text="Date: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="varDateTB" Text="05.05.2022."  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="statusTB" Text="Status: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow"  Margin="15 0 0 0"  />
+                <TextBlock x:Name="varStatusTB" Text="Reserved"  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="fromTB" Text="From: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="varFromTB" Text="Novi Karlovci "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="toTB" Text="To: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" Margin="15 0 0 0" />
+                <TextBlock x:Name="varToTB" Text="Ohajo "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="departureTB" Text="Departure: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="varDepartureTB" Text="01:15 "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="nameTB" Text="Name: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="varNameTB" Text="Aleksa "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="lastnameTB" Text="Lastname: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" Margin="15 0 0 0" />
+                <TextBlock x:Name="varLastameTB" Text="Stanivuk "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock x:Name="numOfSeatsTB" Text="Seats: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+                <TextBlock x:Name="varNumOfSeatsTB" Text="3"  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow"/>
+                <TextBlock x:Name="priceTB" Text="Price: "  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow"  Margin="15 0 0 0" />
+                <TextBlock x:Name="varPriceTB" Text="478"  Foreground="#336699" FontSize="25" TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid  SelectionMode="Single" SelectionUnit="FullRow" CanUserReorderColumns="False" CanUserResizeColumns="True" 
+                       Grid.Row="2"  CanUserResizeRows="False" CanUserSortColumns="True"
+                      x:Name="dgrMain"  AutoGenerateColumns="False"
+                      RowBackground="White" Background="#336699"
+                      ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" CanUserAddRows="False" 
+                      >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Wagon" Width="2*" Binding="{Binding Path='WagonNum'}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="#336699"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Seat" Width="2*" 
+                                        Binding="{Binding Path='SeatNum'}" IsReadOnly="True">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                            <Setter Property="Background" Value="#336699"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  x:Name="cancelBtn" Content="CANCEL TICKET"  FontSize="15" Height="30" Margin="5 0 5 0"
+                   Padding="15 0 15 0" VerticalAlignment="Center" 
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Cancel_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Cancels the ticket
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button  x:Name="confirmBtn" Content="CONFIRM TICKET"  FontSize="15" Height="30" Margin="5 0 5 0"
+                   Padding="15 0 15 0" VerticalAlignment="Center" 
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Confirm_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Confirms ticket buying/reserving.
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button  x:Name="buyBtn" Content="BUY TICKET"  FontSize="15" Height="30" Margin="5 0 5 0"
+                   Padding="15 0 15 0" VerticalAlignment="Center" 
+                   Background="#cc1111" BorderBrush="#cc1111" Visibility="Collapsed" Click="Buy_Click">
+                <Button.ToolTip>
+                    <ToolTip   Placement="Right">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock MaxWidth="150" Foreground="White" TextWrapping="WrapWithOverflow">
+                                      Confirms ticket buying.
+                            </TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -8,6 +8,7 @@
         KeyDown="Window_KeyDown"
         Title="ClientWindow" Height="450" Width="800"
         MinHeight="700" 
+        Icon="../images/soko.ico"
         MinWidth="750">
     <Grid>
         <Grid.RowDefinitions>

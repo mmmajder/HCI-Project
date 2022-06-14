@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         KeyDown="Window_KeyDown"
         Title="ManagerWindow" Height="450" Width="800"
+        Icon="../images/soko.ico"
         MinHeight="700" 
         MinWidth="750">
     <Grid>

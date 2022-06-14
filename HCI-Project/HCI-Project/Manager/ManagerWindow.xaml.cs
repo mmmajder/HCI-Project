@@ -76,14 +76,14 @@ namespace HCI_Project
             }
             if (Main.Content is TrainsViewPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/ProbaProbica.mp4"));
                 window.Show();
 
             }
 
             if (Main.Content is TimetableViewPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/ManagerTimetable.mp4"));
                 window.Show();
             }
 

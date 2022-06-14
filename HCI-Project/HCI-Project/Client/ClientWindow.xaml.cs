@@ -78,7 +78,7 @@ namespace HCI_Project
 
             if (Main.Content is TimetableViewClientPage)
             {
-                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/video/ProbaProbica.mp4"));
+                window = new DemoClient(new Uri("C:/Users/Korisnik/Desktop/HCI-Proj/HCI-Project/HCI-Project/videos/BuyTickets.wmv"));
                 window.Show();
 
             }

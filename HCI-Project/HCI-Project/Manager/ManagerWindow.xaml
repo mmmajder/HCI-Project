@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>-->
             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0 0 10 0" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Name="TrainsBtn" FontSize="15" FontWeight="Bold" Background="#336699" Foreground="White" BorderThickness="0" Margin="2" Content="TRAINS" Click="TrainsViewSelected"/>
-                <Button Name="LinesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="LINES" Click="LinesViewSelected"/>
+                <Button Name="LinesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="ROUTES" Click="LinesViewSelected"/>
                 <Button Name="TimetableBtn" FontSize="15" FontWeight="Bold" Margin="2" Foreground="White" BorderThickness="0" Content="TIMETABLE"  Background="#336699" Click="TimetableBtn_Click"/>
                 <Button Name="FinancesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="REPORTS" Click="FinancesBtn_Click" />
                 <Button Name="PricesBtn" FontSize="15" FontWeight="Bold" Margin="2" Background="#336699" Foreground="White" BorderThickness="0" Content="PRICES" Click="PricesBtn_Click" />

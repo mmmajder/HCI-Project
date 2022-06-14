@@ -497,6 +497,7 @@
     <Content Include="html\EditTrainRoute.htm" />
     <Content Include="html\TimetableClient.htm" />
     <Content Include="html\TimetableManager.htm" />
+    <Resource Include="images\soko.ico" />
     <Resource Include="images\pin-transparent.png" />
     <Resource Include="images\transport-transparent.png" />
     <Resource Include="images\pin.jpg" />

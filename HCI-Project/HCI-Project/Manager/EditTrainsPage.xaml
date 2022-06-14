@@ -11,6 +11,11 @@
         KeyDown="Window_KeyDown"
         mc:Ignorable="d"
         Title="EditTrainsPage" d:DesignHeight="650" d:DesignWidth="550" Margin="20">
+    <Page.CommandBindings>
+        <CommandBinding Command="{x:Static local:EditTrainsPage.SaveEditTrainsCommand}" 
+                            Executed="SaveEditTrains_Executed" CanExecute="SaveEditTrains_CanExecute"/>
+    </Page.CommandBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />

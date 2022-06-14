@@ -224,6 +224,7 @@ namespace HCI_Project
         {
             e.CanExecute = true;
         }
+
         public void Help_Click(object sender, RoutedEventArgs e)
         {
             HelpProvider.ShowHelp("LinesView");
@@ -231,6 +232,7 @@ namespace HCI_Project
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            
         }
     }
 }

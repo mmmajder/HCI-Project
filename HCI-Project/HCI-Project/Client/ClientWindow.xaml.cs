@@ -56,8 +56,8 @@ namespace HCI_Project
 
         private void Demo_Click(object sender, RoutedEventArgs e)
         {
-            DemoClient window = new DemoClient();
-            window.Show();
+            // DemoClient window = new DemoClient();
+            // window.Show();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

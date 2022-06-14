@@ -1,9 +1,90 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
-	<head>
-		<title>Wagons</title>
-	</head>
-	<body>
-		<h1>Wagons</h1>
-	</body>
+<head>
+	<style>
+		h1 {
+			text-align: center
+		}
+
+		.column1 {
+			float: left;
+			width: 70%;
+			padding: 5px;
+		}
+
+		.column2 {
+			float: left;
+			width: 30%;
+			padding: 5px;
+		}
+
+		/* Clearfix (clear floats) */
+		.row::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+	</style>
+	<title>Wagons</title>
+</head>
+<body>
+	<h1>Wagons</h1>
+	<p>
+		First, you have following options: to add new wagon, edit selected wagon, or delete selected wagon
+	</p>
+
+	<h3>Edit existing wagon</h3>
+	<p>
+		To edit wagon, firstly you have to select one wagon from the list. Then on the right page you will have form for changing existing wagon attributes.<br />
+	</p>
+	<span>
+		<img src="htmImages/select_edit_wagon.png" height="250" width="600" />
+	</span>
+	<p>
+		Then you are able to change the name of the wagon. Also you can change number of seat columns and seat rows inside chosen wagon.
+	</p>
+	<img src="htmImages/preview_seats_wagon.png" height="250" width="600" />
+	<p>
+		To confirm changes click "Save changes" button. <br />
+		If everything went right confirmation message will popup
+	</p>
+	<img src="htmImages/confirm_popup_wagon.png" height="250" width="600" />
+
+
+	<h3>Add new wagon</h3>
+	<p>
+		To add new wagon, click on "Add" button. Then on the right page you will have form for input wagon attributes.<br />
+	</p>
+	<span>
+		<img src="htmImages/add_wagon.png" height="250" width="600" />
+	</span>
+	<p>
+		Then you are able to input the name of the wagon. Also you can set number of seat columns and seat rows inside chosen wagon. <br />
+		(Same as in edit section)
+	</p>
+	<p>
+		To confirm changes click "Save changes" button. <br />
+		If everything went right confirmation message will popupup <br />
+		(Same as in edit section)
+	</p>
+
+	<h3>Delete wagon</h3>
+	<p>
+		To delete wagon, click on "Delete" button in wanted row.<br />
+	</p>
+	<img src="htmImages/select_delete_wagon.png" height="250" width="600" />
+	<p>
+		Then confirmation popup will show up to make sure you want to delete selected wagon.<br />
+		If you change your mind, select option "No" and changes will be canceled.<br />
+	</p>
+	<img src="htmImages/confirm_delete_wagon.png" height="250" width="600" />
+	
+	<h3>Close page</h3>
+	<p>
+		To exit wagon crud page and go back to train crud page, click on "Close" button.<br />
+	</p>
+
+
+
+</body>
 </html>

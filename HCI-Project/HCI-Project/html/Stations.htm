@@ -1,9 +1,102 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
-	<head>
-		<title>Stations</title>
-	</head>
-	<body>
-		<h1>Stations</h1>
-	</body>
+<head>
+	<style>
+		h1 {
+			text-align: center
+		}
+
+		.column1 {
+			float: left;
+			width: 70%;
+			padding: 5px;
+		}
+
+		.column2 {
+			float: left;
+			width: 30%;
+			padding: 5px;
+		}
+
+		/* Clearfix (clear floats) */
+		.row::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+	</style>
+	<title>Stations</title>
+</head>
+<body>
+	<h1>Stations</h1>
+	<p>
+		First, you have following options: show selected station or all stations on the map, add new station, and delete selected station.
+	</p>
+
+	<h3>Show station on map</h3>
+	<p>
+		To show location of wanted station you can click on it in the list on the left side. <br />
+		Then on the right side of the page you have map, where station will be in focus and marked with pin.<br />
+	</p>
+	<span>
+		<img src="htmImages/stations/ShowOnMap.png" height="350" width="400" alt="Show stations" />
+		<img src="htmImages/stations/NoviSad.png" height="350" width="400" alt="Focus station" />
+	</span>
+	<p>
+		You can also choose option to show all existing stations on the map by clicking on toggle button.
+	</p>
+	<img src="htmImages/stations/AllStations.png" height="250" width="400" alt="All stations" />
+
+
+
+
+	<h3>Add new station</h3>
+	<p>
+		To add new station, click on "Add" button.<br />
+	</p>
+	<span>
+		<img src="htmImages/stations/AddNew.png" height="250" width="600" />
+	</span>
+	<p>
+		Then you are able to input the name of the station. <br />
+	</p>
+	<img src="htmImages/stations/inputPopup.png" height="250" width="600" />
+	<p>
+		After successful input of new station's name, new RED pin will show up on the map <br />
+	</p>
+	<img src="htmImages/stations/NewPin.png" height="250" width="600" />
+	<p>
+		Now you can drag and drop this pin wherever you want new station to be. <br />
+		You have an option to add multiple new stations before submitting.
+	</p>
+	<p>
+		You can also cancel every change you made by clicking "Cancel new stations" button.
+	</p>
+	<img src="htmImages/stations/buttons.png" height="150" width="600" />
+	<p>
+		When you are happy with station's postion, confirm changes click "Save new station" button.<br />
+		If everything went right confirmation message will popup, and added station will become ORANGE.
+	</p>
+	<img src="htmImages/stations/succesNew.png" height="250" width="600" />
+	<img src="htmImages/stations/NewPinAdded.png" height="250" width="600" />
+
+	<h3>Delete station</h3>
+	<p>
+		To delete station, click on "Delete" button in wanted row.<br />
+	</p>
+	<img src="htmImages/stations/delete.png" height="250" width="600" />
+	<p>
+		Then confirmation popup will show up to make sure you want to delete selected station.<br />
+		If you change your mind, select option "No" and changes will be canceled.<br />
+	</p>
+	<img src="htmImages/stations/confirmDelete.png" height="250" width="600" />
+
+	<h3>Close page</h3>
+	<p>
+		To exit station crud page and go back to route crud page, click on "Close" button.<br />
+	</p>
+
+
+
+</body>
 </html>

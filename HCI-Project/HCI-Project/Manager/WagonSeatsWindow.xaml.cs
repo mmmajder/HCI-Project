@@ -103,6 +103,10 @@ namespace HCI_Project
             string inputName = wagonName.Text;
             int inputRowCount = RowCountPicker.Value;
             int inputColCount = ColumnCountPicker.Value;
+            if(selectedWagon == null)
+            {
+                return;
+            }
 
             if (!isNew && selectedWagon.Name == inputName)
             {
